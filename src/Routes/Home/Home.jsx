@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeName } from '../../features/user/userSlice'
+import changeName from '../../features/user/userSlice'
 
 const Home = () => {
   const user = useSelector(state => state.user)
+  console.log(user)
   const dispatch = useDispatch()
 
   const [count, setCount] = useState(0)
@@ -28,13 +29,10 @@ const Home = () => {
 
   return (
     <div>
-      <h3>Welcome {user ? user.name : 'Usuario no registrado'}</h3>
+      <h3>Welcome {user ? user.userId : 'Usuario no registrado'}</h3>
       <p>Actually, the count is {count}</p>
       <button onClick={() => setCount(count + 1)}>Aumentar</button>
-      {user &&
-        user.cuacks.map(cuack => {
-          return <p key={cuack}>{cuack}</p>
-        })}
+      <button>LOGIN</button>
 
       <div>
         <form onSubmit={handleSubmit}>
