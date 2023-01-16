@@ -1,17 +1,13 @@
 import Logo from '../../assets/img/ducker-logo.png'
-import imagenLogo1 from '../../assets/img/imagenLogin1.svg'
+import imagenLogo1 from '../../assets/img/imagenLogin2.svg'
 import { useState } from 'react'
-import './Login.modules.css'
-import { GoogleLoginButton } from './GoogleLogin'
-import { loginFunction } from '../../features/user/functions'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import './CreateAccount.modules.css'
 
-const Login = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+const CreateAccount = () => {
   const [userInfo, setUserInfo] = useState({
     email: '',
+    fullname: '',
+    nickname: '',
     password: '',
   })
 
@@ -24,9 +20,7 @@ const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch(loginFunction(userInfo))
     console.log(userInfo)
-    navigate('/')
   }
 
   document.title = 'Welcome back!'
@@ -35,34 +29,39 @@ const Login = () => {
     <div className='loginContainer'>
       <div className='loginForm'>
         <img src={Logo} alt='logo' />
-        <h3>WELCOME BACK</h3>
-        <GoogleLoginButton className='buttonGoogle' />
-        {/* <button className='buttonGoogle'>Sing in with Google</button> */}
-        <h4 className='or'>or</h4>
+        <h3>CREATE ACCOUNT</h3>
         <form action='' onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
             name='email'
             type='text'
-            placeholder='Nickname - Email'
+            placeholder='Email'
+            required
+          />
+          <input
+            onChange={handleChange}
+            name='fullname'
+            type='text'
+            placeholder='Fullname'
+            required
+          />
+          <input
+            onChange={handleChange}
+            name='nickname'
+            type='text'
+            placeholder='Nickname'
+            required
           />
           <input
             onChange={handleChange}
             type='password'
             name='password'
-            placeholder='Password'
-            className='loginInput'
+            placeholder='password'
             id=''
+            required
           />
-          <h5>
-            <a href='' className='password'>
-              Forget Password
-            </a>
-          </h5>
-          <button type='submit'>Login</button>
-          <h5>
-            Don’t have an account yet? <a href='/createaccount'>Sing up</a>
-          </h5>
+          <h5>By registering, you accept the terms and conditions.</h5>
+          <button type='submit'>Register</button>
         </form>
       </div>
       <div className='loginImg'>
@@ -75,4 +74,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default CreateAccount
