@@ -25,6 +25,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Ducker</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,27 +40,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-      function handleCredentialResponse(response) {
-        //Google Token: ID_TOKEN
-
-        const body = { id_token: response.credential }
-
-        fetch('http://localhost:3001/auth/google', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(body),
-        })
-          .then(resp => resp.json())
-          .then(resp => {
-            console.log(resp)
-            localStorage.setItem('email', resp.user.email)
-          })
-          .catch(console.warn)
-      }
-    </script>
   </body>
 </html>
