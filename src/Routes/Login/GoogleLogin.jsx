@@ -1,49 +1,38 @@
+/* eslint-disable no-undef */
 import axios from 'axios'
+import { useEffect } from 'react'
 
 export const GoogleLoginButton = () => {
-  async function googleScript() {
-    return await axios.get('https://accounts.google.com/gsi/client')
+  async function handleCallbackResponse(response) {
+    console.log('Encoded JWT ID token: ' + response.credential)
+
+    try {
+      const body = { id_token: response.credential }
+      const resp = await axios.post('http://localhost:3001/auth/google', body)
+      console.log(resp)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  function handleCredentialResponse(response) {
-    const body = { id_token: response.credential }
-
-    fetch('http://localhost:3001/auth/google', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id:
+        '822266228699-vkgkd1nf47m4g75glodk1u8ftb8fl18c.apps.googleusercontent.com',
+      callback: handleCallbackResponse,
     })
-      .then(resp => resp.json())
-      .then(resp => {
-        console.log(resp)
-        localStorage.setItem('email', resp.user.email)
-      })
-      .catch(console.warn)
-  }
+    google.accounts.id.renderButton(document.getElementById('signInDiv'), {
+      theme: 'outline',
+      size: 'medium',
+      shape: 'pill',
+      logo_alignment: 'left',
+      width: '15vw',
+    })
+  }, [])
 
   return (
     <div>
-      <script src={googleScript} async defer />
-      <script src={handleCredentialResponse} async defer />
-      {googleScript}
-      {handleCredentialResponse}
-      <div
-        id='g_id_onload'
-        data-client_id='822266228699-vkgkd1nf47m4g75glodk1u8ftb8fl18c.apps.googleusercontent.com'
-        data-auto_prompt='false'
-        data-callback='handleCredentialResponse'
-      ></div>
-      <div
-        className='g_id_signin'
-        data-type='standard'
-        data-size='large'
-        data-theme='outline'
-        data-text='sign_in_with'
-        data-shape='rectangular'
-        data-logo_alignment='left'
-      ></div>
+      <div id='signInDiv'></div>
     </div>
   )
 }

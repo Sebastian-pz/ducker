@@ -7,7 +7,7 @@
   margin: 5% 20%;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 20px;
-  border: 0.2px solid rgb(187, 187, 187);
+  border: 0.1px solid rgb(214, 214, 214);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   background-color: #ffff;
@@ -55,6 +55,7 @@
   display: block;
   text-align: left;
   margin: 0;
+  margin-top: 2vh;
   font-size: 14px;
   font-weight: 200;
 }
@@ -98,7 +99,7 @@
 
 .loginForm button:hover {
   cursor: pointer;
-  background-color: red;
+  background-color: #d16ba5;
 }
 
 .loginImg {
@@ -134,7 +135,7 @@
 }
 
 .loginImg img {
-  max-width: 350px;
+  max-width: 400px;
   height: auto;
   width: 100%;
   margin-bottom: 10%;

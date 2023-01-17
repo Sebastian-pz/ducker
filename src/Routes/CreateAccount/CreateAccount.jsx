@@ -23,11 +23,11 @@ const CreateAccount = () => {
     console.log(userInfo)
   }
 
-  document.title = 'Welcome back!'
+  document.title = 'Ducker, register'
 
   return (
-    <div className='loginContainer'>
-      <div className='loginForm'>
+    <div className='registerContainer'>
+      <div className='registerForm'>
         <img src={Logo} alt='logo' />
         <h3>CREATE ACCOUNT</h3>
         <form action='' onSubmit={handleSubmit}>
@@ -64,7 +64,7 @@ const CreateAccount = () => {
           <button type='submit'>Register</button>
         </form>
       </div>
-      <div className='loginImg'>
+      <div className='registerImg'>
         <h3>
           Join Ducker today and see what’s happening in the world right now
         </h3>
