@@ -1,5 +1,5 @@
-import Logo from '../../assets/img/ducker-logo.png'
-import imagenLogo1 from '../../assets/img/imagenLogin1.svg'
+import Logo from '../../Assets/img/ducker-logo.png'
+import imagenLogo1 from '../../Assets/img/imagenLogin1.svg'
 import { useState } from 'react'
 import './Login.modules.css'
 import { GoogleLoginButton } from './GoogleLogin'
