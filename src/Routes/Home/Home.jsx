@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import changeName from '../../features/user/userSlice'
+import changeName from '../../Features/user/userSlice'
 
 const Home = () => {
   const user = useSelector(state => state.user)

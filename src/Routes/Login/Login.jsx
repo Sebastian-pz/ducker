@@ -3,7 +3,7 @@ import imagenLogo1 from '../../Assets/img/imagenLogin1.svg'
 import { useState } from 'react'
 import './Login.modules.css'
 import { GoogleLoginButton } from './GoogleLogin'
-import { loginFunction } from '../../features/user/functions'
+import { loginFunction } from '../../Features/user/functions'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
