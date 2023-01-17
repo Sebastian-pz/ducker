@@ -1,5 +1,5 @@
-import Logo from '../../Assets/img/ducker-logo.png'
-import imagenLogo1 from '../../Assets/img/imagenLogin2.svg'
+import Logo from '../../Assets/Img/ducker-logo.png'
+import imagenLogo1 from '../../Assets/Img/imagenLogin2.svg'
 import { useState } from 'react'
 import './CreateAccount.modules.css'
 
