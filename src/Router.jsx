@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home, ErrorPage, User, Login, CreateAccount } from './Routes'
+import { Home, ErrorPage, User, Login, CreateAccount, Pruebas } from './Routes'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
     path: '/createaccount',
     element: <CreateAccount />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: '/pruebas',
+    element: <Pruebas />,
   },
   {
     path: '*',

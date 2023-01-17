@@ -1,9 +1,9 @@
-import Logo from '../../Assets/img/ducker-logo.png'
-import imagenLogo1 from '../../Assets/img/imagenLogin1.svg'
+import Logo from '../../Assets/Img/ducker-logo.png'
+import imagenLogo1 from '../../Assets/Img/imagenLogin1.svg'
 import { useState } from 'react'
 import './Login.modules.css'
 import { GoogleLoginButton } from './GoogleLogin'
-import { loginFunction } from '../../Features/user/functions'
+import { loginFunction } from '../../Features/User/functions'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
