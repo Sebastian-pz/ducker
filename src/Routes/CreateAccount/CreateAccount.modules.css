@@ -9,6 +9,7 @@
   margin: 5% 20%;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 20px;
+  border: 0.1px solid rgb(214, 214, 214);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
 }
@@ -46,10 +47,10 @@
 .registerForm h5 {
   display: block;
   text-align: center;
-  margin: 0 10%;
+  margin: 10%;
   max-width: 15vw;
   width: 100%;
-  margin-top: 1vw;
+  /* margin-top: 1vw; */
   font-weight: 200;
 }
 
@@ -102,12 +103,12 @@
 .registerImg h3 {
   text-align: center;
   /* width: 90%; */
-  margin: 10% 10%;
+  margin: 10%;
 }
 
 .registerImg img {
-  max-width: 400px;
+  max-width: 250px;
   height: auto;
-  width: 60%;
+  width: 100%;
   margin-bottom: 10%;
 }

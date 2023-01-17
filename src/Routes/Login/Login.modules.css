@@ -35,7 +35,7 @@
   border-radius: 30px;
   width: 15vw;
   height: 3vh;
-  margin: 2vh;
+  margin: 2.2vh;
   /* box-shadow: 3vh, -1vw black; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-weight: bold;
@@ -46,8 +46,8 @@
 .loginForm h5 {
   display: block;
   text-align: left;
-  /* margin-left: 1vw; */
-  margin-top: -1vw;
+  margin-left: 1vw;
+  margin-top: -0.5vw;
   font-weight: 200;
 }
 
@@ -135,7 +135,7 @@
 }
 
 .loginImg img {
-  max-width: 400px;
+  max-width: 300px;
   height: auto;
   width: 100%;
   margin-bottom: 10%;
