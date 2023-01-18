@@ -1,4 +1,9 @@
 /* eslint-disable react/prop-types */
+import profilePicture from './profile.jpg'
+import like from '../../Assets/Img/like.gif'
+import recuack from '../../Assets/Img/recuack.gif'
+import comment from '../../Assets/Img/comment.gif'
+
 const Cuack = props => {
   const { cuackinfo } = props
 
@@ -17,19 +22,32 @@ const Cuack = props => {
 
   const { nickname, fullname, likes, recuacks, responses, content } = cuackinfo
   return (
-    <article>
-      <b>{fullname}</b>
-      <br />
-      <b>{nickname}</b>
-      <p>{content}</p>
-      <p>Likes: {likes ? likes.length : 0}</p>
-      <p>Recuacks: {recuacks ? recuacks.length : 0}</p>
-      <p>Responses: {responses ? responses.length : 0}</p>
-      <br />
-      <br />
-      <br />
-      <br />
-    </article>
+    <div className='cuack_container'>
+      <div className='cuack_main_content'>
+        <div className='cuack_content'>
+          <img src={profilePicture} alt='profile picture' />
+          <div className='cuack_author_info'>
+            <div className='display-flex-row'>
+              <p className='cuack_content_fullname'>{fullname}</p>
+              <p className='cuack_content_nickname'>{nickname}</p>
+            </div>
+            <div className='cuack_content_options options-end'>
+              <p>...</p>
+            </div>
+          </div>
+        </div>
+        <p className='cuack_content_text'>{content}</p>
+      </div>
+
+      {/* Recuacks Likes Comments */}
+      <div className='cuack_media'>
+        <img src={like} alt='likes-img' /> {likes ? likes.length : 0}
+        <img src={recuack} alt='recuak-img' />
+        {recuacks ? recuacks.length : 0}
+        <img src={comment} alt='comment-img' />{' '}
+        {responses ? responses.length : 0}
+      </div>
+    </div>
   )
 
   // Nickname - fullname - content - likes - recuack - responses - profile picture

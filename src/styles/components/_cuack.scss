@@ -1,0 +1,82 @@
+@use '../vars';
+
+.cuack_container {
+  background-color: vars.$cuack-background;
+  width: 100%;
+  padding: 30px;
+  margin: 1.5vh;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.cuack_content {
+  display: flex;
+  img {
+    border-radius: 50%;
+    width: 75px;
+    border: solid 1px rgba(89, 89, 89, 0.72);
+  }
+}
+
+.cuack_author_info {
+  display: flex;
+}
+
+.cuack_content_fullname {
+  font-weight: bold;
+  font-style: normal;
+  font-size: vars.$font-size;
+  line-height: 19px;
+  color: vars.$primary-font-color;
+}
+
+.cuack_content_nickname {
+  font-size: vars.$nickname-font-size;
+  line-height: 17px;
+  color: vars.$primary-font-color;
+}
+
+.cuack_author_info {
+  margin-top: 1vh;
+  margin-left: 1vh;
+  width: 100%;
+  justify-content: space-between;
+
+  p {
+    margin-left: 1vh;
+  }
+
+  .cuack_content_options {
+    font-size: vars.$font-size;
+    font-weight: bold;
+  }
+}
+
+.display-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cuack_content_text {
+  margin-left: 100px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: vars.$primary-font-color;
+}
+
+.cuack_media {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  img {
+    min-width: 20px;
+    width: 3vh;
+    margin-left: 10vh;
+  }
+
+  font-size: 16px;
+  align-content: center;
+  justify-content: center;
+  color: vars.$media-font-color;
+}
