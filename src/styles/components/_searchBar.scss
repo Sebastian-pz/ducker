@@ -1,0 +1,33 @@
+@use '../vars';
+
+.searchBarContainer {
+  display: flex;
+  width: 100%;
+  height: 4.5vh;
+  background-color: vars.$section3-background-color;
+  color: vars.$primary-font-color;
+  border-radius: 20px;
+}
+
+.formSearchBar {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-content: center;
+}
+
+.inputSb {
+  display: flex;
+  width: 100%;
+  background-color: rgba(248, 248, 255, 0);
+  outline: none;
+  border: 0;
+  font-size: 12px;
+}
+.lupa {
+  display: flex;
+  align-self: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 45%;
+}
