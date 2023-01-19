@@ -3,18 +3,23 @@ import { Link } from 'react-router-dom'
 import Logo from '../../Assets/Img/ducker-logo.png'
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import { getUserById } from '../../Features/User/functions'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
 
 const Home = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user.completeUser)
   let id = useSelector(state => state.user.userId)
+  // eslint-disable-next-line no-unused-vars
+  const [render, setrender] = useState(false)
 
   useEffect(() => {
     id = localStorage.getItem('auth')
     dispatch(getUserById(id))
-  }, [dispatch, user, id])
+    if (Object.entries(user).length === 0) {
+      setrender(true)
+    }
+  }, [])
 
   return (
     <div className='home-container'>

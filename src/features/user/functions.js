@@ -6,8 +6,10 @@ const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
 export const loginFunction = user => async dispatch => {
   try {
     const { data } = await axios.post(`${uri}/auth`, user)
+    const ola = await axios.get(`${uri}/users/${data.user}`)
     localStorage.setItem('auth', data.user)
     dispatch(login(data.user))
+    dispatch(userById(ola.data))
   } catch (error) {
     console.log(`internal server error, ${error}`)
   }
