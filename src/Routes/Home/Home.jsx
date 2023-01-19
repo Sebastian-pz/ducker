@@ -2,6 +2,8 @@ import './Home.modules.css'
 import { Link } from 'react-router-dom'
 import Logo from '../../Assets/Img/ducker-logo.png'
 import SearchBar from '../../Components/SearchBar/SearchBar'
+import Cuack from '../../Components/Cuack/Cuack'
+import Cuackear from '../../Components/Cuackear/Cuackear'
 import { getUsers } from '../../Features/User/functions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
@@ -23,9 +25,39 @@ const Home = () => {
     dispatch(getUsers())
   }, [])
 
+const cuacks = [
+  {
+    fullname: 'Juan Alberto',
+    nickname: '@sebastiantfa',
+    content: 'Hola mundo, este soy yo, Juan Albertito',
+    likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
+    recuacks: ['a', 'b'],
+    responses: [
+      {
+        author: '12354',
+        content: 'Jesucristo te ama',
+      },
+    ],
+  },
+  {
+    fullname: 'Juan Pistacho',
+    nickname: '@jpistacho',
+    content: 'Hola!, odio el mundo',
+    likes: ['a'],
+    recuaks: [],
+    responses: [
+      {
+        author: '12354',
+        content: 'Jesucristo te ama',
+      },
+    ],
+  },
+]
+
+const Home = () => {
+  const user = useSelector(state => state.user.userInfo)
   const handleFollow = async e => {
     e.preventDefault()
-
     const config = {
       headers: {
         Authorization:
@@ -123,6 +155,10 @@ const Home = () => {
       </header>
       <section className='section2'>
         <h1>{user && user.fullname}</h1>
+        <Cuackear />
+        {cuacks.map(cuack => {
+          return <Cuack cuackinfo={cuack} key={cuack.nickname} />
+        })}
       </section>
       <section className='section3'>
         <SearchBar className='searchabar' />
