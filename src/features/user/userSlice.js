@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   userId: '',
   completeUser: {},
+  allUsers: [],
   searchUsers: [],
   searchCuacks: [],
 }
@@ -26,9 +27,12 @@ export const userSlice = createSlice({
     searchC: (state, action) => {
       state.searchCuacks = action.payload
     },
+    allUsers: (state, action) => {
+      state.allUsers = action.payload
+    },
   },
 })
 
-export const { login, searchC, searchU, userById } = userSlice.actions
+export const { login, searchC, searchU, userById, allUsers } = userSlice.actions
 
 export default userSlice.reducer
