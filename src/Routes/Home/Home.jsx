@@ -2,24 +2,42 @@ import './Home.modules.css'
 import { Link } from 'react-router-dom'
 import Logo from '../../Assets/Img/ducker-logo.png'
 import SearchBar from '../../Components/SearchBar/SearchBar'
-import { getUserById } from '../../Features/User/functions'
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+
+import Cuack from '../../Components/Cuack/Cuack'
+import Cuackear from '../../Components/Cuackear/Cuackear'
+
+const cuacks = [
+  {
+    fullname: 'Juan Alberto',
+    nickname: '@sebastiantfa',
+    content: 'Hola mundo, este soy yo, Juan Albertito',
+    likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
+    recuacks: ['a', 'b'],
+    responses: [
+      {
+        author: '12354',
+        content: 'Jesucristo te ama',
+      },
+    ],
+  },
+  {
+    fullname: 'Juan Pistacho',
+    nickname: '@jpistacho',
+    content: 'Hola!, odio el mundo',
+    likes: ['a'],
+    recuaks: [],
+    responses: [
+      {
+        author: '12354',
+        content: 'Jesucristo te ama',
+      },
+    ],
+  },
+]
 
 const Home = () => {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user.completeUser)
-  let id = useSelector(state => state.user.userId)
-  // eslint-disable-next-line no-unused-vars
-  const [render, setrender] = useState(false)
-
-  useEffect(() => {
-    id = localStorage.getItem('auth')
-    dispatch(getUserById(id))
-    if (Object.entries(user).length === 0) {
-      setrender(true)
-    }
-  }, [])
+  const user = useSelector(state => state.user.userInfo)
 
   return (
     <div className='home-container'>
@@ -80,6 +98,10 @@ const Home = () => {
       </section>
       <section className='section2'>
         <h1>{user && user.fullname}</h1>
+        <Cuackear />
+        {cuacks.map(cuack => {
+          return <Cuack cuackinfo={cuack} key={cuack.nickname} />
+        })}
       </section>
       <section className='section3'>
         <SearchBar className='searchabar' />
