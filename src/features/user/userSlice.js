@@ -15,6 +15,7 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.userId = action.payload
+      state.completeUser = action.payload
     },
     userById: (state, action) => {
       state.completeUser = action.payload

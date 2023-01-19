@@ -3,14 +3,13 @@ import imagenLogo1 from '../../Assets/Img/imagenLogin1.svg'
 import { useState } from 'react'
 import './Login.modules.css'
 import { GoogleLoginButton } from './GoogleLogin'
-import { getUserById, loginFunction } from '../../Features/User/functions'
+import { loginFunction } from '../../Features/User/functions'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
@@ -26,9 +25,7 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault()
     dispatch(loginFunction(userInfo))
-    const id = localStorage.getItem('auth')
 
-    dispatch(getUserById(id))
     navigate('/')
   }
 
