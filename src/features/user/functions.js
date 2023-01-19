@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { login, searchU, searchC, setUserInfo } from './userSlice'
+
+import { login, searchU, searchC, setUserInfo, allUsers } from './userSlice'
 
 const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
 
@@ -19,9 +20,21 @@ export const loginFunction = user => async dispatch => {
 export const getUserById = id => async dispatch => {
   try {
     const { data } = await axios.get(`${uri}/users/${id}`)
+
     dispatch(setUserInfo(data))
+
   } catch (error) {
     console.log(`Internal server error, ${error}`)
+  }
+}
+
+export const getUsers = id => async dispatch => {
+  try {
+    const { data } = await axios.get(`${uri}/users/`)
+
+    dispatch(allUsers(data))
+  } catch (error) {
+    console.log(`internal server error, ${error}`)
   }
 }
 
