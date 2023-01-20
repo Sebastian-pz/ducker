@@ -1,5 +1,5 @@
 import './Home.modules.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../Assets/Img/ducker-logo.png'
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import Cuack from '../../Components/Cuack/Cuack'
@@ -8,8 +8,12 @@ import { getUsers } from '../../Features/User/functions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import axios from 'axios'
+import { isAuthenticated } from '../../Utils/auth'
 
 const Home = () => {
+  const navigate = useNavigate()
+
+  if (!isAuthenticated) navigate('/login')
   const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
   const id = localStorage.getItem('auth')
   const dispatch = useDispatch()
