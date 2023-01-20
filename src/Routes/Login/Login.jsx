@@ -1,7 +1,7 @@
 import Logo from '../../Assets/Img/ducker-logo.png'
 import imagenLogo1 from '../../Assets/Img/imagenLogin1.svg'
 import { useState } from 'react'
-import './Login.modules.css'
+// import './Login.modules.css'
 import { GoogleLoginButton } from './GoogleLogin'
 import { loginFunction } from '../../Features/User/functions'
 import { useDispatch } from 'react-redux'
