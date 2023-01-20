@@ -25,8 +25,9 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault()
     dispatch(loginFunction(userInfo))
-
-    navigate('/')
+    setTimeout(() => {
+      navigate('/')
+    }, 2000)
   }
 
   document.title = 'Welcome back!'
