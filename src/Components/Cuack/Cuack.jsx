@@ -7,8 +7,6 @@ import comment from '../../Assets/Img/comment.gif'
 const Cuack = props => {
   const { cuackinfo } = props
 
-  console.log(props)
-
   if (!cuackinfo) {
     return (
       <div>

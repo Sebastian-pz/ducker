@@ -11,7 +11,7 @@ export const loginFunction = user => async dispatch => {
     localStorage.setItem('auth', data.user)
     localStorage.setItem('Authorization', data.token)
     dispatch(login(data.user))
-    dispatch(userById(userQuery.data))
+    dispatch(setUserInfo(userQuery.data))
   } catch (error) {
     console.log(`internal server error, ${error}`)
   }
@@ -22,7 +22,6 @@ export const getUserById = id => async dispatch => {
     const { data } = await axios.get(`${uri}/users/${id}`)
 
     dispatch(setUserInfo(data))
-
   } catch (error) {
     console.log(`Internal server error, ${error}`)
   }
