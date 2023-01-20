@@ -19,6 +19,7 @@ const Home = () => {
     )
   }
   const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
+  const token = localStorage.getItem('Authorization')
   const id = localStorage.getItem('auth')
   const dispatch = useDispatch()
   const totalUsers = useSelector(state => state.user.allUsers)
@@ -40,8 +41,7 @@ const Home = () => {
     e.preventDefault()
     const config = {
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzk1OTRmODJhY2RjNzYxMDA5YmViNyIsImlhdCI6MTY3NDE0MzEyMCwiZXhwIjoxNjc0MTU3NTIwfQ.kHM8VjHgjZ_wVfMOvB-qiUesrc1uBgkdr9kqwwRXsgw',
+        Authorization: `${token}`,
       },
     }
     await axios.put(
