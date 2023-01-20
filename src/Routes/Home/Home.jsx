@@ -12,6 +12,7 @@ import { isAuthenticated } from '../../Utils/auth'
 
 const Home = () => {
   if (!isAuthenticated()) {
+    window.location.replace('/login')
     return (
       <div>
         <h3>Opps, you must to be logged</h3>
