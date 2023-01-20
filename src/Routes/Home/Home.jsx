@@ -13,7 +13,6 @@ const Home = () => {
   const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
   const id = localStorage.getItem('auth')
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user.completeUser)
   const totalUsers = useSelector(state => state.user.allUsers)
   let filteredUsers = []
   if (totalUsers && totalUsers.users)
@@ -25,36 +24,74 @@ const Home = () => {
     dispatch(getUsers())
   }, [])
 
-const cuacks = [
-  {
-    fullname: 'Juan Alberto',
-    nickname: '@sebastiantfa',
-    content: 'Hola mundo, este soy yo, Juan Albertito',
-    likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
-    recuacks: ['a', 'b'],
-    responses: [
-      {
-        author: '12354',
-        content: 'Jesucristo te ama',
-      },
-    ],
-  },
-  {
-    fullname: 'Juan Pistacho',
-    nickname: '@jpistacho',
-    content: 'Hola!, odio el mundo',
-    likes: ['a'],
-    recuaks: [],
-    responses: [
-      {
-        author: '12354',
-        content: 'Jesucristo te ama',
-      },
-    ],
-  },
-]
+  const cuacks = [
+    {
+      fullname: 'Juan Alberto',
+      nickname: '@sebastiantfa',
+      content: 'Hola mundo, este soy yo, Juan Albertito',
+      likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
+      recuacks: ['a', 'b'],
+      responses: [
+        {
+          author: '12354',
+          content: 'Jesucristo te ama',
+        },
+      ],
+    },
+    {
+      fullname: 'Juan Alberto',
+      nickname: '@sebastiantfa',
+      content: 'Hola mundo, este soy yo, Juan Albertito',
+      likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
+      recuacks: ['a', 'b'],
+      responses: [
+        {
+          author: '12354',
+          content: 'Jesucristo te ama',
+        },
+      ],
+    },
+    {
+      fullname: 'Juan Alberto',
+      nickname: '@sebastiantfa',
+      content: 'Hola mundo, este soy yo, Juan Albertito',
+      likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
+      recuacks: ['a', 'b'],
+      responses: [
+        {
+          author: '12354',
+          content: 'Jesucristo te ama',
+        },
+      ],
+    },
+    {
+      fullname: 'Juan Alberto',
+      nickname: '@sebastiantfa',
+      content: 'Hola mundo, este soy yo, Juan Albertito',
+      likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
+      recuacks: ['a', 'b'],
+      responses: [
+        {
+          author: '12354',
+          content: 'Jesucristo te ama',
+        },
+      ],
+    },
+    {
+      fullname: 'Juan Pistacho',
+      nickname: '@jpistacho',
+      content: 'Hola!, odio el mundo',
+      likes: ['a'],
+      recuaks: [],
+      responses: [
+        {
+          author: '12354',
+          content: 'Jesucristo te ama',
+        },
+      ],
+    },
+  ]
 
-const Home = () => {
   const user = useSelector(state => state.user.userInfo)
   const handleFollow = async e => {
     e.preventDefault()
@@ -156,9 +193,11 @@ const Home = () => {
       <section className='section2'>
         <h1>{user && user.fullname}</h1>
         <Cuackear />
-        {cuacks.map(cuack => {
-          return <Cuack cuackinfo={cuack} key={cuack.nickname} />
-        })}
+        <div className='cuackContainer'>
+          {cuacks.map(cuack => {
+            return <Cuack cuackinfo={cuack} key={cuack.nickname} />
+          })}
+        </div>
       </section>
       <section className='section3'>
         <SearchBar className='searchabar' />
