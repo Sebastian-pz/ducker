@@ -8,11 +8,12 @@ export const cuackSlice = createSlice({
   name: 'cuacks',
   initialState,
   reducers: {
-    getCuacks: (state, action) => {
-      state.cuacks = [...state.cuacks, ...action.payload]
+    getCuacksr: (state, action) => {
+      // state.cuacks = [...state.cuacks, ...action.payload]
+      state.cuacks = action.payload
     },
   },
 })
 
-export const { getCuacks } = cuackSlice.actions
+export const { getCuacksr } = cuackSlice.actions
 export default cuackSlice.reducer

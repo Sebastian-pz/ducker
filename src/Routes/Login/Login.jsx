@@ -6,6 +6,7 @@ import { GoogleLoginButton } from './GoogleLogin'
 import { loginFunction } from '../../Features/User/functions'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ const Login = () => {
     e.preventDefault()
     dispatch(loginFunction(userInfo))
     setTimeout(() => {
+      dispatch(getCuacks())
       navigate('/')
     }, 2000)
   }

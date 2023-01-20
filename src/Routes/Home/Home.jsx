@@ -1,14 +1,13 @@
 import './Home.modules.css'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Logo from '../../Assets/Img/ducker-logo.png'
-import SearchBar from '../../Components/SearchBar/SearchBar'
-import Cuack from '../../Components/Cuack/Cuack'
-import Cuackear from '../../Components/Cuackear/Cuackear'
-import { getUsers } from '../../Features/User/functions'
+import { Cuack, Cuackear, SearchBar } from '../../Components/index'
+import { getUserById, getUsers } from '../../Features/User/functions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import axios from 'axios'
-import { isAuthenticated } from '../../Utils/auth'
+import { getUserID, isAuthenticated } from '../../Utils/auth'
+import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
 const Home = () => {
   if (!isAuthenticated()) {
@@ -23,6 +22,7 @@ const Home = () => {
   const id = localStorage.getItem('auth')
   const dispatch = useDispatch()
   const totalUsers = useSelector(state => state.user.allUsers)
+  const cuacks = useSelector(state => state.cuacks.cuacks)
   let filteredUsers = []
   if (totalUsers && totalUsers.users)
     filteredUsers = totalUsers.users.filter(
@@ -31,75 +31,9 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getUsers())
+    dispatch(getCuacks())
+    dispatch(getUserById(getUserID()))
   }, [])
-
-  const cuacks = [
-    {
-      fullname: 'Juan Alberto',
-      nickname: '@sebastiantfa',
-      content: 'Hola mundo, este soy yo, Juan Albertito',
-      likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
-      recuacks: ['a', 'b'],
-      responses: [
-        {
-          author: '12354',
-          content: 'Jesucristo te ama',
-        },
-      ],
-    },
-    {
-      fullname: 'Juan Alberto',
-      nickname: '@sebastiantfa',
-      content: 'Hola mundo, este soy yo, Juan Albertito',
-      likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
-      recuacks: ['a', 'b'],
-      responses: [
-        {
-          author: '12354',
-          content: 'Jesucristo te ama',
-        },
-      ],
-    },
-    {
-      fullname: 'Juan Alberto',
-      nickname: '@sebastiantfa',
-      content: 'Hola mundo, este soy yo, Juan Albertito',
-      likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
-      recuacks: ['a', 'b'],
-      responses: [
-        {
-          author: '12354',
-          content: 'Jesucristo te ama',
-        },
-      ],
-    },
-    {
-      fullname: 'Juan Alberto',
-      nickname: '@sebastiantfa',
-      content: 'Hola mundo, este soy yo, Juan Albertito',
-      likes: ['a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'],
-      recuacks: ['a', 'b'],
-      responses: [
-        {
-          author: '12354',
-          content: 'Jesucristo te ama',
-        },
-      ],
-    },
-    {
-      fullname: 'Juan Pistacho',
-      nickname: '@jpistacho',
-      content: 'Hola!, odio el mundo',
-      likes: ['a'],
-      recuaks: [],
-      responses: [
-        {
-          author: '12354',
-          content: 'Jesucristo te ama',
-        },
-      ],
-    },
-  ]
 
   const user = useSelector(state => state.user.userInfo)
   const handleFollow = async e => {
@@ -204,14 +138,15 @@ const Home = () => {
           <h1>{user && user.fullname}</h1>
           <Cuackear />
           <div className='cuackContainer'>
-            {cuacks.map(cuack => {
-              return (
-                <Cuack
-                  cuackinfo={cuack}
-                  key={`${cuack.nickname}${Math.random() * 100}`}
-                />
-              )
-            })}
+            {cuacks &&
+              cuacks.map(cuack => {
+                return (
+                  <Cuack
+                    cuackinfo={cuack}
+                    key={`${cuack.nickname}${Math.random() * 100}`}
+                  />
+                )
+              })}
           </div>
         </section>
         <section className='section3'>
