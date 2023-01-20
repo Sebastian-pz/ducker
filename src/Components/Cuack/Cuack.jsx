@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import profilePicture from './profile.jpg'
 import like from '../../Assets/Img/like.gif'
 import recuack from '../../Assets/Img/recuack.gif'
 import comment from '../../Assets/Img/comment.gif'
@@ -18,12 +17,15 @@ const Cuack = props => {
     )
   }
 
-  const { nickname, fullname, likes, recuacks, responses, content } = cuackinfo
+  const { nickname, fullname, picture } = cuackinfo
+  // eslint-disable-next-line no-unused-vars
+  const { type, content, likes, recuacks, category, isPublic, comments, date } =
+    cuackinfo._doc
   return (
     <div className='cuack_container'>
       <div className='cuack_main_content'>
         <div className='cuack_content'>
-          <img src={profilePicture} alt='profile picture' />
+          <img src={picture} alt='profile picture' />
           <div className='cuack_author_info'>
             <div className='display-flex-row'>
               <p className='cuack_content_fullname'>{fullname}</p>
@@ -42,8 +44,7 @@ const Cuack = props => {
         <img src={like} alt='likes-img' /> {likes ? likes.length : 0}
         <img src={recuack} alt='recuak-img' />
         {recuacks ? recuacks.length : 0}
-        <img src={comment} alt='comment-img' />{' '}
-        {responses ? responses.length : 0}
+        <img src={comment} alt='comment-img' /> {comments ? comments.length : 0}
       </div>
     </div>
   )
