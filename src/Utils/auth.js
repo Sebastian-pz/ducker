@@ -1,13 +1,14 @@
-import jwt from 'jsonwebtoken'
+import jwtDecode from 'jwt-decode'
 
 export function isAuthenticated() {
   const token = localStorage.getItem('Authorization')
   if (!token) return false
+  return jwtDecode(token)
 }
 
 export function getUserID() {
   const token = localStorage.getItem('Authorization')
-  return jwt.decode(token).id
+  return jwtDecode(token).id
 }
 
 export function logout() {
