@@ -1,13 +1,21 @@
 /* eslint-disable react/prop-types */
-const Cuackear = () => {
+const Cuackear = ({ userInfo }) => {
   return (
     <div className='cuackear-container'>
-      <div className='cuackear-main'>
-        <img src={''} alt='profile-picture' htmlFor='cuackear' />
-        <input type='text' name='cuackear' id='' autoComplete='off' />
+      <div className='cuackearIMG'>
+        <img src={userInfo.img} alt='profile-picture' />
       </div>
-      <div className='display-flex-end'>
-        <button className='cuackear-button'>Cuackear</button>
+      <div className='cuackear-main'>
+        <input
+          type='text'
+          name='cuackear'
+          id='cuackearInput'
+          autoComplete='off'
+          placeholder='Qué está pasando?'
+        />
+        <div className='display-flex-end'>
+          <button className='cuackear-button'>Cuackear</button>
+        </div>
       </div>
     </div>
   )

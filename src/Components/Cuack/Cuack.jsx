@@ -2,16 +2,52 @@
 import like from '../../Assets/Img/like.gif'
 import recuack from '../../Assets/Img/recuack.gif'
 import comment from '../../Assets/Img/comment.gif'
+import likeStatic from '../../Assets/Img/likeStatic.png'
+import commentStatic from '../../Assets/Img/commentStatic.png'
+import recuackStatic from '../../Assets/Img/recuackStatic.png'
+import { useRef } from 'react'
 
 const Cuack = props => {
   const { cuackinfo } = props
+
+  const likeRef = useRef()
+  const recuackRef = useRef()
+  const commentRef = useRef()
+
+  function activateGif(e) {
+    e.preventDefault()
+
+    switch (e.target.name) {
+      case 'like':
+        likeRef.current.src = like
+        setTimeout(() => {
+          likeRef.current.src = likeStatic
+        }, 1 * 1000)
+        break
+      case 'comment':
+        commentRef.current.src = comment
+        setTimeout(() => {
+          commentRef.current.src = commentStatic
+        }, 1 * 1000)
+        break
+      case 'recuack':
+        recuackRef.current.src = recuack
+        setTimeout(() => {
+          recuackRef.current.src = recuackStatic
+        }, 1 * 1000)
+        break
+
+      default:
+        break
+    }
+  }
 
   if (!cuackinfo) {
     return (
       <div>
         <h3>Ooopss!</h3>
         <h5>
-          Lo sentimos, el cack que está buscando no se encuentra disponible
+          Lo sentimos, el crack que está buscando no se encuentra disponible
         </h5>
       </div>
     )
@@ -23,9 +59,11 @@ const Cuack = props => {
     cuackinfo._doc
   return (
     <div className='cuack_container'>
+      <div className='cuackImg'>
+        <img className='imgCuackProfile' src={picture} alt='profile picture' />
+      </div>
       <div className='cuack_main_content'>
         <div className='cuack_content'>
-          <img src={picture} alt='profile picture' />
           <div className='cuack_author_info'>
             <div className='display-flex-row'>
               <p className='cuack_content_fullname'>{fullname}</p>
@@ -37,30 +75,40 @@ const Cuack = props => {
           </div>
         </div>
         <p className='cuack_content_text'>{content}</p>
-      </div>
 
-      {/* Recuacks Likes Comments */}
-      <div className='cuack_media'>
-        <img src={like} alt='likes-img' /> {likes ? likes.length : 0}
-        <img src={recuack} alt='recuak-img' />
-        {recuacks ? recuacks.length : 0}
-        <img src={comment} alt='comment-img' /> {comments ? comments.length : 0}
+        {/* Recuacks Likes Comments */}
+        <div className='cuack_media'>
+          <img
+            className='Icon'
+            name={'like'}
+            src={likeStatic}
+            ref={likeRef}
+            alt='likes-img'
+            onClick={e => activateGif(e)}
+          />
+          <h4>{likes ? likes.length : 0}</h4>
+          <img
+            className='Icon'
+            src={recuackStatic}
+            ref={recuackRef}
+            name={'recuack'}
+            alt='recuak-img'
+            onClick={e => activateGif(e)}
+          />
+          <h4>{recuacks ? recuacks.length : 0}</h4>
+          <img
+            className='Icon'
+            src={commentStatic}
+            alt='comment-img'
+            name={'comment'}
+            ref={commentRef}
+            onClick={e => activateGif(e)}
+          />
+          <h4>{comments ? comments.length : 0}</h4>
+        </div>
       </div>
     </div>
   )
-
-  // Nickname - fullname - content - likes - recuack - responses - profile picture
 }
-
-// Cuack.propTypes = {
-//   cuackInfo: {
-//     nickname: react.PropTypes.string,
-//     fullname: react.PropTypes.string,
-//     content: react.PropTypes.string,
-//     likes: react.PropTypes.array,
-//     recuack: react.PropTypes.array,
-//     responses: react.PropTypes.array,
-//   },
-// }
 
 export default Cuack
