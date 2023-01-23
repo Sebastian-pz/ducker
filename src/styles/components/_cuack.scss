@@ -3,9 +3,22 @@
 .cuack_container {
   background-color: vars.$cuack-background;
   width: 90%;
-  padding: 30px;
+  padding: 15px 30px 0px 30px;
   margin: 1.5vh;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display: flex;
+  justify-content: row;
+  align-items: flex-start;
+}
+.cuackImg img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 1vh;
+}
+.cuack_main_content {
+  width: 100%;
 }
 
 .cuack_content {
@@ -19,6 +32,7 @@
 
 .cuack_author_info {
   display: flex;
+  height: 5%;
 }
 
 .cuack_content_fullname {
@@ -37,13 +51,9 @@
 
 .cuack_author_info {
   margin-top: 1vh;
-  margin-left: 1vh;
+
   width: 100%;
   justify-content: space-between;
-
-  p {
-    margin-left: 1vh;
-  }
 
   .cuack_content_options {
     font-size: vars.$font-size;
@@ -54,11 +64,12 @@
 .display-flex-row {
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
 }
 
 .cuack_content_text {
-  margin-left: 100px;
-  font-weight: bold;
+  margin: 5% 0%;
+  font-family: vars.$font-family;
   font-size: 16px;
   line-height: 19px;
   color: vars.$primary-font-color;
@@ -66,17 +77,20 @@
 
 .cuack_media {
   display: flex;
+  align-items: center;
   flex-direction: row;
-  justify-content: center;
-
-  img {
-    min-width: 20px;
-    width: 3vh;
-    margin-left: 10vh;
-  }
-
+  margin-left: -0.5%;
+  margin-bottom: 10px;
   font-size: 16px;
-  align-content: center;
-  justify-content: center;
+
+  justify-content: flex-start;
   color: vars.$media-font-color;
+
+  h4 {
+    font-size: 1rem;
+    margin-right: 3.5vh;
+  }
+}
+.Icon {
+  height: 3vh;
 }

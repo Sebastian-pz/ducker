@@ -1,46 +1,63 @@
 @use '../vars';
 
 .cuackear-container {
-  background-color: vars.$default-background-component;
-  width: 90%;
-  padding: 30px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.cuackear-main {
   display: flex;
   flex-direction: row;
+  // background-color: vars.$default-background-component;
+  width: 90%;
+  padding: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
 
-  input {
-    background-color: vars.$input-cuackear-background;
-    border-radius: 10px;
-    border: none;
-    width: 100%;
-    padding: 3vh;
-    color: vars.$dark-primary-font-color;
-    font-weight: bold;
-  }
-  input:hover {
-    border: 1px solid black;
-    transition: 1s;
-  }
+.cuackearIMG {
   img {
-    width: vars.$default-img-size;
-    border-radius: 50%;
-    margin-right: 2vh;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    max-width: 85px;
+    min-width: 20px;
+    margin-right: 1vh;
+    object-fit: cover;
     border: rgba(128, 128, 128, 0.729) 1px solid;
   }
 }
 
+.cuackear-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  #cuackearInput {
+    // background-color: vars.$default-background-component;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    // padding: 3vh 0;
+    height: 8vh;
+    font-size: 16px;
+    color: vars.$primary-font-color;
+  }
+  #cuackearInput:hover {
+    border: vars.$border-container;
+    transition: 1s;
+  }
+  #cuackearInput::placeholder {
+    color: vars.$primary-font-color;
+  }
+}
+
 .cuackear-button {
-  border: none;
-  background-color: vars.$primary-color;
-  width: 15vw;
-  height: 6vh;
-  border-radius: 23px;
-  color: vars.$cuack-background;
+  width: 8vw;
+  height: 4vh;
+  margin-top: 1vh;
   font-weight: bold;
-  margin-top: 2vh;
+  font-size: 16px;
+  background-color: vars.$primary-color;
+  color: vars.$cuack-background;
+  border-radius: 30px;
+  box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
+  border: none;
 }
 
 .cuackear-button:hover {

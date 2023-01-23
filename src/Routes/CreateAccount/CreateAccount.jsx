@@ -165,7 +165,11 @@ const CreateAccount = () => {
             autoComplete='off'
             required
           />
-          {errors.email && <p>{errors.email}</p>}
+          {errors.email ? (
+            <p className='errorsForm'>{errors.email}</p>
+          ) : (
+            <br className='errorsForm'></br>
+          )}
           <input
             onChange={handleChange}
             name='fullname'
@@ -174,7 +178,11 @@ const CreateAccount = () => {
             autoComplete='off'
             required
           />
-          {errors.fullname && <p>{errors.fullname}</p>}
+          {errors.fullname ? (
+            <p className='errorsForm'>{errors.fullname}</p>
+          ) : (
+            <br className='errorsForm'></br>
+          )}
           <input
             onChange={handleChange}
             name='nickname'
@@ -183,7 +191,11 @@ const CreateAccount = () => {
             autoComplete='off'
             required
           />
-          {errors.nickname && <p>{errors.nickname}</p>}
+          {errors.nickname ? (
+            <p className='errorsForm'>{errors.nickname}</p>
+          ) : (
+            <br className='errorsForm'></br>
+          )}
           <input
             onChange={handleChange}
             type='password'
@@ -192,7 +204,11 @@ const CreateAccount = () => {
             autoComplete='off'
             required
           />
-          {errors.password && <p>{errors.password}</p>}
+          {errors.password ? (
+            <p className='errorsForm'>{errors.password}</p>
+          ) : (
+            <br className='errorsForm'></br>
+          )}
           <input
             onChange={handleChange}
             type='password'
@@ -201,7 +217,11 @@ const CreateAccount = () => {
             autoComplete='off'
             required
           />
-          {errors.password2 && <p>{errors.password2}</p>}
+          {errors.password2 ? (
+            <p className='errorsForm'>{errors.password2}</p>
+          ) : (
+            <br className='errorsForm'></br>
+          )}
           <h5>By registering, you accept the terms and conditions.</h5>
           <button type='submit'>Register</button>
         </form>

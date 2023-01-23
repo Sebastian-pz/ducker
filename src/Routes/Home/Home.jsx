@@ -55,88 +55,92 @@ const Home = () => {
     return (
       <div className='home-container'>
         <header>
-          <section className='section1'>
-            <div className='homeNavlist'>
-              <div className='logoHome'>
-                <Link to='/'>
-                  <img src={Logo} alt='Logo' />
-                </Link>
-              </div>
-              <nav className='navList'>
-                <a to={''}>
-                  <div className='navListDiv'>
-                    <i className='bx bxs-home-circle'></i>
-                    <span>Inicio</span>
-                  </div>
-                </a>
-                <a to={''}>
-                  <div className='navListDiv'>
-                    <i className='bx bx-hash'></i>
-                    <span>Explorar</span>
-                  </div>
-                </a>
-                <a to={''}>
-                  <div className='navListDiv'>
-                    <i className='bx bx-bell'></i>
-                    <span>Notificar</span>
-                  </div>
-                </a>
-                <a to={''}>
+          <div>
+            <section className='section1'>
+              <div className='homeNavlist'>
+                <div className='logoHome'>
+                  <Link to='/'>
+                    <img src={Logo} alt='Logo' />
+                  </Link>
+                </div>
+                <nav className='navList'>
+                  <a to={''}>
+                    <div className='navListDiv'>
+                      <i className='bx bxs-home-circle'></i>
+                      <span>Inicio</span>
+                    </div>
+                  </a>
+                  <a to={''}>
+                    <div className='navListDiv'>
+                      <i className='bx bx-hash'></i>
+                      <span>Explorar</span>
+                    </div>
+                  </a>
+                  <a to={''}>
+                    <div className='navListDiv'>
+                      <i className='bx bx-bell'></i>
+                      <span>Notificaciones</span>
+                    </div>
+                  </a>
+                  {/* <a to={''}>
                   <div className='navListDiv'>
                     <i className='bx bx-envelope'></i>
                     <span>Mensajería</span>
                   </div>
-                </a>
-                <a to={''}>
-                  <div className='navListDiv'>
-                    <i className='bx bx-bookmark'></i>
-                    <span>Guardados</span>
-                  </div>
-                </a>
-                <a to={''}>
-                  <div className='navListDiv'>
-                    <i className='bx bx-list-ul'></i>
-                    <span>Listas</span>
-                  </div>
-                </a>
-                <a to={''}>
-                  <div className='navListDiv'>
-                    <i className='bx bx-user'></i>
-                    <span>Perfil</span>
-                  </div>
-                </a>
-                <a to={''} className='dropdown'>
-                  <div className='navListDiv'>
-                    <i className='bx bx-cog'></i>
-                    <span>Más opciones</span>
-                    {/* <div className='dropdown-content'>
+                </a> */}
+                  <a to={''}>
+                    <div className='navListDiv'>
+                      <i className='bx bx-bookmark'></i>
+                      <span>Guardados</span>
+                    </div>
+                  </a>
+                  <a to={''}>
+                    <div className='navListDiv'>
+                      <i className='bx bx-list-ul'></i>
+                      <span>Listas</span>
+                    </div>
+                  </a>
+                  <a to={''}>
+                    <div className='navListDiv'>
+                      <i className='bx bx-user'></i>
+                      <span>Perfil</span>
+                    </div>
+                  </a>
+                  <a to={''} className='dropdown'>
+                    <div className='navListDiv'>
+                      <i className='bx bx-cog'></i>
+                      <span>Más opciones</span>
+                      {/* <div className='dropdown-content'>
                 <a href=''>Configuración y privacidad</a>
                 <a href=''>Centro de ayuda</a>
               </div> */}
-                  </div>
-                </a>
-              </nav>
-              <div className='homeNavlistButton'>
-                <button>Cuackear</button>
-              </div>
-            </div>
-
-            <div className='container-icon-name-nick'>
-              <div className='container-icon-name-nick2'>
-                <img src={user && user.img} alt='' />
-                <div className='container-name-nick'>
-                  <h4>{user && user.fullname}</h4>
-                  <h5>{user && user.nickname}</h5>
+                    </div>
+                  </a>
+                </nav>
+                <div className='homeNavlistButton'>
+                  <button>Cuackear</button>
                 </div>
               </div>
-              <button>...</button>
-              {/* <i className='bx bx-cog'></i> */}
-            </div>
-          </section>
+
+              <div className='container-icon-name-nick'>
+                <div className='container-icon-name-nick2'>
+                  <div className='container-icon-name-nick3'>
+                    <img src={user && user.img} alt='' />
+                  </div>
+                  <div className='container-name-nick'>
+                    <h4>{user && user.fullname}</h4>
+                    <h5>{user && user.nickname}</h5>
+                  </div>
+                </div>
+                <button>...</button>
+                {/* <i className='bx bx-cog'></i> */}
+              </div>
+            </section>{' '}
+          </div>
         </header>
         <section className='section2'>
-          <h1>{user && user.fullname}</h1>
-          <Cuackear />
+          <h1>Inicio</h1>
+          <Cuackear userInfo={user} />
           <div className='cuackContainer'>
             {cuacks &&
               cuacks.map(cuack => {
@@ -152,11 +156,13 @@ const Home = () => {
         <section className='section3'>
           <SearchBar className='searchabar' />
           <div className='datosUsuario'>
-            <img
-              className='userImgSection3'
-              src={user && user.img}
-              alt='not image'
-            ></img>
+            <div className='imgSug'>
+              <img
+                className='userImgSection3'
+                src={user && user.img}
+                alt='not image'
+              ></img>
+            </div>
             <h1>{user && user.fullname}</h1>
             <h3>{user && user.nickname}</h3>
             <hr />
@@ -177,7 +183,9 @@ const Home = () => {
                 return (
                   <div className='sugerenciasContainer' key={usuario.nickname}>
                     <div className='sugerenciasContainer2'>
-                      <img className='imgSugerencias' src={usuario.img}></img>
+                      <div className='imgSugerencias'>
+                        <img src={usuario.img}></img>
+                      </div>
                       <div className='nicknameandfullname'>
                         <h3>{usuario.fullname}</h3>
                         <h5>{usuario.nickname}</h5>
