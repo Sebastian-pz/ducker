@@ -1,12 +1,13 @@
 import Logo from '../../Assets/Img/ducker-logo.png'
 import imagenLogo1 from '../../Assets/Img/imagenLogin1.svg'
 import { useState } from 'react'
-// import './Login.modules.css'
 import { GoogleLoginButton } from './GoogleLogin'
 import { loginFunction } from '../../Features/User/functions'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import { isAuthenticated } from '../../Utils/auth'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -27,8 +28,12 @@ const Login = () => {
     e.preventDefault()
     dispatch(loginFunction(userInfo))
     setTimeout(() => {
-      dispatch(getCuacks())
-      navigate('/')
+      if (!isAuthenticated()) {
+        return toast.error('Verifica tus credenciales, gil!.')
+      } else {
+        dispatch(getCuacks())
+        navigate('/')
+      }
     }, 2000)
   }
 
@@ -36,6 +41,16 @@ const Login = () => {
 
   return (
     <div className='loginContainer'>
+      <Toaster
+        position='top-center'
+        reverseOrder={false}
+        toastOptions={{
+          className: '',
+          style: {
+            fontSize: '1.5rem',
+          },
+        }}
+      />
       <div className='loginForm'>
         <img src={Logo} alt='logo' />
         <h3>WELCOME BACK</h3>

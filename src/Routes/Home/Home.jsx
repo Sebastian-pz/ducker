@@ -5,9 +5,10 @@ import Logo from '../../Assets/Img/ducker-logo.png'
 import { Cuack, Cuackear, SearchBar } from '../../Components/index'
 import { getUserById, getUsers } from '../../Features/User/functions'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getUserID, isAuthenticated } from '../../Utils/auth'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import Logout from '../../Components/Logout/Logout'
 
 const Home = () => {
   if (!isAuthenticated()) {
@@ -29,6 +30,8 @@ const Home = () => {
     filteredUsers = totalUsers.users.filter(
       user => user.state === true && user.id !== id
     )
+
+  const [logOut, setlogOut] = useState(false)
 
   useEffect(() => {
     dispatch(getUsers())
@@ -82,12 +85,6 @@ const Home = () => {
                       <span>Notificaciones</span>
                     </div>
                   </a>
-                  {/* <a to={''}>
-                  <div className='navListDiv'>
-                    <i className='bx bx-envelope'></i>
-                    <span>Mensajería</span>
-                  </div>
-                </a> */}
                   <a to={''}>
                     <div className='navListDiv'>
                       <i className='bx bx-bookmark'></i>
@@ -110,10 +107,6 @@ const Home = () => {
                     <div className='navListDiv'>
                       <i className='bx bx-cog'></i>
                       <span>Más opciones</span>
-                      {/* <div className='dropdown-content'>
-                <a href=''>Configuración y privacidad</a>
-                <a href=''>Centro de ayuda</a>
-              </div> */}
                     </div>
                   </a>
                 </nav>
@@ -122,35 +115,43 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className='container-icon-name-nick'>
-                <div className='container-icon-name-nick2'>
-                  <div className='container-icon-name-nick3'>
-                    <img src={user && user.img} alt='' />
+              <button className='logout' onClick={() => setlogOut(!logOut)}>
+                <div className='container-icon-name-nick'>
+                  {logOut && <Logout nickname={user.nickname} />}
+                  <div className='container-icon-name-nick2'>
+                    <div className='container-icon-name-nick3'>
+                      <img src={user && user.img} alt='' />
+                    </div>
+                    <div className='container-name-nick'>
+                      <h4>{user && user.fullname}</h4>
+                      <h5>{user && user.nickname}</h5>
+                    </div>
                   </div>
-                  <div className='container-name-nick'>
-                    <h4>{user && user.fullname}</h4>
-                    <h5>{user && user.nickname}</h5>
+                  <div>
+                    <div className='logout__desp'>
+                      <i className='bx bx-dots-horizontal-rounded'></i>
+                    </div>
                   </div>
                 </div>
-                <button>...</button>
-                {/* <i className='bx bx-cog'></i> */}
-              </div>
+              </button>
             </section>{' '}
           </div>
         </header>
         <section className='section2'>
           <h1>Inicio</h1>
-          <Cuackear userInfo={user} />
-          <div className='cuackContainer'>
-            {cuacks &&
-              cuacks.map(cuack => {
-                return (
-                  <Cuack
-                    cuackinfo={cuack}
-                    key={`${cuack.nickname}${Math.random() * 100}`}
-                  />
-                )
-              })}
+          <div className='scroll'>
+            <Cuackear userInfo={user} />
+            <div className='cuackContainer'>
+              {cuacks &&
+                cuacks.map(cuack => {
+                  return (
+                    <Cuack
+                      cuackinfo={cuack}
+                      key={`${cuack.nickname}${Math.random() * 100}`}
+                    />
+                  )
+                })}
+            </div>
           </div>
         </section>
         <section className='section3'>
@@ -168,12 +169,12 @@ const Home = () => {
             <hr />
             <div className='followContainer'>
               <div className='followers'>
-                <h1>{user && user.followers?.length}</h1>
-                <h3>Seguidores</h3>
+                <h3>{user && user.followers?.length}</h3>
+                <h2>Seguidores</h2>
               </div>
               <div className='following'>
-                <h1>{user && user.following?.length}</h1>
-                <h3>Siguiendo</h3>
+                <h3>{user && user.following?.length}</h3>
+                <h2>Siguiendo</h2>
               </div>
             </div>
           </div>

@@ -25,5 +25,6 @@ export function getUserID() {
 
 export function logout() {
   localStorage.clear()
+  window.location.replace('/login')
   return true
 }

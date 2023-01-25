@@ -10,6 +10,11 @@
   justify-content: row;
   align-items: flex-start;
 }
+
+.cuack_container:hover {
+  background-color: vars.$section3-background-color;
+  transition: 1s;
+}
 .cuackImg img {
   border-radius: 50%;
   width: 60px;

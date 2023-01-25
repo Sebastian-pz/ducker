@@ -1,0 +1,105 @@
+@use '../vars';
+
+.bubble {
+  display: flex;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  background: vars.$cuack-background;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin-top: -150px;
+  padding: 20px;
+  position: absolute;
+  border-radius: 8px 8px 8px 8px;
+  width: 250px;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    border-top: 20px solid rgb(255, 255, 255);
+    border-top-color: white;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+  }
+}
+
+.logOut2 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  font-size: vars.$font-size;
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.logout:hover {
+  background-color: rgba(48, 48, 48, 0.365);
+}
+
+.container-icon-name-nick {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 12px 0;
+}
+.logout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 35px;
+  border: none;
+  height: 60px;
+  width: 100%;
+  background-color: vars.$cuack-background;
+  transition: ease-in-out 0.3s;
+}
+.logout h4 {
+  color: rgb(34, 34, 34);
+  font-size: vars.$font-size;
+}
+
+.logout h5 {
+  color: rgb(59, 59, 59);
+  font-size: vars.$nickname-font-size;
+}
+
+.logout__desp {
+  font-size: vars.$font-size;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-icon-name-nick2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 5%;
+}
+
+.container-icon-name-nick3 img {
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 0.5px solid rgb(194, 194, 194);
+  max-width: 50px;
+  height: 50px;
+  width: 50px;
+}
+
+.container-name-nick {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
