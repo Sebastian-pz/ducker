@@ -11,7 +11,7 @@ const Cuackear = ({ userInfo }) => {
           name='cuackear'
           id='cuackearInput'
           autoComplete='off'
-          placeholder='Qué está pasando?'
+          placeholder='¿Qué está pasando?'
         />
         <div className='display-flex-end'>
           <button className='cuackear-button'>Cuackear</button>

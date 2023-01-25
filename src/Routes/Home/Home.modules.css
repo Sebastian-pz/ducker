@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgb(255, 255, 255);
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   margin: 0 auto;
@@ -19,16 +19,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  left: 10%;
-  position: fixed;
-  z-index: 9;
-
-  /* padding: 2vh 1px; */
   width: 250px;
   height: 100vh;
   padding-left: 12px;
   padding-right: 12px;
   background-color: rgb(255, 255, 255);
+  overflow: hidden;
 }
 
 .homeNavlist {
@@ -67,12 +63,18 @@
   width: 100%;
   height: 45px;
   background-color: #d16ba5;
-  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+
   box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
   border: none;
   font-weight: bold;
   font-size: 16px;
   color: white;
+}
+
+.homeNavlistButton button:hover {
+  background-color: #86a8e7;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .navList {
@@ -94,12 +96,16 @@
 
 .navListDiv:hover {
   background: #d9d9d9;
+  border-radius: 20px;
 }
 
 .navListDiv {
+  width: auto;
+  border-radius: 20px;
   display: flex;
   flex-direction: row;
   padding: 4%;
+  transition: ease-in-out 0.3s;
 }
 
 .navList li {
@@ -107,62 +113,20 @@
   margin: 0 5% 10% 15%;
 }
 
-.container-icon-name-nick {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 12px 0;
-  /* padding: 10%;
-  padding-left: 15%;
-  padding-bottom: 25px; */
-}
-.container-icon-name-nick button {
-  display: flex;
-  border-radius: 50%;
-  border: 0.5px solid rgb(194, 194, 194);
-  max-width: 25px;
-  height: 25px;
-  width: 100%;
-  justify-content: center;
-}
-.container-icon-name-nick2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  padding: 5%;
-  /* align-items: flex-start; */
-}
-
-/* .container-icon-name-nick2 img {
-} */
-.container-icon-name-nick3 img {
-  display: block;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 0.5px solid rgb(194, 194, 194);
-  max-width: 50px;
-  height: 50px;
-  width: 50px;
-}
-
-.container-name-nick {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
 .section2 {
-  padding: 1% 2%;
+  /* padding: 1% 2%; */
   width: 600px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   border-left: 0.1px solid rgb(214, 214, 214);
   border-right: 0.1px solid rgb(214, 214, 214);
+  overflow: hidden;
+}
+.scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .cuackContainer {
   margin-top: 5%;
@@ -180,6 +144,7 @@
   padding: 1%;
   background-color: rgb(255, 255, 255);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .datosUsuario {
@@ -189,11 +154,26 @@
   align-items: center;
   justify-content: center;
   margin-top: 7vh;
-  background-color: #d9d9d9;
+  background-color: rgb(247, 249, 249);
   width: 100%;
   height: 30vh;
+  min-height: 270px;
   border-radius: 20px;
   overflow: auto;
+}
+
+.datosUsuario h1 {
+  font-size: 22px;
+  font-weight: bold;
+  border-top: 1px solid rgba(193, 193, 193, 0.73);
+}
+
+.datosUsuario h2 {
+  font-size: 18px;
+}
+
+.datosUsuario h3 {
+  font-size: 16px;
 }
 
 .imgSug img {
@@ -227,7 +207,7 @@
 
 .tendencias {
   margin-top: 7vh;
-  background-color: #d9d9d9;
+  background-color: rgb(247, 249, 249);
   width: 100%;
   height: 45vh;
   border-radius: 20px 0px 0px 20px;
@@ -271,16 +251,5 @@
 }
 
 ::-webkit-scrollbar {
-  width: 5px; /* width of the entire scrollbar */
-  border-radius: 20px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 0 20px 20px 0;
-  background: #d9d9d9;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #d16ba5; /* color of the scroll thumb */
-  border-radius: 20px; /* roundness of the scroll thumb */
+  display: none;
 }
