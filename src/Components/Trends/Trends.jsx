@@ -42,7 +42,6 @@ const Trends = () => {
     e.preventDefault()
     setQueryUsers(queryUsers + 10)
     const { data } = await axios.get(`${uri}/users?since=${queryUsers}`)
-    console.log(data)
     dispatch(allUsers(data))
   }
 
