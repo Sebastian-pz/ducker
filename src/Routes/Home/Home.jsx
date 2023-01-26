@@ -67,19 +67,19 @@ const Home = () => {
                   </Link>
                 </div>
                 <nav className='navList'>
-                  <a to={''}>
+                  <a to={'/'}>
                     <div className='navListDiv'>
                       <i className='bx bxs-home-circle'></i>
                       <span>Inicio</span>
                     </div>
                   </a>
-                  <a to={''}>
+                  <a to={'/explore'}>
                     <div className='navListDiv'>
                       <i className='bx bx-hash'></i>
                       <span>Explorar</span>
                     </div>
                   </a>
-                  <a to={''}>
+                  <a to={'/notifications'}>
                     <div className='navListDiv'>
                       <i className='bx bx-bell'></i>
                       <span>Notificaciones</span>
@@ -91,19 +91,19 @@ const Home = () => {
                       <span>Guardados</span>
                     </div>
                   </a>
-                  <a to={''}>
+                  <a to={'lists'}>
                     <div className='navListDiv'>
                       <i className='bx bx-list-ul'></i>
                       <span>Listas</span>
                     </div>
                   </a>
-                  <a to={''}>
+                  <a to={'profile'}>
                     <div className='navListDiv'>
                       <i className='bx bx-user'></i>
                       <span>Perfil</span>
                     </div>
                   </a>
-                  <a to={''} className='dropdown'>
+                  <a to={'/settings'} className='dropdown'>
                     <div className='navListDiv'>
                       <i className='bx bx-cog'></i>
                       <span>Más opciones</span>
