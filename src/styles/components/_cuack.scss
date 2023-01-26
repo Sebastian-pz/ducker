@@ -13,7 +13,7 @@
 
 .cuack_container:hover {
   background-color: vars.$section3-background-color;
-  transition: 1s;
+  transition: 0.5s;
 }
 .cuackImg img {
   border-radius: 50%;
@@ -84,11 +84,10 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: flex-start;
   margin-left: -0.5%;
   margin-bottom: 10px;
   font-size: 16px;
-
-  justify-content: flex-start;
   color: vars.$media-font-color;
 
   h4 {
@@ -96,6 +95,31 @@
     margin-right: 3.5vh;
   }
 }
-.Icon {
-  height: 3vh;
+.Icon3 {
+  height: 4vh;
+  padding: 2px;
+  &:hover {
+    background-color: #d16ba542;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+.Icon2 {
+  height: 4vh;
+  padding: 2px;
+  &:hover {
+    background-color: #86a8e742;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+.Icon1 {
+  height: 4vh;
+  color: vars.$primary-color;
+  padding: 2px;
+  &:hover {
+    background-color: #5ffbf142;
+    border-radius: 50%;
+    cursor: pointer;
+  }
 }
