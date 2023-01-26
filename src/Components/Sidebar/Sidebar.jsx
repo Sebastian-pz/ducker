@@ -14,49 +14,49 @@ const Sidebar = () => {
   return (
     <div>
       <section className='section1'>
-        <div className='homeNavlist'>
+        <div className='sidebarNavlist'>
           <div className='logoHome'>
             <Link to='/'>
               <img src={Logo} alt='Logo' />
             </Link>
           </div>
           <nav className='navList'>
-            <a to={''}>
+            <Link to={'/'}>
               <div className='navListDiv'>
                 <i className='bx bxs-home-circle'></i>
                 <span>Inicio</span>
               </div>
-            </a>
-            <a to={''}>
+            </Link>
+            <Link to={''}>
               <div className='navListDiv'>
                 <i className='bx bx-hash'></i>
                 <span>Explorar</span>
               </div>
-            </a>
-            <a to={''}>
+            </Link>
+            <Link to={''}>
               <div className='navListDiv'>
                 <i className='bx bx-bell'></i>
                 <span>Notificaciones</span>
               </div>
-            </a>
-            <a to={''}>
+            </Link>
+            <Link to={''}>
               <div className='navListDiv'>
                 <i className='bx bx-bookmark'></i>
                 <span>Guardados</span>
               </div>
-            </a>
-            <a to={''}>
+            </Link>
+            <Link to={''}>
               <div className='navListDiv'>
                 <i className='bx bx-list-ul'></i>
                 <span>Listas</span>
               </div>
-            </a>
-            <a to={''}>
+            </Link>
+            <Link to={'/profile'}>
               <div className='navListDiv'>
                 <i className='bx bx-user'></i>
                 <span>Perfil</span>
               </div>
-            </a>
+            </Link>
             <a to={''} className='dropdown'>
               <div className='navListDiv'>
                 <i className='bx bx-cog'></i>
@@ -88,7 +88,7 @@ const Sidebar = () => {
             </div>
           </div>
         </button>
-      </section>{' '}
+      </section>
     </div>
   )
 }

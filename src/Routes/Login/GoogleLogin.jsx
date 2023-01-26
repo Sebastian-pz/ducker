@@ -4,15 +4,16 @@ import { useEffect } from 'react'
 
 export const GoogleLoginButton = () => {
   async function handleCallbackResponse(response) {
-    console.log('Encoded JWT ID token: ' + response.credential)
-
     try {
       const body = { id_token: response.credential }
       const resp = await axios.post('http://localhost:3001/auth/google', body)
-      console.log(resp)
-    } catch (error) {
-      console.log(error)
-    }
+      const token = resp.data.token
+      localStorage.setItem('Authorization', token)
+
+      setTimeout(() => {
+        window.location.replace('/')
+      }, 1 * 1000)
+    } catch (error) {}
   }
 
   useEffect(() => {

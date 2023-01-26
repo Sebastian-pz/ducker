@@ -1,0 +1,91 @@
+.section1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 100vh;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.sidebarNavlist {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  span {
+    margin: 0 8%;
+  }
+}
+
+.logoHome {
+  padding: 2% 0;
+  img {
+    display: block;
+    /* align-self: flex-start; */
+    max-width: 100%;
+    min-width: 32px;
+    width: 45px;
+    height: 45px;
+    margin: 5% 0 0 0;
+  }
+}
+
+.homeNavlistButton {
+  margin: 12px 0 12px 0;
+  text-align: center;
+  width: 100%;
+  button {
+    display: block;
+    border-radius: 30px;
+    max-width: 200px;
+    width: 100%;
+    height: 45px;
+    background-color: #d16ba5;
+
+    box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    &:hover {
+      background-color: #86a8e7;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+  }
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  a {
+    padding: 2% 0;
+    color: rgb(15, 20, 25);
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 450;
+  }
+  li {
+    list-style: none;
+    margin: 0 5% 10% 15%;
+  }
+}
+
+.navListDiv {
+  width: auto;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  padding: 4%;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  &:hover {
+    background: #d9d9d9;
+    border-radius: 20px;
+  }
+}

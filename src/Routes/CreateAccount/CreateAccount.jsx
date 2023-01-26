@@ -89,7 +89,6 @@ const CreateAccount = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     const emailsAndNicknames = await axios.get(`${uri}/users/all/mails`)
-    console.log(emailsAndNicknames)
 
     if (emailsAndNicknames.data.mails.includes(userInfo.email)) {
       return toast.error('El correo ya se encuentra registrado.')

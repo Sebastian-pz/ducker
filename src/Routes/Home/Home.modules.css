@@ -14,7 +14,7 @@
   flex-grow: 1;
   align-items: flex-end;
 } */
-
+/*
 .section1 {
   display: flex;
   flex-direction: column;
@@ -45,7 +45,6 @@
 
 .logoHome img {
   display: block;
-  /* align-self: flex-start; */
   max-width: 100%;
   min-width: 32px;
   width: 45px;
@@ -105,15 +104,16 @@
   flex-direction: row;
   padding: 4%;
   transition: ease-in-out 0.3s;
+  cursor: pointer;
 }
 
 .navList li {
   list-style: none;
   margin: 0 5% 10% 15%;
-}
+} */
 
 .section2 {
-  /* padding: 1% 2%; */
+  padding: 0% 2%;
   width: 600px;
   height: 100vh;
   display: flex;
@@ -126,6 +126,7 @@
 .scroll {
   overflow-y: scroll;
   overflow-x: hidden;
+  width: 100%;
 }
 .cuackContainer {
   margin-top: 5%;
@@ -211,6 +212,7 @@
   height: 45vh;
   border-radius: 20px 0px 0px 20px;
   overflow-y: scroll;
+  text-align: center;
 }
 
 .sugerenciasContainer {
@@ -247,6 +249,30 @@
   min-width: 25%;
   width: 25%;
   height: 3vh;
+}
+.seguido {
+  cursor: pointer;
+  color: white;
+  font-size: 12px;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #908a8d;
+  border-radius: 20px;
+  border: none;
+  min-width: 25%;
+  width: 25%;
+  height: 3vh;
+}
+
+.ver-mas {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  background: none;
+}
+
+.ver-mas:hover {
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 ::-webkit-scrollbar {

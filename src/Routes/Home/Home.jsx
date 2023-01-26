@@ -1,15 +1,12 @@
 import './Home.modules.css'
-import axios from 'axios'
-// import { Link } from 'react-router-dom'
-// import Logo from '../../Assets/Img/ducker-logo.png'
 import { Cuack, Cuackear, SearchBar } from '../../Components/index'
 import { getUserById, getUsers } from '../../Features/User/functions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getUserID, isAuthenticated } from '../../Utils/auth'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
-// import Logout from '../../Components/Logout/Logout'
 import Sidebar from '../../Components/Sidebar/Sidebar'
+import Trends from '../../Components/Trends/Trends'
 
 const Home = () => {
   if (!isAuthenticated()) {
@@ -20,19 +17,10 @@ const Home = () => {
       </div>
     )
   }
-  const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
-  const token = localStorage.getItem('Authorization')
-  const id = localStorage.getItem('auth')
-  const dispatch = useDispatch()
-  const totalUsers = useSelector(state => state.user.allUsers)
-  const cuacks = useSelector(state => state.cuacks.cuacks)
-  let filteredUsers = []
-  if (totalUsers && totalUsers.users)
-    filteredUsers = totalUsers.users.filter(
-      user => user.state === true && user.id !== id
-    )
 
-  // const [logOut, setlogOut] = useState(false)
+  const dispatch = useDispatch()
+  const cuacks = useSelector(state => state.cuacks.cuacks)
+  const user = useSelector(state => state.user.userInfo)
 
   useEffect(() => {
     dispatch(getUsers())
@@ -40,19 +28,16 @@ const Home = () => {
     dispatch(getUserById(getUserID()))
   }, [])
 
-  const user = useSelector(state => state.user.userInfo)
-  const handleFollow = async e => {
-    e.preventDefault()
-    const config = {
-      headers: {
-        Authorization: `${token}`,
-      },
+  const cuacksSorted = [...cuacks]
+
+  if (cuacks.length) {
+    if (cuacks[0]._doc) {
+      if (cuacks[0]._doc.date) {
+        cuacksSorted.sort(
+          (a, b) => new Date(b._doc.date) - new Date(a._doc.date)
+        )
+      }
     }
-    await axios.put(
-      `${uri}/users/follow/${id}`,
-      { idUserTwo: e.target.name },
-      config
-    )
   }
 
   if (isAuthenticated())
@@ -67,7 +52,7 @@ const Home = () => {
             <Cuackear userInfo={user} />
             <div className='cuackContainer'>
               {cuacks &&
-                cuacks.map(cuack => {
+                cuacksSorted.map(cuack => {
                   return (
                     <Cuack
                       cuackinfo={cuack}
@@ -102,35 +87,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className='tendencias'>
-            {filteredUsers &&
-              filteredUsers.map(usuario => {
-                return (
-                  <div className='sugerenciasContainer' key={usuario.nickname}>
-                    <div className='sugerenciasContainer2'>
-                      <div className='imgSugerencias'>
-                        <img src={usuario.img}></img>
-                      </div>
-                      <div className='nicknameandfullname'>
-                        <h3>{usuario.fullname}</h3>
-                        <h5>{usuario.nickname}</h5>
-                      </div>
-                    </div>
-
-                    <button
-                      type='submit'
-                      name={usuario.id}
-                      onClick={e => {
-                        handleFollow(e)
-                      }}
-                      className='followSugerencias'
-                    >
-                      Seguir
-                    </button>
-                  </div>
-                )
-              })}
-          </div>
+          <Trends />
         </section>
       </div>
     )
