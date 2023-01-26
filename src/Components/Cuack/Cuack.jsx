@@ -79,16 +79,16 @@ const Cuack = props => {
         {/* Recuacks Likes Comments */}
         <div className='cuack_media'>
           <img
-            className='Icon'
-            name={'like'}
-            src={likeStatic}
-            ref={likeRef}
-            alt='likes-img'
+            className='Icon1'
+            src={commentStatic}
+            alt='comment-img'
+            name={'comment'}
+            ref={commentRef}
             onClick={e => activateGif(e)}
           />
-          <h4>{likes ? likes.length : 0}</h4>
+          <h4>{comments ? comments.length : 0}</h4>
           <img
-            className='Icon'
+            className='Icon2'
             src={recuackStatic}
             ref={recuackRef}
             name={'recuack'}
@@ -97,14 +97,14 @@ const Cuack = props => {
           />
           <h4>{recuacks ? recuacks.length : 0}</h4>
           <img
-            className='Icon'
-            src={commentStatic}
-            alt='comment-img'
-            name={'comment'}
-            ref={commentRef}
+            className='Icon3'
+            name={'like'}
+            src={likeStatic}
+            ref={likeRef}
+            alt='likes-img'
             onClick={e => activateGif(e)}
           />
-          <h4>{comments ? comments.length : 0}</h4>
+          <h4>{likes ? likes.length : 0}</h4>
         </div>
       </div>
     </div>
