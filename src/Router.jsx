@@ -1,5 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home, ErrorPage, User, Login, CreateAccount, Pruebas } from './Routes'
+import {
+  Home,
+  ErrorPage,
+  User,
+  Login,
+  CreateAccount,
+  Pruebas,
+  Profile,
+} from './Routes'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: '/pruebas',
     element: <Pruebas />,
+  },
+  {
+    path: '/profile',
+    element: <Profile />,
   },
   {
     path: '*',

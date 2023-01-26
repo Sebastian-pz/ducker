@@ -3,14 +3,14 @@ import axios from 'axios'
 import { useRef, useState, useEffect } from 'react'
 import { Autocomplete } from '../../Components'
 import getCaretCoordinates from 'textarea-caret'
+import { getUserID } from '../../Utils/auth'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Cuackear = ({ userInfo }) => {
   const uri = process.env.BACK_URL || 'http://localhost:3001'
   const maxLength = 280
   const [charsRemaining, setCharsRemaining] = useState(maxLength)
   const [showAutocomplete, setShowAutocomplete] = useState(false)
-
-  // eslint-disable-next-line no-unused-vars
   const [content, setContent] = useState('')
   const [nickname, setnickname] = useState()
   const [options, setOptions] = useState([])
@@ -18,6 +18,7 @@ const Cuackear = ({ userInfo }) => {
   const { top, left } = textRef.current
     ? getCaretCoordinates(textRef.current, textRef.current.selectionEnd)
     : { top: 0, left: 0 }
+  const token = localStorage.getItem('Authorization')
 
   const handleInput = () => {
     const { value, selectionEnd = 0 } = textRef.current
@@ -52,7 +53,7 @@ const Cuackear = ({ userInfo }) => {
   }, [nickname])
 
   function handleChangeTextBox(e) {
-    setContent(e.targe.value)
+    setContent(e.target.value)
     if (e.target.value.length > maxLength) {
       document
         .getElementById('cuackearInput')
@@ -71,14 +72,63 @@ const Cuackear = ({ userInfo }) => {
     setCharsRemaining(maxLength - e.target.value.length)
   }
 
-  // function submitCuack() {
-  //   console.log(content)
-  //   // API
+  function submitCuack(e) {
+    e.preventDefault()
+    console.log(`Estaría enviando ${content} a la API`)
+    const author = getUserID()
+    const cuack = {
+      cuack: {
+        author,
+        content,
+      },
+    }
 
-  // }
+    const config = {
+      headers: {
+        Authorization: `${token}`,
+      },
+    }
+    toast.promise(
+      axios.post(`${uri}/cuacks`, cuack, config),
+      {
+        loading: 'Loading',
+        success: `Cuack enviado con éxito.`,
+        error: `Ha ocurrido un error, revisa los datos ingresados`,
+      },
+      {
+        style: {
+          minWidth: '250px',
+        },
+        success: {
+          duration: 1000,
+          icon: '🦆',
+        },
+      }
+    )
+
+    // API
+    //  Auth -- needed
+    // "cuack": {
+    //   "author":"63c9594f82acdc761009beb7",
+    //   "content":"Esta es una prueba con test1!!!!"
+    // }
+
+    document.getElementById('cuackearInput').value = ''
+    setContent('')
+  }
 
   return (
     <div className='cuackear-container'>
+      <Toaster
+        position='top-center'
+        reverseOrder={false}
+        toastOptions={{
+          className: '',
+          style: {
+            fontSize: '1.5rem',
+          },
+        }}
+      />
       <div className='cuackearIMG'>
         <img src={userInfo.img} alt='profile-picture' />
       </div>
@@ -102,7 +152,9 @@ const Cuackear = ({ userInfo }) => {
           )}
           <p id='cuackearCharsRemaining'>Reamining: {charsRemaining}</p>
           <div className='display-flex-end'>
-            <button className='cuackear-button'>Cuackear</button>
+            <button className='cuackear-button' onClick={e => submitCuack(e)}>
+              Cuackear
+            </button>
           </div>
         </div>
       </div>
