@@ -1,14 +1,15 @@
 import './Home.modules.css'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import Logo from '../../Assets/Img/ducker-logo.png'
+// import { Link } from 'react-router-dom'
+// import Logo from '../../Assets/Img/ducker-logo.png'
 import { Cuack, Cuackear, SearchBar } from '../../Components/index'
 import { getUserById, getUsers } from '../../Features/User/functions'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { getUserID, isAuthenticated } from '../../Utils/auth'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
-import Logout from '../../Components/Logout/Logout'
+// import Logout from '../../Components/Logout/Logout'
+import Sidebar from '../../Components/Sidebar/Sidebar'
 
 const Home = () => {
   if (!isAuthenticated()) {
@@ -31,7 +32,7 @@ const Home = () => {
       user => user.state === true && user.id !== id
     )
 
-  const [logOut, setlogOut] = useState(false)
+  // const [logOut, setlogOut] = useState(false)
 
   useEffect(() => {
     dispatch(getUsers())
@@ -58,84 +59,7 @@ const Home = () => {
     return (
       <div className='home-container'>
         <header>
-          <div>
-            <section className='section1'>
-              <div className='homeNavlist'>
-                <div className='logoHome'>
-                  <Link to='/'>
-                    <img src={Logo} alt='Logo' />
-                  </Link>
-                </div>
-                <nav className='navList'>
-                  <a to={'/'}>
-                    <div className='navListDiv'>
-                      <i className='bx bxs-home-circle'></i>
-                      <span>Inicio</span>
-                    </div>
-                  </a>
-                  <a to={'/explore'}>
-                    <div className='navListDiv'>
-                      <i className='bx bx-hash'></i>
-                      <span>Explorar</span>
-                    </div>
-                  </a>
-                  <a to={'/notifications'}>
-                    <div className='navListDiv'>
-                      <i className='bx bx-bell'></i>
-                      <span>Notificaciones</span>
-                    </div>
-                  </a>
-                  <a to={''}>
-                    <div className='navListDiv'>
-                      <i className='bx bx-bookmark'></i>
-                      <span>Guardados</span>
-                    </div>
-                  </a>
-                  <a to={'lists'}>
-                    <div className='navListDiv'>
-                      <i className='bx bx-list-ul'></i>
-                      <span>Listas</span>
-                    </div>
-                  </a>
-                  <a to={'profile'}>
-                    <div className='navListDiv'>
-                      <i className='bx bx-user'></i>
-                      <span>Perfil</span>
-                    </div>
-                  </a>
-                  <a to={'/settings'} className='dropdown'>
-                    <div className='navListDiv'>
-                      <i className='bx bx-cog'></i>
-                      <span>Más opciones</span>
-                    </div>
-                  </a>
-                </nav>
-                <div className='homeNavlistButton'>
-                  <button>Cuackear</button>
-                </div>
-              </div>
-
-              <button className='logout' onClick={() => setlogOut(!logOut)}>
-                <div className='container-icon-name-nick'>
-                  {logOut && <Logout nickname={user.nickname} />}
-                  <div className='container-icon-name-nick2'>
-                    <div className='container-icon-name-nick3'>
-                      <img src={user && user.img} alt='' />
-                    </div>
-                    <div className='container-name-nick'>
-                      <h4>{user && user.fullname}</h4>
-                      <h5>{user && user.nickname}</h5>
-                    </div>
-                  </div>
-                  <div>
-                    <div className='logout__desp'>
-                      <i className='bx bx-dots-horizontal-rounded'></i>
-                    </div>
-                  </div>
-                </div>
-              </button>
-            </section>{' '}
-          </div>
+          <Sidebar />
         </header>
         <section className='section2'>
           <h1>Inicio</h1>
