@@ -5,8 +5,11 @@ import { Autocomplete } from '../../Components'
 import getCaretCoordinates from 'textarea-caret'
 import { getUserID } from '../../Utils/auth'
 import toast, { Toaster } from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
+import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
 const Cuackear = ({ userInfo }) => {
+  const dispatch = useDispatch()
   const uri = process.env.BACK_URL || 'http://localhost:3001'
   const maxLength = 280
   const [charsRemaining, setCharsRemaining] = useState(maxLength)
@@ -74,7 +77,6 @@ const Cuackear = ({ userInfo }) => {
 
   function submitCuack(e) {
     e.preventDefault()
-    console.log(`Estaría enviando ${content} a la API`)
     const author = getUserID()
     const cuack = {
       cuack: {
@@ -88,6 +90,12 @@ const Cuackear = ({ userInfo }) => {
         Authorization: `${token}`,
       },
     }
+
+    if (content.length > maxLength)
+      return alert(
+        'Coméme los huevos, qué no ves que ese texto está muy largo o qué!'
+      )
+
     toast.promise(
       axios.post(`${uri}/cuacks`, cuack, config),
       {
@@ -105,16 +113,10 @@ const Cuackear = ({ userInfo }) => {
         },
       }
     )
-
-    // API
-    //  Auth -- needed
-    // "cuack": {
-    //   "author":"63c9594f82acdc761009beb7",
-    //   "content":"Esta es una prueba con test1!!!!"
-    // }
-
     document.getElementById('cuackearInput').value = ''
     setContent('')
+    setCharsRemaining(280)
+    dispatch(getCuacks())
   }
 
   return (

@@ -216,15 +216,20 @@
 }
 
 .sugerenciasContainer {
-  margin: 2%;
+  margin: 2% 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .sugerenciasContainer2 {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  max-width: 230px;
+  overflow: hidden;
 }
 
 .imgSugerencias img {
@@ -236,7 +241,17 @@
 }
 .nicknameandfullname {
   display: flex;
+  padding-right: 5px;
   flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5px;
+}
+.nicknameandfullname h3 {
+  white-space: nowrap;
+  font-size: 14px;
+}
+.nicknameandfullname h3 {
+  white-space: nowrap;
 }
 .followSugerencias {
   cursor: pointer;
@@ -250,6 +265,12 @@
   width: 25%;
   height: 3vh;
 }
+
+.followSugerencias:hover {
+  background-color: #bc6096;
+  transition: 0.2s;
+}
+
 .seguido {
   cursor: pointer;
   color: white;

@@ -24,15 +24,36 @@
 }
 .cuack_main_content {
   width: 100%;
+  // p {
+  //   display: flex;
+  //   margin: 5% 0;
+  //   font-family: vars.$font-family;
+  //   font-size: 16px;
+  //   line-height: 1.6;
+  //   color: vars.$primary-font-color;
+  //   max-height: 25vh;
+  //   max-width: 430px;
+  //   white-space: wrap;
+  //   overflow: scroll;
+  // }
 }
 
 .cuack_content {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1vh;
   img {
     border-radius: 50%;
     width: 75px;
     border: solid 1px rgba(89, 89, 89, 0.72);
   }
+}
+.cuack_content2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .cuack_author_info {
@@ -51,33 +72,40 @@
 .cuack_content_nickname {
   font-size: vars.$nickname-font-size;
   line-height: 17px;
+  margin: 0 10px;
   color: vars.$primary-font-color;
 }
 
-.cuack_author_info {
-  margin-top: 1vh;
-
-  width: 100%;
-  justify-content: space-between;
-
-  .cuack_content_options {
-    font-size: vars.$font-size;
-    font-weight: bold;
-  }
+.cuack_time {
+  color: rgba(151, 151, 151, 0.7);
+  font-size: 14px;
+  user-select: none;
 }
 
-.display-flex-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
+// .cuack_author_info {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   width: 100%;
+//   margin-top: 1vh;
+
+// }
+.cuack_content_options {
+  font-size: vars.$font-size;
+  font-weight: bold;
 }
 
 .cuack_content_text {
   margin: 5% 0%;
   font-family: vars.$font-family;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 1.6;
   color: vars.$primary-font-color;
+  max-height: 25vh;
+  height: 80px;
+  max-width: 450px;
+  white-space: wrap;
+  overflow: scroll;
 }
 
 .cuack_media {
@@ -90,7 +118,7 @@
   font-size: 16px;
   color: vars.$media-font-color;
 
-  h4 {
+  p {
     font-size: 1rem;
     margin-right: 3.5vh;
   }
@@ -122,4 +150,10 @@
     border-radius: 50%;
     cursor: pointer;
   }
+}
+.imgContent {
+  border-radius: 20px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }

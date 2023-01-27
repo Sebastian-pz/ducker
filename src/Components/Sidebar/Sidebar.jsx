@@ -2,13 +2,16 @@ import { Link } from 'react-router-dom'
 import Logo from '../../Assets/Img/ducker-logo.png'
 import Logout from '../../Components/Logout/Logout'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import { getUserID } from '../../Utils/auth'
 // import { isAuthenticated } from '../../Utils/auth'
 
 const Sidebar = () => {
   const user = useSelector(state => state.user.userInfo)
 
   const [logOut, setlogOut] = useState(false)
+  const dispatch = useDispatch()
 
   //   if (isAuthenticated())
   return (
@@ -21,7 +24,7 @@ const Sidebar = () => {
             </Link>
           </div>
           <nav className='navList'>
-            <Link to={'/'}>
+            <Link to={'/'} onClick={() => dispatch(getCuacks(getUserID))}>
               <div className='navListDiv'>
                 <i className='bx bxs-home-circle'></i>
                 <span>Inicio</span>

@@ -77,6 +77,7 @@ const Home = () => {
             <h3>{user && user.nickname}</h3>
             <hr />
             <div className='followContainer'>
+              <hr />
               <div className='followers'>
                 <h3>{user && user.followers?.length}</h3>
                 <h2>Seguidores</h2>
