@@ -35,9 +35,7 @@
     resize: none;
     overflow: scroll;
   }
-  #cuackearInput:hover {
-    border: vars.$border-container;
-  }
+
   #cuackearInput:focus {
     outline: vars.$border-container;
   }

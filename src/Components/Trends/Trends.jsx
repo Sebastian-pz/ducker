@@ -60,7 +60,11 @@ const Trends = () => {
                   <img src={usuario.img}></img>
                 </div>
                 <div className='nicknameandfullname'>
-                  <h3>{usuario.fullname}</h3>
+                  <h3>
+                    {usuario.fullname.length < 3
+                      ? usuario.fullname
+                      : usuario.fullname.split(' ', 2).join(' ')}
+                  </h3>
                   <h5>{usuario.nickname}</h5>
                 </div>
               </div>

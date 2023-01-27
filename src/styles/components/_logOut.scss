@@ -31,7 +31,10 @@
   border: none;
   background-color: white;
   cursor: pointer;
-  font-size: vars.$font-size;
+  font-size: vars.$nickname-font-size;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     font-weight: bold;
   }
