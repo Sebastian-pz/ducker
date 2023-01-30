@@ -47,7 +47,9 @@ const Home = () => {
           <Sidebar />
         </header>
         <section className='section2'>
-          <h1>Inicio</h1>
+          <nav className='section2-nav'>
+            <h1>Inicio</h1>
+          </nav>
           <div className='scroll'>
             <Cuackear userInfo={user} />
             <div className='cuackContainer'>

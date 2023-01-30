@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { allUsers } from '../../Features/User/userSlice'
 import { getUserById } from '../../Features/User/functions'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import FollowButton from '../FollowButton/FollowButton'
 
 const Trends = () => {
   const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
@@ -12,7 +13,6 @@ const Trends = () => {
   const id = getUserID()
   const [queryUsers, setQueryUsers] = useState(10)
   const totalUsers = useSelector(state => state.user.allUsers)
-  const user = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   let filteredUsers = []
   if (totalUsers && totalUsers.users)
@@ -51,6 +51,7 @@ const Trends = () => {
 
   return (
     <div className='tendencias'>
+      <h3>Usuarios que podés seguir</h3>
       {filteredUsers.length > 0 ? (
         filteredUsers.map(usuario => {
           return (
@@ -68,27 +69,8 @@ const Trends = () => {
                   <h5>{usuario.nickname}</h5>
                 </div>
               </div>
-              {user.following && !user.following.includes(usuario.id) ? (
-                <button
-                  type='submit'
-                  name={usuario.id}
-                  onClick={e => {
-                    handleFollow(e)
-                  }}
-                  className='followSugerencias'
-                >
-                  Seguir
-                </button>
-              ) : (
-                <button
-                  type='submit'
-                  name={usuario.id}
-                  className='seguido'
-                  disabled
-                >
-                  Seguido
-                </button>
-              )}
+
+              <FollowButton followId={usuario.id} />
             </div>
           )
         })
@@ -96,7 +78,7 @@ const Trends = () => {
         <h4>No hay usuarios nuevos para seguir</h4>
       )}
       <button className='ver-mas' onClick={e => moreUsers(e)}>
-        Ver mas
+        Ver más
       </button>
     </div>
   )

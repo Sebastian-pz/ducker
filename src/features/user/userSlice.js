@@ -1,5 +1,3 @@
-// setState -> es la que se encarga de realizar los cambios en el estado
-
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
@@ -7,7 +5,7 @@ const initialState = {
   userInfo: {},
   allUsers: [],
   searchUsers: [],
-  searchCuacks: [],
+  query: '',
 }
 
 export const userSlice = createSlice({
@@ -21,10 +19,8 @@ export const userSlice = createSlice({
       state.userInfo = action.payload
     },
     searchU: (state, action) => {
-      state.searchUsers = action.payload
-    },
-    searchC: (state, action) => {
-      state.searchCuacks = action.payload
+      state.searchUsers = action.payload.data
+      state.query = action.payload.query
     },
     allUsers: (state, action) => {
       state.allUsers = action.payload
@@ -32,6 +28,6 @@ export const userSlice = createSlice({
   },
 })
 
-export const { login, searchC, searchU, setUserInfo, allUsers } = userSlice.actions
+export const { login, searchU, setUserInfo, allUsers } = userSlice.actions
 
 export default userSlice.reducer

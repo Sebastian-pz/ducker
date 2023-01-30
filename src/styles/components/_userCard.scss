@@ -1,0 +1,44 @@
+@use '../vars';
+
+.followers {
+  border: 3px solid greenyellow;
+  display: flex;
+  flex-direction: row;
+}
+
+.userCard {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  text-align: center;
+  border-radius: 20px;
+}
+.usercard__image {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  border: 5px solid white;
+}
+.usercard__fullname {
+  font-weight: bold;
+  font-size: vars.$cuacks-font-size;
+}
+
+.usercard__nickname {
+  font-size: vars.$nickname-font-size;
+  color: vars.$secondary-font-color;
+}
+
+.userCard__banner {
+  background-color: vars.$primary-color;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  // border-bottom: 2px solid blue;
+  border-radius: 20px 20px 0 0;
+}
