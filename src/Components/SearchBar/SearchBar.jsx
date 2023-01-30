@@ -1,32 +1,30 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import lupa from '../../Assets/Img/lupa.png'
-import { searchUsers, searchCuacks } from '../../Features/User/functions'
+import { searchUsers } from '../../Features/User/functions'
+import { searchCuacks } from '../../Features/Cuack/cuackFunctions'
+import { useNavigate } from 'react-router-dom'
 
 export default function SearchBar() {
   const dispatch = useDispatch()
-  const [search1, setSearch1] = useState({
-    collection: 'users',
-    term: '',
-  })
+  const navigate = useNavigate()
+  const [search1, setSearch1] = useState('')
 
-  const [search2, setSearch2] = useState({
-    collection: 'cuacks',
-    term: '',
-  })
+  const [search2, setSearch2] = useState('')
 
   function handleInputChange(e) {
     e.preventDefault()
-    setSearch1({ ...search1, term: e.target.value })
-    setSearch2({ ...search2, term: e.target.value })
+    setSearch1(e.target.value)
+    setSearch2(e.target.value)
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch(searchUsers(search1))
-    dispatch(searchCuacks(search2))
-    setSearch1({ ...search1, term: '' })
-    setSearch2({ ...search2, term: '' })
+    dispatch(searchUsers(search1, 0))
+    dispatch(searchCuacks(search2, 0))
+    setSearch1('')
+    setSearch2('')
+    navigate('/search')
   }
 
   return (
@@ -35,7 +33,7 @@ export default function SearchBar() {
       <form className='formSearchBar' onSubmit={e => handleSubmit(e)}>
         <input
           className='inputSb'
-          value={search1.term}
+          value={search1}
           type='text'
           placeholder='Buscar en Ducker'
           onChange={e => handleInputChange(e)}

@@ -4,9 +4,13 @@
   display: flex;
   width: 100%;
   height: 4.5vh;
-  background-color: vars.$section3-background-color;
+  background-color: #ececec;
   color: vars.$primary-font-color;
   border-radius: 20px;
+  padding: 5px 0;
+  &:focus {
+    border: vars.$border-container;
+  }
 }
 
 .formSearchBar {
@@ -28,6 +32,6 @@
   display: flex;
   align-self: center;
   margin-left: 5%;
-  margin-right: 5%;
+  margin-right: 3%;
   height: 45%;
 }

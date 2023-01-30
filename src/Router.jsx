@@ -7,6 +7,8 @@ import {
   CreateAccount,
   Pruebas,
   Profile,
+  Search,
+  Followers,
 } from './Routes'
 
 const router = createBrowserRouter([
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <Profile />,
+  },
+  {
+    path: '/search',
+    element: <Search />,
+  },
+  {
+    path: '/followers',
+    element: <Followers />,
   },
   {
     path: '*',

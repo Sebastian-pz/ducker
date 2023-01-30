@@ -3,7 +3,7 @@ import Trends from '../../Components/Trends/Trends'
 import { useSelector } from 'react-redux'
 import { isAuthenticated } from '../../Utils/auth'
 import { Cuack, SearchBar } from '../../Components/index'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Profile = () => {
   if (!isAuthenticated()) {
@@ -78,7 +78,9 @@ const Profile = () => {
               <span>{user && user.following?.length}</span>
               <h5>Siguiendo</h5>
               <span>{user && user.followers?.length}</span>
-              <h5>Seguidores</h5>
+              <Link to={'/followers'}>
+                <h5>Seguidores</h5>
+              </Link>
             </div>
             <br />
             <div className='cuackContainer'>

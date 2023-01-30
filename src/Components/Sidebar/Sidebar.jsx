@@ -30,7 +30,7 @@ const Sidebar = () => {
                 <span>Inicio</span>
               </div>
             </Link>
-            <Link to={''}>
+            <Link to={'/search'}>
               <div className='navListDiv'>
                 <i className='bx bx-hash'></i>
                 <span>Explorar</span>
