@@ -16,8 +16,6 @@ const People = () => {
   }
 
   useEffect(() => {
-    console.log(`Limite del useEffect: ${limit} -> Set en 10`)
-    console.log(`Term: ${term}`)
     setLimit(10)
   }, [term])
 

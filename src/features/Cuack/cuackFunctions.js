@@ -15,9 +15,11 @@ export const getCuacks = () => async dispatch => {
   }
 }
 
-export const searchCuacks = term => async dispatch => {
+export const searchCuacks = (term, init) => async dispatch => {
   try {
-    const { data } = await axios.get(`${uri}/search/cuacks/${term}`)
+    const { data } = await axios.get(
+      `${uri}/search/cuacks/${term}?since=${init}`
+    )
     dispatch(searchC({ data, query: term }))
   } catch (error) {
     console.log(`Internal server error`)
