@@ -4,6 +4,7 @@ import { SearchBar } from '../../Components/index'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import People from '../../Components/People/People'
+import { SearchCuacks } from '../../Components/SearchCuacks/SearchCuacks'
 
 const Search = () => {
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ const Search = () => {
         <main>
           {/* Personas */}
           <People />
-
+          <SearchCuacks />
           {/* Cuacks (Que contengan y que su author coincida con la busqueda) */}
         </main>
       </section>
