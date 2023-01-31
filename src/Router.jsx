@@ -8,7 +8,6 @@ import {
   Pruebas,
   Profile,
   Search,
-  Followers,
 } from './Routes'
 
 const router = createBrowserRouter([
@@ -42,10 +41,6 @@ const router = createBrowserRouter([
   {
     path: '/search',
     element: <Search />,
-  },
-  {
-    path: '/followers',
-    element: <Followers />,
   },
   {
     path: '*',

@@ -3,7 +3,9 @@ import Trends from '../../Components/Trends/Trends'
 import { useSelector } from 'react-redux'
 import { isAuthenticated } from '../../Utils/auth'
 import { Cuack, SearchBar } from '../../Components/index'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import Followers from '../../Components/Followers/Followers'
 
 const Profile = () => {
   if (!isAuthenticated()) {
@@ -15,11 +17,40 @@ const Profile = () => {
     )
   }
 
+  // eslint-disable-next-line no-unused-vars
+  const [section, setSection] = useState('default')
+
   const user = useSelector(state => state.user.userInfo)
   const cuacks = useSelector(state => state.cuacks.cuacks)
   const navigate = useNavigate()
 
-  // const [logOut, setlogOut] = useState(false)
+  function handlesection(e) {
+    e.preventDefault()
+    setSection(e.target.id)
+  }
+
+  function handleDisplay() {
+    switch (section) {
+      case 'default':
+        return (
+          <div className='cuackContainer'>
+            {cuacks &&
+              cuacks.map(cuack => {
+                return (
+                  <Cuack
+                    cuackinfo={cuack}
+                    key={`${cuack.nickname}${Math.random() * 100}`}
+                  />
+                )
+              })}
+          </div>
+        )
+      case 'followers':
+        return <Followers />
+      default:
+        break
+    }
+  }
 
   function getBirthday(date) {
     const birthday = new Date(date)
@@ -42,7 +73,7 @@ const Profile = () => {
             <i className='bx bx-arrow-back' onClick={() => navigate(-1)}></i>
             <div className='container-nav'>
               <h4>{user && user.fullname}</h4>
-              <h5>{user && `${user.cuacks.length} cuacks`}</h5>
+              <h5>{user && `${user.cuacks?.length} cuacks`}</h5>
             </div>
           </nav>
           <main className='scroll'>
@@ -63,7 +94,9 @@ const Profile = () => {
             <div className='button'>
               <button>Editar perfil</button>
             </div>
-            <h4>{user && user.fullname}</h4>
+            <h4 id='default' onClick={e => handlesection(e)}>
+              {user && user.fullname}
+            </h4>
             <h5>{user && user.nickname}</h5>
             <br />
             <h5>{user && user.description}</h5>
@@ -76,24 +109,16 @@ const Profile = () => {
             <br />
             <div className='follows'>
               <span>{user && user.following?.length}</span>
-              <h5>Siguiendo</h5>
+              <h5 id='following' onClick={e => handlesection(e)}>
+                Siguiendo
+              </h5>
               <span>{user && user.followers?.length}</span>
-              <Link to={'/followers'}>
-                <h5>Seguidores</h5>
-              </Link>
+              <h5 id='followers' onClick={e => handlesection(e)}>
+                Seguidores
+              </h5>
             </div>
             <br />
-            <div className='cuackContainer'>
-              {cuacks &&
-                cuacks.map(cuack => {
-                  return (
-                    <Cuack
-                      cuackinfo={cuack}
-                      key={`${cuack.nickname}${Math.random() * 100}`}
-                    />
-                  )
-                })}
-            </div>
+            {handleDisplay()}
           </main>
         </section>
         <section className='section3'>
