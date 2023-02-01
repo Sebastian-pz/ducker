@@ -31,14 +31,6 @@ function FollowButton({ followId }) {
     dispatch(getUserById(getUserID()))
     dispatch(getCuacks())
   }
-
-  // const moreUsers = async e => {
-  //   e.preventDefault()
-  //   setQueryUsers(queryUsers + 10)
-  //   const { data } = await axios.get(`${uri}/users?since=${queryUsers}`)
-  //   dispatch(allUsers(data))
-  // }
-
   return (
     <div className='follow-button'>
       {user.following && !user.following.includes(followId) ? (
