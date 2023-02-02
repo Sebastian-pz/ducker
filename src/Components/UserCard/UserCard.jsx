@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import FollowUnFollow from '../Follow&UnFollowButton/FollowUnFollow'
 
 const UserCard = ({ user }) => {
   return (
@@ -16,7 +17,7 @@ const UserCard = ({ user }) => {
         <p className='usercard__bio'>{user.description}</p>
       </div>
       <div className='userCard__section3'>
-        <button className='usercard__button'>Seguir</button>
+        <FollowUnFollow id={user.id} />
       </div>
     </div>
   )

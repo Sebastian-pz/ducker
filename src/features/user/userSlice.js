@@ -6,6 +6,7 @@ const initialState = {
   allUsers: [],
   searchUsers: [],
   query: '',
+  cuacks: [],
 }
 
 export const userSlice = createSlice({
@@ -25,9 +26,13 @@ export const userSlice = createSlice({
     allUsers: (state, action) => {
       state.allUsers = action.payload
     },
+    setUserCuacks: (state, action) => {
+      state.cuacks = action.payload
+    },
   },
 })
 
-export const { login, searchU, setUserInfo, allUsers } = userSlice.actions
+export const { login, searchU, setUserInfo, allUsers, setUserCuacks } =
+  userSlice.actions
 
 export default userSlice.reducer

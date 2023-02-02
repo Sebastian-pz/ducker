@@ -1,31 +1,30 @@
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { UserCard } from '../index'
+import UserCard from '../UserCard/UserCard'
+import axios from 'axios'
 import { getUserById } from '../../Features/User/functions'
 import { getUserID } from '../../Utils/auth'
-import axios from 'axios'
 
-const Followers = () => {
+const Following = () => {
   const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
-  const [followersInfo, setfollowersInfo] = useState([])
+  const [followingInfo, setfollowingInfo] = useState([])
   const user = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
-  document.title = 'Followers'
-
+  document.title = 'Siguiendo'
   useEffect(() => {
     dispatch(getUserById(getUserID()))
-    setfollowersInfo(getUsersInfo())
+    setfollowingInfo(getUsersInfo())
     async function fetchData() {
       const info = await getUsersInfo()
-      setfollowersInfo(info)
+      setfollowingInfo(info)
     }
     fetchData()
   }, [])
 
   async function getUsersInfo() {
     const info = []
-    if (user && user.followers) {
-      for (const follower of user.followers) {
+    if (user && user.following) {
+      for (const follower of user.following) {
         const { data } = await axios.get(`${uri}/users/${follower}`)
         info.push(data)
       }
@@ -33,20 +32,20 @@ const Followers = () => {
     return info
   }
 
-  function getFollowers() {
-    if (!followersInfo.length) {
+  function getFollowing() {
+    if (!followingInfo.length) {
       return (
         <div>
           <p>Loading user...</p>
         </div>
       )
     }
-    if (followersInfo.length) {
+    if (followingInfo.length) {
       return (
         <div>
-          <h2>Lista de seguidores</h2>
+          <h2>Personas a las que sigues</h2>
           <div className='followers'>
-            {followersInfo.map(follower => {
+            {followingInfo.map(follower => {
               return (
                 <UserCard
                   user={follower}
@@ -66,7 +65,7 @@ const Followers = () => {
     }
   }
 
-  return <div>{user && getFollowers()}</div>
+  return <div>{user && getFollowing()}</div>
 }
 
-export default Followers
+export default Following

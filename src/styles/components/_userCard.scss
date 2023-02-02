@@ -23,7 +23,7 @@
   padding: 0;
   width: 15%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -34,7 +34,8 @@
   width: 20%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 8px;
 }
 .usercard__fullname {
   font-weight: bold;
@@ -70,5 +71,21 @@
 .usercard__button:hover {
   cursor: pointer;
   background-color: vars.$secondary-color;
+  transition: 0.5s;
+}
+
+.usercard__button-unfollow {
+  width: 65px;
+  height: 26px;
+  background-color: vars.$primary-color;
+  border: none;
+  border-radius: 20px;
+  color: vars.$dark-primary-font-color;
+  font-weight: bold;
+}
+
+.usercard__button-unfollow:hover {
+  cursor: pointer;
+  background-color: vars.$errors-form-color;
   transition: 0.5s;
 }

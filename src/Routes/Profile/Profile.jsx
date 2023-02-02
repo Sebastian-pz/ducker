@@ -1,11 +1,12 @@
+import { Cuack, SearchBar, Followers, Following } from '../../Components/index'
+import { getUserID, isAuthenticated } from '../../Utils/auth'
+import { setUserCuacks } from '../../Features/User/userSlice'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
-import { useSelector } from 'react-redux'
-import { isAuthenticated } from '../../Utils/auth'
-import { Cuack, SearchBar } from '../../Components/index'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import Followers from '../../Components/Followers/Followers'
+import axios from 'axios'
 
 const Profile = () => {
   if (!isAuthenticated()) {
@@ -17,11 +18,27 @@ const Profile = () => {
     )
   }
 
+  const dispatch = useDispatch()
+  async function getProfileCuacks() {
+    const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem('Authorization'),
+      },
+    }
+    const { data } = await axios.get(`${uri}/cuacks/u/${getUserID()}`, config)
+    dispatch(setUserCuacks(data.payload))
+  }
+  useEffect(() => {
+    getProfileCuacks()
+  }, [])
+
   // eslint-disable-next-line no-unused-vars
   const [section, setSection] = useState('default')
 
   const user = useSelector(state => state.user.userInfo)
-  const cuacks = useSelector(state => state.cuacks.cuacks)
+  const cuacks = useSelector(state => state.user.cuacks)
+
   const navigate = useNavigate()
 
   function handlesection(e) {
@@ -38,6 +55,7 @@ const Profile = () => {
               cuacks.map(cuack => {
                 return (
                   <Cuack
+                    action={getProfileCuacks}
                     cuackinfo={cuack}
                     key={`${cuack.nickname}${Math.random() * 100}`}
                   />
@@ -47,6 +65,8 @@ const Profile = () => {
         )
       case 'followers':
         return <Followers />
+      case 'following':
+        return <Following />
       default:
         break
     }
@@ -58,8 +78,40 @@ const Profile = () => {
   }
 
   function getDaycreation() {
+    function month(dateMonth) {
+      switch (dateMonth) {
+        case 0:
+          return 'Enero'
+        case 1:
+          return 'Febrero'
+        case 2:
+          return 'Marzo'
+        case 3:
+          return 'Abril'
+        case 4:
+          return 'Mayo'
+        case 5:
+          return 'Junio'
+        case 6:
+          return 'Julio'
+        case 7:
+          return 'Agosto'
+        case 8:
+          return 'Septiembre'
+        case 9:
+          return 'Octubre'
+        case 10:
+          return 'Noviembre'
+        case 11:
+          return 'Diciembre'
+        default:
+          return ''
+      }
+    }
     const creation = new Date(user.creationDate)
-    return `Se unió en ${creation.getMonth()} de ${creation.getFullYear()}`
+    return `Se unió en ${month(
+      creation.getMonth()
+    )} ${creation.getDate()} de ${creation.getFullYear()}`
   }
 
   if (isAuthenticated())

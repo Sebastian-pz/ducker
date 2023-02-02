@@ -57,6 +57,7 @@ const Home = () => {
                 cuacksSorted.map(cuack => {
                   return (
                     <Cuack
+                      action={getCuacks}
                       cuackinfo={cuack}
                       key={`${cuack.nickname}${Math.random() * 100}`}
                     />
