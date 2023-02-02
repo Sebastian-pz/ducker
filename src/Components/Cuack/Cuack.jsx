@@ -13,10 +13,9 @@ import { useDispatch } from 'react-redux'
 import { getUserID } from '../../Utils/auth'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
-const Cuack = props => {
+const Cuack = ({ cuackinfo, action }) => {
   const uri = process.env.BACK_URL || 'http://localhost:3001'
   const dispatch = useDispatch()
-  const { cuackinfo } = props
   const likeRef = useRef()
   const recuackRef = useRef()
   const commentRef = useRef()
@@ -100,7 +99,7 @@ const Cuack = props => {
     switch (e.target.name) {
       case 'remove-like':
         await axios.put(`${uri}/cuacks/l/${_id}`, { user: getUserID() }, config)
-        dispatch(getCuacks(getUserID()))
+        if (action) dispatch(action())
         break
       case 'remove-recuack':
         await axios.put(
@@ -108,7 +107,7 @@ const Cuack = props => {
           { user: getUserID() },
           config
         )
-        dispatch(getCuacks(getUserID()))
+        if (action) dispatch(action())
         break
 
       default:
@@ -130,8 +129,7 @@ const Cuack = props => {
           { user: getUserID() },
           config
         )
-
-        dispatch(getCuacks())
+        if (action) dispatch(action())
         break
       case 'recuack':
         await axios.post(
@@ -139,8 +137,7 @@ const Cuack = props => {
           { user: getUserID() },
           config
         )
-
-        dispatch(getCuacks())
+        if (action) dispatch(action())
         break
       default:
         break
