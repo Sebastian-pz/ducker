@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
-
-import { Cuack, SearchBar } from '../../Components/index'
+import { Cuack, SearchBar, Followers, Following } from '../../Components/index'
 import { getUserID, isAuthenticated } from '../../Utils/auth'
 import { setUserCuacks } from '../../Features/User/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import Followers from '../../Components/Followers/Followers'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
 import axios from 'axios'
-import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
 const Profile = () => {
   if (!isAuthenticated()) {
@@ -22,7 +18,6 @@ const Profile = () => {
     )
   }
 
-  const [shouldChange, setShouldChange] = useState(false)
   const dispatch = useDispatch()
   async function getProfileCuacks() {
     const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
@@ -36,7 +31,7 @@ const Profile = () => {
   }
   useEffect(() => {
     getProfileCuacks()
-  }, [shouldChange])
+  }, [])
 
   // eslint-disable-next-line no-unused-vars
   const [section, setSection] = useState('default')
@@ -70,6 +65,8 @@ const Profile = () => {
         )
       case 'followers':
         return <Followers />
+      case 'following':
+        return <Following />
       default:
         break
     }
