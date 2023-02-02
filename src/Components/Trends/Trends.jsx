@@ -52,7 +52,7 @@ const Trends = () => {
 
   return (
     <div className='tendencias'>
-      <h3>users que podés seguir</h3>
+      <h3>Usuarios destacados!</h3>
       {filteredUsers.length > 0 ? (
         filteredUsers.map(user => {
           return (
@@ -76,7 +76,7 @@ const Trends = () => {
           )
         })
       ) : (
-        <h4>No hay users nuevos para seguir</h4>
+        <h4>No hay usuarios nuevos para seguir</h4>
       )}
       <button className='ver-mas' onClick={e => moreUsers(e)}>
         Ver más
