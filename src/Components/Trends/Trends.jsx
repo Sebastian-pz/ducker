@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react'
 import { allUsers } from '../../Features/User/userSlice'
 import { getUserById } from '../../Features/User/functions'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
-import FollowButton from '../FollowButton/FollowButton'
+// import FollowButton from '../FollowButton/FollowButton'
+import FollowUnFollow from '../Follow&UnFollowButton/FollowUnFollow'
 
 const Trends = () => {
   const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
@@ -51,31 +52,31 @@ const Trends = () => {
 
   return (
     <div className='tendencias'>
-      <h3>Usuarios que podés seguir</h3>
+      <h3>users que podés seguir</h3>
       {filteredUsers.length > 0 ? (
-        filteredUsers.map(usuario => {
+        filteredUsers.map(user => {
           return (
-            <div className='sugerenciasContainer' key={usuario.nickname}>
+            <div className='sugerenciasContainer' key={user.nickname}>
               <div className='sugerenciasContainer2'>
                 <div className='imgSugerencias'>
-                  <img src={usuario.img}></img>
+                  <img src={user.img}></img>
                 </div>
                 <div className='nicknameandfullname'>
                   <h3>
-                    {usuario.fullname.length < 3
-                      ? usuario.fullname
-                      : usuario.fullname.split(' ', 2).join(' ')}
+                    {user.fullname.length < 3
+                      ? user.fullname
+                      : user.fullname.split(' ', 2).join(' ')}
                   </h3>
-                  <h5>{usuario.nickname}</h5>
+                  <h5>{user.nickname}</h5>
                 </div>
               </div>
 
-              <FollowButton followId={usuario.id} />
+              <FollowUnFollow id={user.id} />
             </div>
           )
         })
       ) : (
-        <h4>No hay usuarios nuevos para seguir</h4>
+        <h4>No hay users nuevos para seguir</h4>
       )}
       <button className='ver-mas' onClick={e => moreUsers(e)}>
         Ver más
