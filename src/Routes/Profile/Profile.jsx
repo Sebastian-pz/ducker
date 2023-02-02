@@ -1,11 +1,15 @@
+/* eslint-disable no-unused-vars */
+
+import { Cuack, SearchBar } from '../../Components/index'
+import { getUserID, isAuthenticated } from '../../Utils/auth'
+import { setUserCuacks } from '../../Features/User/userSlice'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import Followers from '../../Components/Followers/Followers'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
-import { useSelector } from 'react-redux'
-import { isAuthenticated } from '../../Utils/auth'
-import { Cuack, SearchBar } from '../../Components/index'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import Followers from '../../Components/Followers/Followers'
+import axios from 'axios'
 
 const Profile = () => {
   if (!isAuthenticated()) {
@@ -17,11 +21,31 @@ const Profile = () => {
     )
   }
 
+  const dispatch = useDispatch()
+  useEffect(() => {
+    async function getCuacks() {
+      const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
+      const config = {
+        headers: {
+          Authorization: localStorage.getItem('Authorization'),
+        },
+      }
+      const { data } = await axios.get(`${uri}/cuacks/u/${getUserID()}`, config)
+      dispatch(setUserCuacks(data.payload))
+    }
+    getCuacks()
+  }, [])
+
   // eslint-disable-next-line no-unused-vars
   const [section, setSection] = useState('default')
 
   const user = useSelector(state => state.user.userInfo)
-  const cuacks = useSelector(state => state.cuacks.cuacks)
+  // Necesito que los cuacks que se muestren sean los del perfil
+  // Entonces, se crea otro espacio en el store
+  // Cada vez que se renderice el componente se hace el dispatch para que llene o actualice
+  // const cuacks = useSelector(state => state.cuacks.cuacks)
+  const cuacks = useSelector(state => state.user.cuacks)
+
   const navigate = useNavigate()
 
   function handlesection(e) {
@@ -36,6 +60,8 @@ const Profile = () => {
           <div className='cuackContainer'>
             {cuacks &&
               cuacks.map(cuack => {
+                console.log(user)
+                console.log(cuack)
                 return (
                   <Cuack
                     cuackinfo={cuack}
