@@ -27,43 +27,43 @@ const Sidebar = () => {
             <Link to={'/'} onClick={() => dispatch(getCuacks(getUserID))}>
               <div className='navListDiv'>
                 <i className='bx bxs-home-circle'></i>
-                <span>Inicio</span>
+                <h2 className='sidebar_title'>Inicio</h2>
               </div>
             </Link>
             <Link to={'/search'}>
               <div className='navListDiv'>
                 <i className='bx bx-hash'></i>
-                <span>Explorar</span>
+                <h2 className='sidebar_title'>Explorar</h2>
               </div>
             </Link>
             <Link to={''}>
               <div className='navListDiv'>
                 <i className='bx bx-bell'></i>
-                <span>Notificaciones</span>
+                <h2 className='sidebar_title'>Notificaciones</h2>
               </div>
             </Link>
             <Link to={''}>
               <div className='navListDiv'>
                 <i className='bx bx-bookmark'></i>
-                <span>Guardados</span>
+                <h2 className='sidebar_title'>Guardados</h2>
               </div>
             </Link>
             <Link to={''}>
               <div className='navListDiv'>
                 <i className='bx bx-list-ul'></i>
-                <span>Listas</span>
+                <h2 className='sidebar_title'>Listas</h2>
               </div>
             </Link>
             <Link to={'/profile'}>
               <div className='navListDiv'>
                 <i className='bx bx-user'></i>
-                <span>Perfil</span>
+                <h2 className='sidebar_title'>Perfil</h2>
               </div>
             </Link>
             <a to={''} className='dropdown'>
               <div className='navListDiv'>
                 <i className='bx bx-cog'></i>
-                <span>Más opciones</span>
+                <h2 className='sidebar_title'>Más opciones</h2>
               </div>
             </a>
           </nav>

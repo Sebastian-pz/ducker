@@ -8,7 +8,7 @@ import { SearchCuacks } from '../../Components/SearchCuacks/SearchCuacks'
 
 const Search = () => {
   const navigate = useNavigate()
-  document.title = 'Ducker Search'
+  document.title = 'Buscar en Ducker'
   useEffect(() => {}, [])
 
   return (
@@ -22,10 +22,8 @@ const Search = () => {
           <SearchBar />
         </nav>
         <main>
-          {/* Personas */}
           <People />
           <SearchCuacks />
-          {/* Cuacks (Que contengan y que su author coincida con la busqueda) */}
         </main>
       </section>
       <section className='search-section3'>

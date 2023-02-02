@@ -29,7 +29,7 @@ const Login = () => {
     dispatch(loginFunction(userInfo))
     setTimeout(() => {
       if (!isAuthenticated()) {
-        return toast.error('Verifica tus credenciales, gil!.')
+        return toast.error('Verifica tus credenciales')
       } else {
         dispatch(getCuacks())
         navigate('/')

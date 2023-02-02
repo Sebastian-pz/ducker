@@ -1,0 +1,19 @@
+@use '../vars';
+
+.tdn {
+  text-decoration: none;
+}
+
+.home_profileInfoText {
+  font-size: vars.$cuacks-font-size;
+}
+
+.home_profileInfoText:hover {
+  color: vars.$primary-color;
+  transition: 0.6s;
+}
+
+.home_profileInfoNumber {
+  font-size: vars.$title-font-size;
+  font-weight: bold;
+}
