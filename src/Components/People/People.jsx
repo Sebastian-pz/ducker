@@ -42,11 +42,7 @@ const People = () => {
         </div>
       )
     } else {
-      return (
-        <div>
-          <h3>Cuack no encontrado pa</h3>
-        </div>
-      )
+      return <div></div>
     }
   }
 

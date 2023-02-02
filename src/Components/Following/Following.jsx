@@ -10,7 +10,7 @@ const Following = () => {
   const [followingInfo, setfollowingInfo] = useState([])
   const user = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
-  document.title = 'Siguiendo'
+  document.title = 'Siguiendo | Ducker'
   useEffect(() => {
     dispatch(getUserById(getUserID()))
     setfollowingInfo(getUsersInfo())
@@ -36,7 +36,10 @@ const Following = () => {
     if (!followingInfo.length) {
       return (
         <div>
-          <p>Loading user...</p>
+          <p>
+            Aún no sigues a ningún usuario, utiliza la función de explorar para
+            encontrar con quien interactuar
+          </p>
         </div>
       )
     }

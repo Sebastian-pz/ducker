@@ -10,7 +10,7 @@ const Followers = () => {
   const [followersInfo, setfollowersInfo] = useState([])
   const user = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
-  document.title = 'Followers'
+  document.title = 'Seguidores | Ducker'
 
   useEffect(() => {
     dispatch(getUserById(getUserID()))
@@ -34,10 +34,13 @@ const Followers = () => {
   }
 
   function getFollowers() {
-    if (!followersInfo.length) {
+    if (!user.followers.length) {
       return (
         <div>
-          <p>Loading user...</p>
+          <p>
+            Aún no tienes ningún seguidor, continua interactuando para conseguir
+            más interacciones!
+          </p>
         </div>
       )
     }

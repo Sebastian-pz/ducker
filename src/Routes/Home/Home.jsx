@@ -1,19 +1,21 @@
 import './Home.modules.css'
 import { Cuack, Cuackear, SearchBar } from '../../Components/index'
-import { getUserById, getUsers } from '../../Features/User/functions'
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { getUserID, isAuthenticated } from '../../Utils/auth'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import { getUserById, getUsers } from '../../Features/User/functions'
+import { getUserID, isAuthenticated } from '../../Utils/auth'
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
 
 const Home = () => {
+  document.title = 'Inicio | Ducker'
   if (!isAuthenticated()) {
     window.location.replace('/login')
     return (
       <div>
-        <h3>Opps, you must to be logged</h3>
+        <p>Opps, you must to be logged</p>
       </div>
     )
   }
@@ -77,17 +79,25 @@ const Home = () => {
               ></img>
             </div>
             <h1>{user && user.fullname}</h1>
-            <h3>{user && user.nickname}</h3>
+            <p className='nickname'>{user && user.nickname}</p>
             <hr />
             <div className='followContainer'>
               <hr />
               <div className='followers'>
-                <h3>{user && user.followers?.length}</h3>
-                <h2>Seguidores</h2>
+                <p className='home_profileInfoNumber'>
+                  {user && user.followers?.length}
+                </p>
+                <Link to={'/profile'} className='tdn'>
+                  <p className='home_profileInfoText'>Seguidores</p>
+                </Link>
               </div>
               <div className='following'>
-                <h3>{user && user.following?.length}</h3>
-                <h2>Siguiendo</h2>
+                <p className='home_profileInfoNumber'>
+                  {user && user.following?.length}
+                </p>
+                <Link to={'/profile'} className='tdn'>
+                  <p className='home_profileInfoText'>Siguiendo</p>
+                </Link>
               </div>
             </div>
           </div>

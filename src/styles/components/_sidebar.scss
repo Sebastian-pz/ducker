@@ -1,3 +1,5 @@
+@use '../vars';
+
 .section1 {
   display: flex;
   flex-direction: column;
@@ -88,4 +90,11 @@
     background: #d9d9d9;
     border-radius: 20px;
   }
+}
+
+.sidebar_title {
+  font-size: vars.$title-font-size;
+  text-decoration: none;
+  font-weight: normal;
+  margin-left: 3px;
 }
