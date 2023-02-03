@@ -1,4 +1,10 @@
-import { Cuack, SearchBar, Followers, Following } from '../../Components/index'
+import {
+  Cuack,
+  SearchBar,
+  Followers,
+  Following,
+  UpdateProfile,
+} from '../../Components/index'
 import { getUserID, isAuthenticated } from '../../Utils/auth'
 import { setUserCuacks } from '../../Features/User/userSlice'
 import { useNavigate } from 'react-router-dom'
@@ -67,6 +73,8 @@ const Profile = () => {
         return <Followers />
       case 'following':
         return <Following />
+      case 'update':
+        return <UpdateProfile user={user} />
       default:
         break
     }
@@ -131,8 +139,8 @@ const Profile = () => {
           <main className='scroll'>
             <div className='portada'>
               <img
-                id='bannerImg'
-                src={user && user.bannerImg}
+                id='banner'
+                src={user && user.banner}
                 alt={`Imagen de portada de ${user && user.fullname}`}
               />
               <div className='avatar'>
@@ -144,7 +152,9 @@ const Profile = () => {
               </div>
             </div>
             <div className='button'>
-              <button>Editar perfil</button>
+              <button id='update' onClick={e => handlesection(e)}>
+                Editar perfil
+              </button>
             </div>
             <h4 id='default' onClick={e => handlesection(e)}>
               {user && user.fullname}
