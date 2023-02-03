@@ -15,6 +15,7 @@ import Trends from '../../Components/Trends/Trends'
 import axios from 'axios'
 
 const Profile = () => {
+  document.title = 'Perfil | Ducker'
   if (!isAuthenticated()) {
     window.location.replace('/login')
     return (
@@ -117,9 +118,9 @@ const Profile = () => {
       }
     }
     const creation = new Date(user.creationDate)
-    return `Se unió en ${month(
+    return `Se unió el ${creation.getDate()} de ${month(
       creation.getMonth()
-    )} ${creation.getDate()} de ${creation.getFullYear()}`
+    )} del ${creation.getFullYear()}`
   }
 
   if (isAuthenticated())
@@ -152,6 +153,7 @@ const Profile = () => {
               </div>
             </div>
             <div className='button'>
+
               <button id='update' onClick={e => handlesection(e)}>
                 Editar perfil
               </button>
@@ -171,11 +173,19 @@ const Profile = () => {
             <br />
             <div className='follows'>
               <span>{user && user.following?.length}</span>
-              <h5 id='following' onClick={e => handlesection(e)}>
+              <h5
+                id='following'
+                className='profile_link'
+                onClick={e => handlesection(e)}
+              >
                 Siguiendo
               </h5>
               <span>{user && user.followers?.length}</span>
-              <h5 id='followers' onClick={e => handlesection(e)}>
+              <h5
+                id='followers'
+                className='profile_link'
+                onClick={e => handlesection(e)}
+              >
                 Seguidores
               </h5>
             </div>

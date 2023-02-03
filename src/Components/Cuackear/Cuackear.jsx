@@ -92,9 +92,7 @@ const Cuackear = ({ userInfo }) => {
     }
 
     if (content.length > maxLength)
-      return alert(
-        'Coméme los huevos, qué no ves que ese texto está muy largo o qué!'
-      )
+      return alert('El Cuack que quieres hacer es demasiado largo 😣')
 
     toast.promise(
       axios.post(`${uri}/cuacks`, cuack, config),
