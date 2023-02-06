@@ -71,19 +71,25 @@ const Home = () => {
         <section className='section3'>
           <SearchBar className='searchabar' />
           <div className='datosUsuario'>
-            <div className='imgSug'>
+            <div className='portadaSection3'>
               <img
-                className='userImgSection3'
-                src={user && user.img}
+                className='userBannerSection3'
+                src={user && user.banner}
                 alt='not image'
-              ></img>
+              />
+              <div className='imgSug'>
+                <img
+                  className='userImgSection3'
+                  src={user && user.img}
+                  alt='not image'
+                />
+              </div>
             </div>
             <h1>{user && user.fullname}</h1>
-            <p className='nickname'>{user && user.nickname}</p>
+            <p className='home_profileInfoText'>{user && user.nickname}</p>
             <hr />
             <div className='followContainer'>
-              <hr />
-              <div className='followers'>
+              <div className='followerss'>
                 <p className='home_profileInfoNumber'>
                   {user && user.followers?.length}
                 </p>
