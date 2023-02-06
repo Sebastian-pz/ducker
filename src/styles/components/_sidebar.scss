@@ -79,11 +79,12 @@
 }
 
 .navListDiv {
-  width: auto;
-  border-radius: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  width: auto;
   padding: 4%;
+  border-radius: 20px;
   transition: ease-in-out 0.3s;
   cursor: pointer;
   &:hover {
