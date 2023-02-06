@@ -48,12 +48,6 @@ const Sidebar = () => {
                 <h2 className='sidebar_title'>Guardados</h2>
               </div>
             </Link>
-            <Link to={''}>
-              <div className='navListDiv'>
-                <i className='bx bx-list-ul'></i>
-                <h2 className='sidebar_title'>Listas</h2>
-              </div>
-            </Link>
             <Link to={'/profile'}>
               <div className='navListDiv'>
                 <i className='bx bx-user'></i>

@@ -40,18 +40,6 @@
   }
 }
 
-.logout:hover {
-  background-color: rgba(48, 48, 48, 0.365);
-}
-
-.container-icon-name-nick {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 12px 0;
-}
 .logout {
   display: flex;
   flex-direction: row;
@@ -63,15 +51,17 @@
   width: 100%;
   background-color: vars.$cuack-background;
   transition: ease-in-out 0.3s;
-}
-.logout h4 {
-  color: rgb(34, 34, 34);
-  font-size: vars.$font-size;
-}
-
-.logout h5 {
-  color: rgb(59, 59, 59);
-  font-size: vars.$nickname-font-size;
+  h4 {
+    color: rgb(34, 34, 34);
+    font-size: vars.$font-size;
+  }
+  h5 {
+    color: rgb(59, 59, 59);
+    font-size: vars.$nickname-font-size;
+  }
+  &:hover {
+    background-color: rgba(48, 48, 48, 0.365);
+  }
 }
 
 .logout__desp {
@@ -82,6 +72,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container-icon-name-nick {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 12px 0;
 }
 .container-icon-name-nick2 {
   display: flex;
@@ -94,15 +93,17 @@
 .container-icon-name-nick3 img {
   display: block;
   object-fit: cover;
+  max-width: 45px;
+  height: 45px;
+  width: 45px;
   border-radius: 50%;
-  border: 0.5px solid rgb(194, 194, 194);
-  max-width: 50px;
-  height: 50px;
-  width: 50px;
+  // border: 0.5px solid rgb(194, 194, 194);
+  margin-right: 0.5rem;
 }
 
 .container-name-nick {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 100%;
 }
