@@ -153,60 +153,84 @@
 
 .datosUsuario {
   display: flex;
-  padding: 5px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 7vh 0;
-  background-color: rgb(247, 249, 249);
+  justify-content: space-between;
+  margin: 4vh 0;
+  /* background-color: rgb(247, 249, 249); */
+  /* background-color: #ececec; */
   width: 100%;
   height: 30vh;
   min-height: 270px;
   border-radius: 20px;
   overflow: auto;
+  border: 0.1px solid rgb(231, 231, 231);
 }
 
 .datosUsuario h1 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  border-top: 1px solid rgba(193, 193, 193, 0.73);
 }
 
-.datosUsuario h2 {
+.home_profileInfoNumber {
   font-size: 18px;
 }
 
-.datosUsuario h3 {
+.home_profileInfoText {
   font-size: 16px;
 }
 
-.imgSug img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  max-width: 150px;
-  max-height: 150px;
-  border-radius: 50%;
+.portadaSection3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 120px;
 }
-
-.followContainer {
-  padding: 2%;
+.userBannerSection3 {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+.imgSug {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
-.followers {
+.userImgSection3 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 5px;
+  object-fit: cover;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 5px solid white;
+}
+
+.followContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5%;
+}
+.followerss {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10% 10%;
+  width: 50%;
 }
 .following {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10% 10%;
+  width: 50%;
 }
 
 /* .tendencias {
