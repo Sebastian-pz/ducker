@@ -55,7 +55,7 @@ const FollowUnFollow = ({ id }) => {
     )
   }
 
-  if (user && user.following.includes(id)) {
+  if (user && user.following?.includes(id)) {
     return (
       <button
         className='usercard__button-unfollow'
