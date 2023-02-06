@@ -10,7 +10,7 @@ import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
 
 const Home = () => {
-  document.title = 'Inicio | Ducker'
+  document.title = 'Inicio / Ducker'
   if (!isAuthenticated()) {
     window.location.replace('/login')
     return (

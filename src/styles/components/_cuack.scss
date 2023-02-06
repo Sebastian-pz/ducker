@@ -2,7 +2,8 @@
 
 .cuack_container {
   background-color: vars.$cuack-background;
-  width: 90%;
+  min-width: 500px;
+  max-width: 500px;
   padding: 15px 30px 0px 30px;
   margin: 1.5vh;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -23,7 +24,7 @@
   margin-right: 1vh;
 }
 .cuack_main_content {
-  width: 100%;
+  width: 90%;
   // p {
   //   display: flex;
   //   margin: 5% 0;
@@ -96,17 +97,18 @@
 }
 
 .cuack_content_text {
-  white-space: pre;
+  height: 80px;
+  width: 90%;
+  max-height: 25vh;
+  word-wrap: break-word;
   margin: 5% 0%;
+  padding: 5px;
+  overflow: scroll;
+  white-space: break-spaces;
+  line-height: 1.6;
   font-family: vars.$font-family;
   font-size: 16px;
-  line-height: 1.6;
   color: vars.$primary-font-color;
-  max-height: 25vh;
-  height: 80px;
-  max-width: 450px;
-  white-space: wrap;
-  overflow: scroll;
 }
 
 .cuack_media {

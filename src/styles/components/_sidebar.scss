@@ -46,15 +46,15 @@
     max-width: 200px;
     width: 100%;
     height: 45px;
-    background-color: #d16ba5;
+    background-color: vars.$primary-color;
 
     box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
     border: none;
     font-weight: bold;
     font-size: 16px;
-    color: white;
+    color: vars.$cuack-background;
     &:hover {
-      background-color: #86a8e7;
+      background-color: vars.$secondary-color;
       transition: 0.5s;
       cursor: pointer;
     }

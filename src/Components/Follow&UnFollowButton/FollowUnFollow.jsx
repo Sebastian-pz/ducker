@@ -61,7 +61,7 @@ const FollowUnFollow = ({ id }) => {
         className='usercard__button-unfollow'
         onClick={() => handleUnFollow()}
       >
-        Seguido
+        <abbr title='Dejar de seguir'>Seguido</abbr>
       </button>
     )
   }
