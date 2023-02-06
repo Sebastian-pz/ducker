@@ -11,7 +11,7 @@ import recuackStatic from '../../Assets/Img/recuackStatic.png'
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { getUserID } from '../../Utils/auth'
-import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import CommentInput from '../CommentInput/CommentInput'
 
 const Cuack = ({ cuackinfo, action }) => {
   const uri = process.env.BACK_URL || 'http://localhost:3001'
@@ -21,7 +21,6 @@ const Cuack = ({ cuackinfo, action }) => {
   const commentRef = useRef()
   const { nickname, fullname, picture } = cuackinfo
   const token = localStorage.getItem('Authorization')
-  // eslint-disable-next-line no-unused-vars
   const {
     type,
     content,
@@ -156,82 +155,89 @@ const Cuack = ({ cuackinfo, action }) => {
   }
 
   return (
-    <div className='cuack_container'>
-      <div className='cuackImg'>
-        <img className='imgCuackProfile' src={picture} alt='profile picture' />
-      </div>
-      <div className='cuack_main_content'>
-        <div className='cuack_content'>
-          <div className='cuack_content2'>
-            <p className='cuack_content_fullname'>{fullname}</p>
-            <p className='cuack_content_nickname'>{nickname}</p>
-            <p className='cuack_time'>• {getTimeElapsed()}</p>
-          </div>
-          <i className='bx bx-dots-horizontal-rounded'></i>
+    <div>
+      <div className='cuack_container'>
+        <div className='cuackImg'>
+          <img
+            className='imgCuackProfile'
+            src={picture}
+            alt='profile picture'
+          />
         </div>
-        <p className='cuack_content_text'>{content}</p>
-        <img className='imgContent' src={files[0]} />
+        <div className='cuack_main_content'>
+          <div className='cuack_content'>
+            <div className='cuack_content2'>
+              <p className='cuack_content_fullname'>{fullname}</p>
+              <p className='cuack_content_nickname'>{nickname}</p>
+              <p className='cuack_time'>• {getTimeElapsed()}</p>
+            </div>
+            <i className='bx bx-dots-horizontal-rounded'></i>
+          </div>
+          <p className='cuack_content_text'>{content}</p>
+          <img className='imgContent' src={files[0]} />
 
-        {/* Recuacks Likes Comments */}
-        <div className='cuack_media'>
-          <img
-            className='Icon1'
-            src={commentStatic}
-            alt='comment-img'
-            id={_id}
-            name={'comment'}
-            ref={commentRef}
-            onClick={e => {
-              activateGif(e)
-            }}
-          />
-          <p>{comments ? comments.length : 0}</p>
-          <img
-            className='Icon2'
-            src={recuackStatic}
-            alt='recuak-img'
-            id={_id}
-            name={'recuack'}
-            ref={recuackRef}
-            onClick={e => {
-              activateGif(e)
-              handleEvent(e)
-            }}
-          />
-          <p>{recuacks ? recuacks.length : 0}</p>
-
-          {!likes.includes(getUserID()) ? (
+          {/* Recuacks Likes Comments */}
+          <div className='cuack_media'>
             <img
+              className='Icon1'
+              src={commentStatic}
+              alt='comment-img'
+              id={_id}
+              name={'comment'}
+              ref={commentRef}
+              onClick={e => {
+                activateGif(e)
+              }}
+            />
+            <p>{comments ? comments.length : 0}</p>
+            <img
+              className='Icon2'
+              src={recuackStatic}
+              alt='recuak-img'
+              id={_id}
+              name={'recuack'}
+              ref={recuackRef}
               onClick={e => {
                 activateGif(e)
                 handleEvent(e)
-                // -> manda la operación de like y luego hace el dispatch de get cuacks
               }}
-              className='Icon3'
-              src={likeStatic}
-              alt='likes-img'
-              id={_id}
-              name={'like'}
-              ref={likeRef}
             />
-          ) : (
-            <img
-              onClick={e => {
-                activateGif(e)
-                removeProperty(e)
-              }}
-              className='Icon3'
-              src={likeStaticColor}
-              alt='likes-img'
-              id={_id}
-              name={'remove-like'}
-              ref={likeRef}
-            />
-          )}
+            <p>{recuacks ? recuacks.length : 0}</p>
 
-          <p>{likes ? likes.length : 0}</p>
+            {!likes.includes(getUserID()) ? (
+              <img
+                onClick={e => {
+                  activateGif(e)
+                  handleEvent(e)
+                  // -> manda la operación de like y luego hace el dispatch de get cuacks
+                }}
+                className='Icon3'
+                src={likeStatic}
+                alt='likes-img'
+                id={_id}
+                name={'like'}
+                ref={likeRef}
+              />
+            ) : (
+              <img
+                onClick={e => {
+                  activateGif(e)
+                  removeProperty(e)
+                }}
+                className='Icon3'
+                src={likeStaticColor}
+                alt='likes-img'
+                id={_id}
+                name={'remove-like'}
+                ref={likeRef}
+              />
+            )}
+
+            <p>{likes ? likes.length : 0}</p>
+          </div>
         </div>
       </div>
+      <CommentInput origin={cuackinfo} />
     </div>
   )
 }
