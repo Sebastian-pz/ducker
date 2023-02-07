@@ -153,7 +153,6 @@ const Profile = () => {
               </div>
             </div>
             <div className='button'>
-
               <button id='update' onClick={e => handlesection(e)}>
                 Editar perfil
               </button>
@@ -167,7 +166,7 @@ const Profile = () => {
             <h5>{user && user.website}</h5>
             <h5>{user && user.birthday && getBirthday(user.birthday)}</h5>
             <h5>
-              <i className='bx bx-calendar bx-flashing'></i>
+              <i className='bx bx-calendar'></i>
               {user && getDaycreation()}
             </h5>
             <br />
