@@ -1,0 +1,117 @@
+@use '../vars';
+
+.commentContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #5a5a5ab0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 150;
+}
+
+.commentContainer2 {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: scroll;
+  padding-bottom: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  position: absolute;
+  //   width: 35%;
+  width: 100%;
+  max-width: 600px;
+  top: 10%;
+  padding: 20px;
+}
+.comment-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 2rem;
+  padding: 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 1s;
+  &:hover {
+    background-color: vars.$secondary-font-color;
+  }
+}
+
+.comment_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+.comment_img {
+  //   width: 100%;
+  height: 15vh;
+  min-height: 15vh;
+  max-height: 22vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 2px solid white;
+    z-index: 1;
+  }
+}
+.comment_linea {
+  border-left: 2px solid vars.$secondary-font-color;
+  height: 100%;
+}
+
+.comment_content2 {
+  width: 100%;
+  span {
+    color: vars.$primary-color;
+  }
+}
+
+.comment_content_text {
+  //   height: 80px;
+  //   width: 26vw;
+  width: 90%;
+  //   max-height: 25vh;
+  //   margin: 5% 0%;
+  margin-bottom: 15px;
+  padding: 5px 0px;
+  overflow: scroll;
+  word-wrap: break-word;
+  white-space: break-spaces;
+  line-height: 1.3;
+  font-family: vars.$font-family;
+  font-size: 16px;
+  color: vars.$primary-font-color;
+}
+
+.comment_content3 {
+  display: flex;
+  flex-direction: row;
+  p {
+    color: vars.$primary-font-color;
+    margin-right: 0.5rem;
+  }
+
+  .comment_fullname {
+    font-weight: bold;
+    color: vars.$primary-font-color;
+  }
+}
