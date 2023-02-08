@@ -15,6 +15,7 @@ const Cuackear = ({ userInfo }) => {
   const [charsRemaining, setCharsRemaining] = useState(maxLength)
   const [showAutocomplete, setShowAutocomplete] = useState(false)
   const [content, setContent] = useState('')
+  const [files, setFiles] = useState('')
   const [nickname, setnickname] = useState()
   const [options, setOptions] = useState([])
   const textRef = useRef()
@@ -22,6 +23,21 @@ const Cuackear = ({ userInfo }) => {
     ? getCaretCoordinates(textRef.current, textRef.current.selectionEnd)
     : { top: 0, left: 0 }
   const token = localStorage.getItem('Authorization')
+
+  function handleOpenWidgetCuackear() {
+    const widgetCloudinary = window.cloudinary.createUploadWidget(
+      {
+        cloudName: 'dak9qk0lc',
+        uploadPreset: 'preset_ducker',
+      },
+      (err, result) => {
+        if (!err && result && result.event === 'success') {
+          setFiles(result.info.url)
+        }
+      }
+    )
+    widgetCloudinary.open()
+  }
 
   const handleInput = () => {
     const { value, selectionEnd = 0 } = textRef.current
@@ -82,6 +98,7 @@ const Cuackear = ({ userInfo }) => {
       cuack: {
         author,
         content,
+        files,
       },
     }
 
@@ -113,9 +130,17 @@ const Cuackear = ({ userInfo }) => {
     )
     document.getElementById('cuackearInput').value = ''
     setContent('')
+    setFiles('')
     setCharsRemaining(280)
     dispatch(getCuacks())
   }
+
+  // const textarea = document.querySelector('textarea')
+  // textarea.addEventListener('keyup', e => {
+  //   textarea.style.height = 'auto'
+  //   let scHeight = e.target.scrollHeight
+  //   textarea.style.height = `${scHeight}px`
+  // })
 
   return (
     <div className='cuackear-container'>
@@ -132,7 +157,7 @@ const Cuackear = ({ userInfo }) => {
       <div className='cuackearIMG'>
         <img src={userInfo.img} alt='profile-picture' />
       </div>
-      <div className='cuackear-container'>
+      <div className='cuackear-container2'>
         <div className='cuackear-main'>
           <textarea
             placeholder='¿Qué está pasando?'
@@ -142,6 +167,14 @@ const Cuackear = ({ userInfo }) => {
             ref={textRef}
             onChange={e => handleChangeTextBox(e)}
           />
+
+          {files && (
+            <img
+              className='cuackImg'
+              src={files && files}
+              alt='Cuack content img'
+            />
+          )}
           {showAutocomplete && (
             <Autocomplete
               options={options}
@@ -150,11 +183,19 @@ const Cuackear = ({ userInfo }) => {
               left={`${left}px`}
             />
           )}
-          <p id='cuackearCharsRemaining'>Reamining: {charsRemaining}</p>
           <div className='display-flex-end'>
-            <button className='cuackear-button' onClick={e => submitCuack(e)}>
-              Cuackear
-            </button>
+            <abbr title='Agregar una imagen a tu cuack'>
+              <i
+                className='bx bx-image-add'
+                onClick={e => handleOpenWidgetCuackear(e)}
+              ></i>
+            </abbr>
+            <div className='display-flex-row'>
+              <p id='cuackearCharsRemaining'>Remaining: {charsRemaining}</p>
+              <button className='cuackear-button' onClick={e => submitCuack(e)}>
+                Cuackear
+              </button>
+            </div>
           </div>
         </div>
       </div>

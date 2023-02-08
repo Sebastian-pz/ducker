@@ -14,10 +14,7 @@ function validate(input) {
 
 const CommentInput = ({ origin }) => {
   const user = useSelector(state => state.user.userInfo)
-  console.log(user)
-
   const [errors, setErrors] = useState({})
-
   const [comment, setComment] = useState({
     author: user.id,
     content: '',
@@ -42,24 +39,10 @@ const CommentInput = ({ origin }) => {
           },
         }
       )
-      setTimeout(() => {
-        window.location.replace('/')
-      }, 1000)
     } else {
-      toast.error('Revisa el comentario ingresado, hay un error')
+      toast.error('El comentario no se pudo realizar con éxito 😕')
     }
   }
-
-  //   try {
-  //     console.log(`La operación ${consult ? 'Funcionó!' : 'Valío madres'}`)
-  //     // Consult retorna -> True si se realizó con éxito
-  //     //                 -> False si falló
-  //     // Controlar lo que sucederá después!
-  //     window.location.replace('/')
-  //   } catch (error) {
-  //     alert('Exploto')
-  //   }
-  // }
 
   function handleChange(e) {
     setComment({
@@ -86,8 +69,6 @@ const CommentInput = ({ origin }) => {
           },
         }}
       />
-      {/* <section className='commentInput_head'>Close</section>
-      <section className='commentInput_originContent'>origin content</section> */}
       <section className='input_main'>
         <div>
           <img

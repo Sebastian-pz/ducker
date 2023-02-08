@@ -8,6 +8,7 @@ import {
   Pruebas,
   Profile,
   Search,
+  CuackThread,
 } from './Routes'
 
 const router = createBrowserRouter([
@@ -35,12 +36,16 @@ const router = createBrowserRouter([
     element: <Pruebas />,
   },
   {
-    path: '/profile',
+    path: '/profile/:userID',
     element: <Profile />,
   },
   {
     path: '/search',
     element: <Search />,
+  },
+  {
+    path: '/cuack/:cuackID',
+    element: <CuackThread />,
   },
   {
     path: '*',
