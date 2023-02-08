@@ -141,7 +141,7 @@ const UpdateProfile = ({ user }) => {
       <div className='updateProfile'>
         <form action=''>
           <div className='updateProfile_head'>
-            <button className='closeUpdate'> X</button>
+            <button className='closeUpdate'>X</button>
             <h2>Editar perfil</h2>
             <button
               className='updateProfile_button'

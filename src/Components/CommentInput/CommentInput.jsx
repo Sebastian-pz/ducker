@@ -1,56 +1,118 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { addComment } from './functions'
-
+import toast, { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
+
+function validate(input) {
+  const errors = {}
+  if (!/^[\s\S]{0,280}$/.test(input.comment)) {
+    errors.comment = 'Puedes ingresar un máximo de 280 caracteres.'
+  }
+  return errors
+}
 
 const CommentInput = ({ origin }) => {
   const user = useSelector(state => state.user.userInfo)
+  console.log(user)
+
+  const [errors, setErrors] = useState({})
+
   const [comment, setComment] = useState({
     author: user.id,
     content: '',
   })
 
-  async function handleComment(e) {
+  function handleComment(e) {
     e.preventDefault()
-    try {
-      const consult = await addComment(origin._doc._id, comment)
-      console.log(`La operación ${consult ? 'Funcionó!' : 'Valío madres'}`)
-      // Consult retorna -> True si se realizó con éxito
-      //                 -> False si falló
-      // Controlar lo que sucederá después!
-    } catch (error) {
-      alert('Exploto')
+    if (!errors.comment) {
+      toast.promise(
+        addComment(origin._doc._id, comment),
+        {
+          loading: 'Enviando comentario',
+          success: 'Comentario realizado con éxito',
+          error: 'Ha ocurrido un error, revisa los datos ingresados',
+        },
+        {
+          style: {
+            minWidth: '250px',
+          },
+          success: {
+            duration: 1000,
+          },
+        }
+      )
+      setTimeout(() => {
+        window.location.replace('/')
+      }, 1000)
+    } else {
+      toast.error('Revisa el comentario ingresado, hay un error')
     }
   }
+
+  //   try {
+  //     console.log(`La operación ${consult ? 'Funcionó!' : 'Valío madres'}`)
+  //     // Consult retorna -> True si se realizó con éxito
+  //     //                 -> False si falló
+  //     // Controlar lo que sucederá después!
+  //     window.location.replace('/')
+  //   } catch (error) {
+  //     alert('Exploto')
+  //   }
+  // }
 
   function handleChange(e) {
     setComment({
       author: comment.author,
       content: e.target.value,
     })
+    setErrors(
+      validate({
+        ...comment,
+        [e.target.name]: e.target.value,
+      })
+    )
   }
 
   return (
     <div className='commentInput'>
-      <section className='commentInput_head'>Close</section>
-      <section className='commentInput_originContent'>origin content</section>
-      <section className='commentInput_main'>
+      <Toaster
+        position='top-center'
+        reverseOrder={false}
+        toastOptions={{
+          className: '',
+          style: {
+            fontSize: '1.5rem',
+          },
+        }}
+      />
+      {/* <section className='commentInput_head'>Close</section>
+      <section className='commentInput_originContent'>origin content</section> */}
+      <section className='input_main'>
         <div>
           <img
-            src={origin.picture ? origin.picture : ''}
+            src={user.img ? user.img : ''}
             alt={`Foto de perfil de ${origin.nickname ? origin.nickname : ''}`}
-            width='45'
-            height='45'
           />
-          <label htmlFor='commentInputID'>Comentario</label>
-          <input
+        </div>
+        <div className='comment_input_container'>
+          <textarea
+            name='comment'
+            placeholder='Cuackea tu respuesta'
+            autoComplete='off'
             id='commentInputID'
             type='text'
             onChange={e => handleChange(e)}
           />
+          {errors.comment ? (
+            <p className='errorComment'>{errors.comment}</p>
+          ) : (
+            <br className='errorComment'></br>
+          )}
+          <button className='sendComment' onClick={e => handleComment(e)}>
+            Comentar!
+          </button>
         </div>
-        <button onClick={e => handleComment(e)}>Comentar!</button>
       </section>
     </div>
   )
