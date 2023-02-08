@@ -8,17 +8,20 @@ import likeStatic from '../../Assets/Img/likeStatic.png'
 import likeStaticColor from '../../Assets/Img/likeStaticColor.png'
 import commentStatic from '../../Assets/Img/commentStatic.png'
 import recuackStatic from '../../Assets/Img/recuackStatic.png'
-import { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { getUserID } from '../../Utils/auth'
 import Comment from '../Comment/Comment'
+import { Link } from 'react-router-dom'
+
+export const CuackContext = React.createContext()
 
 const Cuack = ({ cuackinfo, action }) => {
   const uri = process.env.BACK_URL || 'http://localhost:3001'
   const dispatch = useDispatch()
-  const likeRef = useRef()
-  const recuackRef = useRef()
-  const commentRef = useRef()
+  const likeRef = useRef(null)
+  const recuackRef = useRef(null)
+  const commentRef = useRef(null)
   const { nickname, fullname, picture } = cuackinfo
   const token = localStorage.getItem('Authorization')
   const [section, setSection] = useState('default')
@@ -33,6 +36,7 @@ const Cuack = ({ cuackinfo, action }) => {
     date,
     files,
     _id,
+    author,
   } = cuackinfo._doc
 
   const times = {
@@ -152,96 +156,14 @@ const Cuack = ({ cuackinfo, action }) => {
   function handleDisplay() {
     switch (section) {
       case 'default':
-        return (
-          <div
-            className='cuack_container'
-            name='default'
-            onClick={e => handlesection(e)}
-          >
-            <div className='cuackImg'>
-              <img
-                className='imgCuackProfile'
-                src={picture}
-                alt='profile picture'
-              />
-            </div>
-            <div className='cuack_main_content'>
-              <div className='cuack_content'>
-                <div className='cuack_content2'>
-                  <p className='cuack_content_fullname'>{fullname}</p>
-                  <p className='cuack_content_nickname'>{nickname}</p>
-                  <p className='cuack_time'>• {getTimeElapsed()}</p>
-                </div>
-                <i className='bx bx-dots-horizontal-rounded'></i>
-              </div>
-              <p className='cuack_content_text'>{content}</p>
-              <img className='imgContent' src={files[0]} />
-
-              {/* Recuacks Likes Comments */}
-              <div className='cuack_media'>
-                <img
-                  className='Icon1'
-                  src={commentStatic}
-                  alt='comment-img'
-                  id={_id}
-                  name={'comment'}
-                  ref={commentRef}
-                  onClick={e => {
-                    activateGif(e)
-                    handlesection(e)
-                  }}
-                />
-                <p>{comments ? comments.length : 0}</p>
-                <img
-                  className='Icon2'
-                  src={recuackStatic}
-                  alt='recuak-img'
-                  id={_id}
-                  name={'recuack'}
-                  ref={recuackRef}
-                  onClick={e => {
-                    activateGif(e)
-                    handleEvent(e)
-                  }}
-                />
-                <p>{recuacks ? recuacks.length : 0}</p>
-
-                {!likes.includes(getUserID()) ? (
-                  <img
-                    onClick={e => {
-                      activateGif(e)
-                      handleEvent(e)
-                      // -> manda la operación de like y luego hace el dispatch de get cuacks
-                    }}
-                    className='Icon3'
-                    src={likeStatic}
-                    alt='likes-img'
-                    id={_id}
-                    name={'like'}
-                    ref={likeRef}
-                  />
-                ) : (
-                  <img
-                    onClick={e => {
-                      activateGif(e)
-                      removeProperty(e)
-                    }}
-                    className='Icon3'
-                    src={likeStaticColor}
-                    alt='likes-img'
-                    id={_id}
-                    name={'remove-like'}
-                    ref={likeRef}
-                  />
-                )}
-
-                <p>{likes ? likes.length : 0}</p>
-              </div>
-            </div>
-          </div>
-        )
+        return <div></div>
       case 'comment':
-        return <Comment origin={cuackinfo} />
+        return (
+          <CuackContext.Provider value={{ section, setSection }}>
+            <Comment origin={cuackinfo} />
+          </CuackContext.Provider>
+        )
+
       default:
         break
     }
@@ -258,7 +180,114 @@ const Cuack = ({ cuackinfo, action }) => {
     )
   }
 
-  return <div>{handleDisplay()}</div>
+  return (
+    <div>
+      <div
+        className='cuack_container'
+        name='default'
+        onClick={e => handlesection(e)}
+      >
+        <div className='cuackImg'>
+          <Link to={`/profile/${author}`} className='linkDecoration'>
+            <img
+              className='imgCuackProfile'
+              src={picture}
+              alt='profile picture'
+            />
+          </Link>
+        </div>
+        <div className='cuack_main_content'>
+          <div className='cuack_content'>
+            <div className='cuack_content2'>
+              <Link to={`/profile/${author}`} className='linkDecoration'>
+                <p className='cuack_content_fullname'>{fullname}</p>
+              </Link>
+              <Link to={`/profile/${author}`} className='linkDecoration'>
+                <p className='cuack_content_nickname'>{nickname}</p>
+              </Link>
+              <Link to={`/cuack/${_id}`} className='linkDecoration'>
+                <p className='cuack_time'>• {getTimeElapsed()}</p>
+              </Link>
+            </div>
+            <i className='bx bx-dots-horizontal-rounded'></i>
+          </div>
+          <Link to={`/cuack/${_id}`} className='linkDecoration'>
+            <p className='cuack_content_text'>{content}</p>
+          </Link>
+          <img className='imgContent' src={files[0]} />
+
+          {/* Recuacks Likes Comments */}
+          <div className='cuack_media'>
+            <img
+              className='Icon1'
+              src={commentStatic}
+              alt='comment-img'
+              id={_id}
+              name={'comment'}
+              ref={commentRef}
+              onClick={e => {
+                activateGif(e)
+                handlesection(e)
+              }}
+            />
+            <p>{comments ? comments.length : 0}</p>
+            <img
+              className='Icon2'
+              src={recuackStatic}
+              alt='recuak-img'
+              id={_id}
+              name={'recuack'}
+              ref={recuackRef}
+              onClick={e => {
+                activateGif(e)
+                handleEvent(e)
+              }}
+            />
+            <p>{recuacks ? recuacks.length : 0}</p>
+
+            {!likes.includes(getUserID()) ? (
+              <img
+                onClick={e => {
+                  activateGif(e)
+                  handleEvent(e)
+                  // -> manda la operación de like y luego hace el dispatch de get cuacks
+                }}
+                className='Icon3'
+                src={likeStatic}
+                alt='likes-img'
+                id={_id}
+                name={'like'}
+                ref={likeRef}
+              />
+            ) : (
+              <img
+                onClick={e => {
+                  activateGif(e)
+                  removeProperty(e)
+                }}
+                className='Icon3'
+                src={likeStaticColor}
+                alt='likes-img'
+                id={_id}
+                name={'remove-like'}
+                ref={likeRef}
+              />
+            )}
+
+            <p>{likes ? likes.length : 0}</p>
+            {comments && comments.length > 0 && (
+              <abbr title='Ver hilo de comentarios'>
+                <Link to={`/cuack/${_id}`} className='lookThread'>
+                  Ver hilo
+                </Link>
+              </abbr>
+            )}
+          </div>
+        </div>
+      </div>
+      {handleDisplay()}
+    </div>
+  )
 }
 
 export default Cuack

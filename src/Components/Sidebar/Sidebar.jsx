@@ -48,7 +48,7 @@ const Sidebar = () => {
                 <h2 className='sidebar_title'>Guardados</h2>
               </div>
             </Link>
-            <Link to={'/profile'}>
+            <Link to={`/profile/${user.id}`}>
               <div className='navListDiv'>
                 <i className='bx bx-user'></i>
                 <h2 className='sidebar_title'>Perfil</h2>

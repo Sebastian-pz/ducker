@@ -1,9 +1,12 @@
-// import { useState, useEffect } from 'react'
-// import { useSelector } from 'react-redux'
+/* eslint-disable no-unused-vars */
+import { useContext } from 'react'
 import CommentInput from '../CommentInput/CommentInput'
 import PropTypes from 'prop-types'
+import { CuackContext } from '../Cuack/Cuack'
 
 const Comment = ({ origin }) => {
+  const { setSection } = useContext(CuackContext)
+
   const times = {
     day: 1000 * 60 * 60 * 24,
     hour: 1000 * 60 * 60,
@@ -25,7 +28,7 @@ const Comment = ({ origin }) => {
   }
   function handleClose(e) {
     e.preventDefault()
-    window.location.replace('/')
+    setSection('default')
   }
   return (
     <div className='commentContainer'>

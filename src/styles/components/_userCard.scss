@@ -4,6 +4,7 @@
   display: flex;
   margin: 0;
   width: 100%;
+  flex-direction: column;
 }
 
 .userCard {
@@ -77,7 +78,7 @@
 .usercard__button-unfollow {
   width: 65px;
   height: 26px;
-  background-color: vars.$primary-color;
+  background-color: #6d6d6d;
   border: none;
   border-radius: 20px;
   color: vars.$dark-primary-font-color;
@@ -86,6 +87,6 @@
 
 .usercard__button-unfollow:hover {
   cursor: pointer;
-  background-color: vars.$errors-form-color;
+  background-color: vars.$secondary-color;
   transition: 0.5s;
 }
