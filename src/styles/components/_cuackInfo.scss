@@ -1,0 +1,10 @@
+@use '../vars';
+
+.cuackInfo-p {
+  margin-bottom: 10px;
+  margin-left: 22%;
+  //   margin-left: 130px;
+  span {
+    color: vars.$primary-color;
+  }
+}

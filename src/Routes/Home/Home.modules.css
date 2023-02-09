@@ -1,4 +1,4 @@
-.home-container {
+/* .home-container {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -8,7 +8,7 @@
   background-color: rgb(255, 255, 255);
   font-family: Tahoma, Geneva, Verdana, sans-serif;
   margin: 0 auto;
-}
+} */
 
 /* .home-container header {
   flex-grow: 1;
@@ -112,7 +112,7 @@
   margin: 0 5% 10% 15%;
 } */
 
-.section2 {
+/* .section2 {
   padding: 0% 2%;
   width: 600px;
   height: 100vh;
@@ -132,16 +132,16 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100%;
-}
-.cuackContainer {
-  /* margin-top: 5%; */
+} */
+/* .cuackContainer {
+
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-}
+} */
 
-.section3 {
+/* .section3 {
   width: 350px;
   height: 100vh;
   display: flex;
@@ -157,10 +157,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin: 4vh 0;
-  /* background-color: rgb(247, 249, 249); */
-  /* background-color: #ececec; */
-  width: 100%;
+  margin: 4vh 0; */
+/* background-color: rgb(247, 249, 249); */
+/* background-color: #ececec; */
+/* width: 100%;
   height: 30vh;
   min-height: 270px;
   border-radius: 20px;
@@ -232,7 +232,7 @@
   flex-direction: column;
   align-items: center;
   width: 50%;
-}
+} */
 
 /* .tendencias {
   margin-top: 7vh;
@@ -325,6 +325,6 @@
   transition: 0.3s;
 } */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */

@@ -1,5 +1,150 @@
 @use '../vars';
 
+.home-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f8ff;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 auto;
+}
+
+.section2 {
+  padding: 0% 2%;
+  width: 600px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 0.1px solid rgb(214, 214, 214);
+  border-right: 0.1px solid rgb(214, 214, 214);
+  overflow: hidden;
+  i {
+    margin: 0;
+  }
+}
+
+.section2-nav {
+  border-bottom: 0.1px solid rgb(231, 231, 231);
+
+  h1 {
+    width: 100%;
+    font-size: 20px;
+  }
+}
+.scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+}
+.cuackContainer {
+  /* margin-top: 5%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.section3 {
+  width: 350px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  background-color: #f8f8ff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.datosUsuario {
+  background-color: rgba(231, 231, 231, 0.353);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4vh 0;
+  /* background-color: rgb(247, 249, 249); */
+  /* background-color: #ececec; */
+  width: 100%;
+  height: 30vh;
+  min-height: 270px;
+  border-radius: 20px;
+  overflow: auto;
+
+  text-decoration: none;
+}
+
+.datosUsuario {
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.home_profileInfoNumber {
+  font-size: 18px;
+}
+
+.home_profileInfoText {
+  font-size: 16px;
+}
+
+.portadaSection3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 120px;
+}
+.userBannerSection3 {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+.imgSug {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.userImgSection3 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 5px;
+  object-fit: cover;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 5px solid white;
+}
+
+.followContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5%;
+}
+.followerss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+.following {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
 .tdn {
   text-decoration: none;
 }
@@ -16,4 +161,8 @@
 .home_profileInfoNumber {
   font-size: vars.$title-font-size;
   font-weight: bold;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

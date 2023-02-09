@@ -1,9 +1,7 @@
-// import { allUsers } from '../../Features/User/userSlice'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 import { getUserById } from '../../Features/User/functions'
 import { getUserID } from '../../Utils/auth'
 import { useDispatch, useSelector } from 'react-redux'
-// import { useState } from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 

@@ -14,7 +14,10 @@ const CuackThread = () => {
       </header>
       <section className='section2'>
         <nav>
-          <i className='bx bx-arrow-back' onClick={() => navigate(-1)}></i>
+          <i
+            className='bx bx-arrow-back margin-i'
+            onClick={() => navigate(-1)}
+          ></i>
           <div className='container-nav'>
             <h1>Hilo</h1>
           </div>
