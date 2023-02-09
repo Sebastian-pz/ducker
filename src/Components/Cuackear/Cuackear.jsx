@@ -5,10 +5,11 @@ import { Autocomplete } from '../../Components'
 import getCaretCoordinates from 'textarea-caret'
 import { getUserID } from '../../Utils/auth'
 import toast, { Toaster } from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
-const Cuackear = ({ userInfo }) => {
+const Cuackear = () => {
+  const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const uri = process.env.BACK_URL || 'http://localhost:3001'
   const maxLength = 280
@@ -186,7 +187,7 @@ const Cuackear = ({ userInfo }) => {
           <div className='display-flex-end'>
             <abbr title='Agregar una imagen a tu cuack'>
               <i
-                className='bx bx-image-add'
+                className='bx bx-image-add fontZise-i'
                 onClick={e => handleOpenWidgetCuackear(e)}
               ></i>
             </abbr>

@@ -26,47 +26,47 @@ const Sidebar = () => {
           <nav className='navList'>
             <Link to={'/'} onClick={() => dispatch(getCuacks(getUserID))}>
               <div className='navListDiv'>
-                <i className='bx bxs-home-circle'></i>
+                <i className='bx bxs-home-circle iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Inicio</h2>
               </div>
             </Link>
             <Link to={'/search'}>
               <div className='navListDiv'>
-                <i className='bx bx-hash'></i>
+                <i className='bx bx-hash iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Explorar</h2>
               </div>
             </Link>
             <Link to={''}>
               <div className='navListDiv'>
-                <i className='bx bx-bell'></i>
+                <i className='bx bx-bell iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Notificaciones</h2>
               </div>
             </Link>
             <Link to={''}>
               <div className='navListDiv'>
-                <i className='bx bx-bookmark'></i>
+                <i className='bx bx-bookmark iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Guardados</h2>
               </div>
             </Link>
             <Link to={`/profile/${user.id}`}>
               <div className='navListDiv'>
-                <i className='bx bx-user'></i>
+                <i className='bx bx-user iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Perfil</h2>
               </div>
             </Link>
-            <a to={''} className='dropdown'>
+            <div className='dropdown'>
               <div className='navListDiv'>
-                <i className='bx bx-cog'></i>
+                <i className='bx bx-cog iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Más opciones</h2>
               </div>
-            </a>
+            </div>
           </nav>
           <div className='homeNavlistButton'>
             <button>Cuackear</button>
           </div>
         </div>
 
-        <button className='logout' onClick={() => setlogOut(!logOut)}>
+        <div className='logout' onClick={() => setlogOut(!logOut)}>
           <div className='container-icon-name-nick'>
             {logOut && <Logout nickname={user.nickname} />}
             <div className='container-icon-name-nick2'>
@@ -84,7 +84,7 @@ const Sidebar = () => {
               </div>
             </div>
           </div>
-        </button>
+        </div>
       </section>
     </div>
   )

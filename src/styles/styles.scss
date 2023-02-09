@@ -5,6 +5,7 @@
   margin: 0px;
   padding: 0px;
   color: rgb(15, 20, 25);
+  // background-color: rgba(117, 117, 117, 0.127); Vo a llorar
 }
 // Archivo de importaciones
 // UI settings
@@ -30,3 +31,4 @@
 @import './components/trends.scss';
 @import './components/people.scss';
 @import './components/comment.scss';
+@import './components/cuackInfo.scss';

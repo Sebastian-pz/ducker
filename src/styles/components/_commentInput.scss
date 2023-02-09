@@ -5,15 +5,14 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 1px solid antiquewhite;
-    z-index: 1;
-  }
 }
-
+.profileImg {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid antiquewhite;
+  z-index: 1;
+}
 .comment_input_container {
   width: 100%;
 
@@ -36,6 +35,11 @@
     word-wrap: break-word;
     white-space: break-spaces;
   }
+}
+
+.comment {
+  color: vars.$primary-color;
+  font-size: 25px;
 }
 
 ::placeholder {
@@ -73,4 +77,12 @@
   margin: 25px;
   // margin-bottom: 20px;
   height: 12px;
+}
+.img-button-cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.commentImg {
+  width: 300px;
 }
