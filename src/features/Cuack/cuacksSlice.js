@@ -5,6 +5,7 @@ const initialState = {
   searchCuacks: [],
   query: '',
   cuack: {},
+  comments: [],
 }
 
 export const cuackSlice = createSlice({
@@ -24,8 +25,21 @@ export const cuackSlice = createSlice({
     clearCuack: state => {
       state.cuack = {}
     },
+    setComments: (state, action) => {
+      state.comments = action.payload
+    },
+    clearComments: state => {
+      state.comments = []
+    },
   },
 })
 
-export const { getCuacksr, searchC, setCuack, clearCuack } = cuackSlice.actions
+export const {
+  getCuacksr,
+  searchC,
+  setCuack,
+  clearCuack,
+  setComments,
+  clearComments,
+} = cuackSlice.actions
 export default cuackSlice.reducer

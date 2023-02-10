@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { getUserID, isAuthenticated } from '../../Utils/auth'
-import { getCuacksr, searchC, setCuack } from './cuacksSlice'
+import { getCuacksr, searchC, setComments, setCuack } from './cuacksSlice'
 
 const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
 
@@ -40,5 +40,20 @@ export const getCuackInfo = id => async dispatch => {
   } catch (error) {
     // Eliminarlo
     console.log(error)
+  }
+}
+
+export const getComments = id => async dispatch => {
+  try {
+    const uri = process.env.BACK_URL || 'http://localhost:3001'
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem('Authorization'),
+      },
+    }
+    const { data } = await axios.get(`${uri}/cuacks/c/${id}`, config)
+    return dispatch(setComments(data))
+  } catch (error) {
+    console.error('Error en la operación')
   }
 }
