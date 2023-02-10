@@ -112,7 +112,9 @@
   margin: 0 5% 10% 15%;
 } */
 
-/* .section2 {
+
+.section2 {
+
   padding: 0% 2%;
   width: 600px;
   height: 100vh;
@@ -132,16 +134,17 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100%;
-} */
-/* .cuackContainer {
-
+  position: relative;
+}
+.cuackContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-} */
+}
 
-/* .section3 {
+
+.section3 {
   width: 350px;
   height: 100vh;
   display: flex;
