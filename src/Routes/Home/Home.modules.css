@@ -113,6 +113,7 @@
 } */
 
 .section2 {
+  /* position: relative; */
   padding: 0% 2%;
   width: 600px;
   height: 100vh;
@@ -132,6 +133,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100%;
+  position: relative;
 }
 .cuackContainer {
   /* margin-top: 5%; */
@@ -142,6 +144,7 @@
 }
 
 .section3 {
+  z-index: 1;
   width: 350px;
   height: 100vh;
   display: flex;

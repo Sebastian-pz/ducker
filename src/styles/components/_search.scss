@@ -1,3 +1,4 @@
+@use '../vars';
 .search-container {
   display: flex;
   position: relative;
@@ -31,6 +32,16 @@
     margin-right: 20px;
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+    transition: 1s;
+    &:hover {
+      background-color: vars.$secondary-font-color;
+    }
   }
   main {
     overflow-y: scroll;

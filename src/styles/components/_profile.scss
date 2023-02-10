@@ -1,3 +1,5 @@
+@use '../vars';
+
 .home-container {
   display: flex;
   position: relative;
@@ -29,11 +31,21 @@
     padding: 2% 0;
 
     filter: alpha(opacity=50);
-  }
-  i {
-    margin-right: 20px;
-    font-size: 20px;
-    cursor: pointer;
+    i {
+      margin-right: 20px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      border: none;
+      border-radius: 50%;
+      transition: 1s;
+      &:hover {
+        background-color: vars.$secondary-font-color;
+      }
+    }
   }
 }
 

@@ -122,10 +122,11 @@
   color: white;
   background: vars.$cuack-gradient;
   border-radius: 0px 20px 20px 0px;
-  h3 {
+  > h3 {
     text-align: center;
     margin: 10% 10%;
     font-size: vars.$cuacks-font-size;
+    color: white;
   }
   img {
     max-width: 300px;
