@@ -1,11 +1,10 @@
 import { useContext } from 'react'
-import CommentInput from '../CommentInput/CommentInput'
 import PropTypes from 'prop-types'
 import { CuackContext } from '../Cuack/Cuack'
+import { Cuackear } from '..'
 
 const Comment = ({ origin }) => {
   const { setSection } = useContext(CuackContext)
-
   const times = {
     day: 1000 * 60 * 60 * 24,
     hour: 1000 * 60 * 60,
@@ -54,8 +53,9 @@ const Comment = ({ origin }) => {
             </p>
           </div>
         </div>
-
-        <CommentInput origin={origin} />
+        <div className='cuackear-comment-cont'>
+          <Cuackear previous={origin._doc._id} type='comment' />
+        </div>
       </div>
     </div>
   )

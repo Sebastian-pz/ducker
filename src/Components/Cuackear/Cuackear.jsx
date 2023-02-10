@@ -108,7 +108,7 @@ const Cuackear = ({ type, previous }) => {
     }
 
     if (content.length > maxLength)
-      return alert('El Cuack que quieres hacer es demasiado largo 😣')
+      return toast.error('El Cuack que quieres hacer es demasiado largo 😣')
 
     if (!type) {
       toast.promise(
