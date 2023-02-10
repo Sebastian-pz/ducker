@@ -9,10 +9,12 @@ import { getUserID, isAuthenticated } from '../../Utils/auth'
 import { setUserCuacks } from '../../Features/User/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
 import axios from 'axios'
+import { getUserById } from '../../Features/User/functions'
+export const ProfileContext = React.createContext()
 
 const Profile = () => {
   document.title = 'Perfil | Ducker'
@@ -24,8 +26,19 @@ const Profile = () => {
       </div>
     )
   }
-
   const dispatch = useDispatch()
+  // eslint-disable-next-line no-unused-vars
+  const [section, setSection] = useState('default')
+  const user = useSelector(state => state.user.userInfo)
+  const cuacks = useSelector(state => state.user.cuacks)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user.id) dispatch(getUserById(user.id))
+    getProfileCuacks()
+    // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  }, [section])
+
   async function getProfileCuacks() {
     const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
     const config = {
@@ -36,17 +49,6 @@ const Profile = () => {
     const { data } = await axios.get(`${uri}/cuacks/u/${getUserID()}`, config)
     dispatch(setUserCuacks(data.payload))
   }
-  useEffect(() => {
-    getProfileCuacks()
-  }, [])
-
-  // eslint-disable-next-line no-unused-vars
-  const [section, setSection] = useState('default')
-
-  const user = useSelector(state => state.user.userInfo)
-  const cuacks = useSelector(state => state.user.cuacks)
-
-  const navigate = useNavigate()
 
   function handlesection(e) {
     e.preventDefault()
@@ -75,7 +77,11 @@ const Profile = () => {
       case 'following':
         return <Following />
       case 'update':
-        return <UpdateProfile user={user} />
+        return (
+          <ProfileContext.Provider value={{ section, setSection }}>
+            <UpdateProfile user={user} />
+          </ProfileContext.Provider>
+        )
       default:
         break
     }
@@ -166,8 +172,43 @@ const Profile = () => {
             <h5>{user && user.nickname}</h5>
             <br />
             <h5>{user && user.description}</h5>
-            <h5>{user && user.website}</h5>
-            <h5>{user && user.birthday && getBirthday(user.birthday)}</h5>
+            <br />
+            <h5>
+              {user.location ? (
+                <div>
+                  <i className='bx bx-map'></i>
+                  {user.location}
+                </div>
+              ) : (
+                ''
+              )}
+              {/* <i className='bx bx-map'></i>
+              {user && user.location} */}
+            </h5>
+            <h5>
+              {user.website ? (
+                <div>
+                  <i className='bx bx-link-alt'></i>
+                  {user.website}
+                </div>
+              ) : (
+                ''
+              )}
+              {/* <i className='bx bx-link-alt'></i>
+              {user && user.website} */}
+            </h5>
+            <h5>
+              {user.birthday ? (
+                <div>
+                  <i className='bx bxs-balloon'></i>
+                  {getBirthday(user.birthday)}
+                </div>
+              ) : (
+                ''
+              )}
+              {/* <i className='bx bxs-balloon'></i>
+              {user && user.birthday && getBirthday(user.birthday)} */}
+            </h5>
             <h5>
               <i className='bx bx-calendar'></i>
               {user && getDaycreation()}

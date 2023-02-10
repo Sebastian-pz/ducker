@@ -1,11 +1,14 @@
 /* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types'
 import cameraIcon from '../../Assets/Img/cameraIcon.svg'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { ProfileContext } from '../../Routes/Profile/Profile'
 
 const UpdateProfile = ({ user }) => {
+  const { setSection } = useContext(ProfileContext)
+  // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   const navigate = useNavigate()
   useEffect(() => {
     document.title = 'Editar perfil'
@@ -68,7 +71,7 @@ const UpdateProfile = ({ user }) => {
 
   async function submitChanges(e) {
     e.preventDefault()
-
+    setSection('default')
     // !Si no es valido, entonces retornar una alerta!
     const uri = process.env.BACK_URL || 'http://localhost:3001'
     const changes = getAllChanges()
@@ -78,7 +81,7 @@ const UpdateProfile = ({ user }) => {
       },
     }
     const response = await axios.put(`${uri}/users/${user.id}`, changes, config)
-    if (response.data?.msg === 'User updated!') navigate('/')
+    if (response.data?.msg === 'User updated!') navigate(`/profile/${user.id}`)
     // Si no se cumple esta condición, entonces sale un mensaje de que algo salió mal
   }
 
