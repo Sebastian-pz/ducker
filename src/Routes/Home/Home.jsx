@@ -1,4 +1,3 @@
-import './Home.modules.css'
 import { Cuack, Cuackear, SearchBar } from '../../Components/index'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 import { getUserById, getUsers } from '../../Features/User/functions'

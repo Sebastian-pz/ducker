@@ -166,8 +166,43 @@ const Profile = () => {
             <h5>{user && user.nickname}</h5>
             <br />
             <h5>{user && user.description}</h5>
-            <h5>{user && user.website}</h5>
-            <h5>{user && user.birthday && getBirthday(user.birthday)}</h5>
+            <br />
+            <h5>
+              {user.location ? (
+                <div>
+                  <i className='bx bx-map'></i>
+                  {user.location}
+                </div>
+              ) : (
+                ''
+              )}
+              {/* <i className='bx bx-map'></i>
+              {user && user.location} */}
+            </h5>
+            <h5>
+              {user.website ? (
+                <div>
+                  <i className='bx bx-link-alt'></i>
+                  {user.website}
+                </div>
+              ) : (
+                ''
+              )}
+              {/* <i className='bx bx-link-alt'></i>
+              {user && user.website} */}
+            </h5>
+            <h5>
+              {user.birthday ? (
+                <div>
+                  <i className='bx bxs-balloon'></i>
+                  {getBirthday(user.birthday)}
+                </div>
+              ) : (
+                ''
+              )}
+              {/* <i className='bx bxs-balloon'></i>
+              {user && user.birthday && getBirthday(user.birthday)} */}
+            </h5>
             <h5>
               <i className='bx bx-calendar'></i>
               {user && getDaycreation()}
