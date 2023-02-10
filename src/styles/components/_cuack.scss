@@ -28,6 +28,7 @@
   height: 60px;
   object-fit: cover;
   margin-right: 1vh;
+  border: solid 0.1px rgba(177, 174, 174, 0.479);
 }
 .cuack_main_content {
   width: 90%;
@@ -169,7 +170,7 @@
   }
 }
 .imgContent {
-  width: 100%;
+  width: 80%;
   height: auto;
   margin-top: 10px;
   border-radius: 20px;
