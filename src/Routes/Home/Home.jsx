@@ -53,7 +53,7 @@ const Home = () => {
             <h1>Inicio</h1>
           </nav>
           <div className='scroll'>
-            <Cuackear userInfo={user} />
+            <Cuackear />
             <div className='cuackContainer'>
               {cuacks &&
                 cuacksSorted.map(cuack => {
@@ -108,7 +108,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-
           <Trends />
         </section>
       </div>

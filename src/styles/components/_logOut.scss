@@ -50,7 +50,8 @@
   height: 60px;
   width: 100%;
   background-color: vars.$cuack-background;
-  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  transition: 0.3s;
   h4 {
     color: rgb(34, 34, 34);
     font-size: vars.$font-size;
@@ -60,7 +61,7 @@
     font-size: vars.$nickname-font-size;
   }
   &:hover {
-    background-color: rgba(48, 48, 48, 0.365);
+    background-color: rgba(104, 103, 103, 0.226);
   }
 }
 

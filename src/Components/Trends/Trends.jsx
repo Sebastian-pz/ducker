@@ -52,7 +52,7 @@ const Trends = () => {
 
   return (
     <div className='tendencias'>
-      <h3>Usuarios destacados!</h3>
+      <h3 className='h3-tendencias'>Usuarios destacados!</h3>
       {filteredUsers.length > 0 ? (
         filteredUsers.map(user => {
           return (
@@ -70,8 +70,9 @@ const Trends = () => {
                   <h5>{user.nickname}</h5>
                 </div>
               </div>
-
-              <FollowUnFollow id={user.id} />
+              <div className='paddingTrends-button'>
+                <FollowUnFollow id={user.id} />
+              </div>
             </div>
           )
         })

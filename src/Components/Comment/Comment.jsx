@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useContext } from 'react'
 import CommentInput from '../CommentInput/CommentInput'
 import PropTypes from 'prop-types'
@@ -30,6 +29,7 @@ const Comment = ({ origin }) => {
     e.preventDefault()
     setSection('default')
   }
+
   return (
     <div className='commentContainer'>
       <div className='commentContainer2'>
@@ -39,7 +39,7 @@ const Comment = ({ origin }) => {
 
         <div className='comment_content'>
           <div className='comment_img'>
-            <img src={origin.picture} alt='profileimg' />
+            <img src={origin.img || origin.picture} alt='profileimg' />
             <hr className='comment_linea' />
           </div>
           <div className='comment_content2'>

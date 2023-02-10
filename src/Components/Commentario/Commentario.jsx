@@ -1,33 +1,26 @@
-// /* eslint-disable space-before-function-paren */
-// import axios from 'axios'
-// import { useEffect } from 'react'
-// import PropTypes from 'prop-types'
+// /* eslint-disable no-unused-vars */
+/* eslint-disable space-before-function-paren */
+import PropTypes from 'prop-types'
+import { getComments } from '../../Features/Cuack/cuackFunctions'
+import Cuack from '../Cuack/Cuack'
 
-// const Comentario = ({ comment }) => {
-//   const id = comment.author
+const Comentario = ({ comment, previous }) => {
+  function display() {
+    return (
+      <Cuack
+        cuackinfo={comment}
+        // hide={['thread:hidden']}
+        action={() => getComments(previous)}
+      />
+    )
+  }
 
-//   async function userCommentInfo(id) {
-//     const user = await axios.get(`http://localhost:3001/users/${id}`)
-//     return user
-//   }
+  return display()
+}
 
-//   useEffect(() => {
-//     userCommentInfo(id)
-//   }, [id])
+Comentario.propTypes = {
+  comment: PropTypes.object,
+  previous: PropTypes.string,
+}
 
-//   return (
-//     <div>
-//       <img src={user && user.data.img} />
-//       <h1>{user && user.data.fullname}</h1>
-
-//       <p>{user && user.data.nickname}</p>
-//       <p>{comment.content}</p>
-//     </div>
-//   )
-// }
-
-// Comentario.propTypes = {
-//   comment: PropTypes.object,
-// }
-
-// export default Comentario
+export default Comentario

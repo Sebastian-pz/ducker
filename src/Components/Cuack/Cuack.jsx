@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 
 export const CuackContext = React.createContext()
 
-const Cuack = ({ cuackinfo, action }) => {
+const Cuack = ({ cuackinfo, action, hide }) => {
   const uri = process.env.BACK_URL || 'http://localhost:3001'
   const dispatch = useDispatch()
   const likeRef = useRef(null)
@@ -191,7 +191,7 @@ const Cuack = ({ cuackinfo, action }) => {
           <Link to={`/profile/${author}`} className='linkDecoration'>
             <img
               className='imgCuackProfile'
-              src={picture}
+              src={picture || cuackinfo.img}
               alt='profile picture'
             />
           </Link>
@@ -209,14 +209,34 @@ const Cuack = ({ cuackinfo, action }) => {
                 <p className='cuack_time'>• {getTimeElapsed()}</p>
               </Link>
             </div>
-            <i className='bx bx-dots-horizontal-rounded'></i>
+            <div className='dropdown'>
+              <button className='dropbtn'>
+                <i className='bx bx-dots-horizontal-rounded'></i>
+              </button>
+              <div className='dropdown-content'>
+                <p>
+                  <i className='bx bx-user-x'></i>Seguir o dejar de seguir a{' '}
+                  {nickname}
+                </p>
+                <p>
+                  <i className='bx bx-volume-mute'></i>Silenciar a {nickname}
+                </p>
+                <p>
+                  <i className='bx bx-block'></i>Bloquear a {nickname}
+                </p>
+                <p>
+                  <i className='bx bx-flag'></i>Denunciar a {nickname}
+                </p>
+              </div>
+            </div>
           </div>
           <Link to={`/cuack/${_id}`} className='linkDecoration'>
             <p className='cuack_content_text'>{content}</p>
           </Link>
           <img className='imgContent' src={files[0]} />
 
-          {/* Recuacks Likes Comments */}
+          {/* Validaciones */}
+
           <div className='cuack_media'>
             <img
               className='Icon1'
@@ -229,8 +249,21 @@ const Cuack = ({ cuackinfo, action }) => {
                 activateGif(e)
                 handlesection(e)
               }}
+              style={
+                hide && hide.includes('comment:hidden')
+                  ? { display: 'none' }
+                  : {}
+              }
             />
-            <p>{comments ? comments.length : 0}</p>
+            <p
+              style={
+                hide && hide.includes('comment:hidden')
+                  ? { display: 'none' }
+                  : {}
+              }
+            >
+              {comments ? comments.length : 0}
+            </p>
             <img
               className='Icon2'
               src={recuackStatic}
@@ -242,8 +275,21 @@ const Cuack = ({ cuackinfo, action }) => {
                 activateGif(e)
                 handleEvent(e)
               }}
+              style={
+                hide && hide.includes('recuack:hidden')
+                  ? { display: 'none' }
+                  : {}
+              }
             />
-            <p>{recuacks ? recuacks.length : 0}</p>
+            <p
+              style={
+                hide && hide.includes('recuack:hidden')
+                  ? { display: 'none' }
+                  : {}
+              }
+            >
+              {recuacks ? recuacks.length : 0}
+            </p>
 
             {!likes.includes(getUserID()) ? (
               <img
@@ -258,6 +304,11 @@ const Cuack = ({ cuackinfo, action }) => {
                 id={_id}
                 name={'like'}
                 ref={likeRef}
+                style={
+                  hide && hide.includes('recuack:hidden')
+                    ? { display: 'none' }
+                    : {}
+                }
               />
             ) : (
               <img
@@ -271,13 +322,39 @@ const Cuack = ({ cuackinfo, action }) => {
                 id={_id}
                 name={'remove-like'}
                 ref={likeRef}
+                style={
+                  hide && hide.includes('recuack:hidden')
+                    ? { display: 'none' }
+                    : {}
+                }
               />
             )}
 
-            <p>{likes ? likes.length : 0}</p>
+            <p
+              style={
+                hide && hide.includes('like:hidden') ? { display: 'none' } : {}
+              }
+            >
+              {likes ? likes.length : 0}
+            </p>
             {comments && comments.length > 0 && (
-              <abbr title='Ver hilo de comentarios'>
-                <Link to={`/cuack/${_id}`} className='lookThread'>
+              <abbr
+                title='Ver hilo de comentarios'
+                style={
+                  hide && hide.includes('thread:hidden')
+                    ? { display: 'none' }
+                    : {}
+                }
+              >
+                <Link
+                  to={`/cuack/${_id}`}
+                  className='lookThread'
+                  style={
+                    hide && hide.includes('thread:hidden')
+                      ? { display: 'none' }
+                      : {}
+                  }
+                >
                   Ver hilo
                 </Link>
               </abbr>

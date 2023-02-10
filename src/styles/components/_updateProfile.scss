@@ -140,10 +140,11 @@
   color: black;
   font-size: 18px;
   background-color: white;
-  transition: 0.5s;
+  transition: 1s;
+  font-weight: bold;
 }
 .closeUpdate:hover {
-  background-color: rgba(171, 171, 171, 0.542);
+  background-color: vars.$secondary-font-color;
   cursor: pointer;
 }
 

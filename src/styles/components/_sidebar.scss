@@ -8,7 +8,7 @@
   height: 100vh;
   padding-left: 12px;
   padding-right: 12px;
-  background-color: rgb(255, 255, 255);
+  background-color: #f8f8ff;
   overflow: hidden;
   font-size: 20px;
   font-weight: 400;
@@ -90,6 +90,10 @@
   &:hover {
     background: #d9d9d9;
     border-radius: 20px;
+  }
+  .iconoSidebar-i {
+    margin-right: 15px;
+    font-size: 22px;
   }
 }
 

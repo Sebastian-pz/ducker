@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react'
 import { addComment } from './functions'
+import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react'
+import PropTypes from 'prop-types'
 import toast, { Toaster } from 'react-hot-toast'
-import { useSelector } from 'react-redux'
 
 function validate(input) {
   const errors = {}
@@ -13,18 +14,38 @@ function validate(input) {
 }
 
 const CommentInput = ({ origin }) => {
+  const dispatch = useDispatch()
   const user = useSelector(state => state.user.userInfo)
+  const [image, setImage] = useState('')
   const [errors, setErrors] = useState({})
   const [comment, setComment] = useState({
     author: user.id,
     content: '',
+    imgComment: '',
   })
+
+  function handleOpenWidgetComment() {
+    const widgetCloudinary = window.cloudinary.createUploadWidget(
+      {
+        cloudName: 'dak9qk0lc',
+        uploadPreset: 'preset_ducker',
+      },
+      (err, result) => {
+        if (!err && result && result.event === 'success') {
+          setImage(result.info.url)
+          setComment({ ...comment, imgComment: result.info.url })
+        }
+      }
+    )
+    widgetCloudinary.open()
+  }
 
   function handleComment(e) {
     e.preventDefault()
     if (!errors.comment) {
       toast.promise(
         addComment(origin._doc._id, comment),
+
         {
           loading: 'Enviando comentario',
           success: 'Comentario realizado con éxito',
@@ -42,6 +63,7 @@ const CommentInput = ({ origin }) => {
     } else {
       toast.error('El comentario no se pudo realizar con éxito 😕')
     }
+    dispatch(getCuacks())
   }
 
   function handleChange(e) {
@@ -72,6 +94,7 @@ const CommentInput = ({ origin }) => {
       <section className='input_main'>
         <div>
           <img
+            className='profileImg'
             src={user.img ? user.img : ''}
             alt={`Foto de perfil de ${origin.nickname ? origin.nickname : ''}`}
           />
@@ -90,9 +113,20 @@ const CommentInput = ({ origin }) => {
           ) : (
             <br className='errorComment'></br>
           )}
-          <button className='sendComment' onClick={e => handleComment(e)}>
-            Comentar!
-          </button>
+          {image && (
+            <img className='commentImg' src={image} alt='Comment Img' />
+          )}
+          <div className='img-button-cont'>
+            <abbr title='Agregar una imagen a tu cuack'>
+              <i
+                className='bx bx-image-add comment'
+                onClick={e => handleOpenWidgetComment(e)}
+              ></i>
+            </abbr>
+            <button className='sendComment' onClick={e => handleComment(e)}>
+              Comentar!
+            </button>
+          </div>
         </div>
       </section>
     </div>
