@@ -10,7 +10,7 @@ const config = {
 export async function addComment(originID, comment) {
   const response = await axios.post(
     `${uri}/cuacks/c/${originID}`,
-    { cuack: comment },
+    { comment },
     config
   )
   return response

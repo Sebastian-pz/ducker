@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
-const Cuackear = () => {
+const Cuackear = ({ type, previous }) => {
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const uri = process.env.BACK_URL || 'http://localhost:3001'
@@ -96,11 +96,9 @@ const Cuackear = () => {
     e.preventDefault()
     const author = getUserID()
     const cuack = {
-      cuack: {
-        author,
-        content,
-        files,
-      },
+      author,
+      content,
+      files,
     }
 
     const config = {
@@ -112,36 +110,50 @@ const Cuackear = () => {
     if (content.length > maxLength)
       return alert('El Cuack que quieres hacer es demasiado largo 😣')
 
-    toast.promise(
-      axios.post(`${uri}/cuacks`, cuack, config),
-      {
-        loading: 'Loading',
-        success: `Cuack enviado con éxito.`,
-        error: `Ha ocurrido un error, revisa los datos ingresados`,
-      },
-      {
-        style: {
-          minWidth: '250px',
+    if (!type) {
+      toast.promise(
+        axios.post(`${uri}/cuacks`, { cuack }, config),
+        {
+          loading: 'Loading',
+          success: `Cuack enviado con éxito.`,
+          error: `Ha ocurrido un error, revisa los datos ingresados`,
         },
-        success: {
-          duration: 1000,
-          icon: '🦆',
+        {
+          style: {
+            minWidth: '250px',
+          },
+          success: {
+            duration: 1000,
+            icon: '🦆',
+          },
+        }
+      )
+    } else {
+      toast.promise(
+        axios.post(`${uri}/cuacks/c/${previous}`, { comment: cuack }, config),
+        {
+          loading: 'Loading',
+          success: `Comentario enviado con éxito.`,
+          error: `Ha ocurrido un error, revisa los datos ingresados`,
         },
-      }
-    )
+        {
+          style: {
+            minWidth: '250px',
+          },
+          success: {
+            duration: 1000,
+            icon: '🦆',
+          },
+        }
+      )
+    }
+
     document.getElementById('cuackearInput').value = ''
     setContent('')
     setFiles('')
     setCharsRemaining(280)
     dispatch(getCuacks())
   }
-
-  // const textarea = document.querySelector('textarea')
-  // textarea.addEventListener('keyup', e => {
-  //   textarea.style.height = 'auto'
-  //   let scHeight = e.target.scrollHeight
-  //   textarea.style.height = `${scHeight}px`
-  // })
 
   return (
     <div className='cuackear-container'>
