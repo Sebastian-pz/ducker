@@ -1,7 +1,7 @@
 // /* eslint-disable no-unused-vars */
 /* eslint-disable space-before-function-paren */
 import PropTypes from 'prop-types'
-import { getCuackInfo } from '../../Features/Cuack/cuackFunctions'
+import { getComments } from '../../Features/Cuack/cuackFunctions'
 import Cuack from '../Cuack/Cuack'
 
 const Comentario = ({ comment, previous }) => {
@@ -9,8 +9,8 @@ const Comentario = ({ comment, previous }) => {
     return (
       <Cuack
         cuackinfo={comment}
-        hide={['thread:hidden']}
-        action={() => getCuackInfo(previous)}
+        // hide={['thread:hidden']}
+        action={() => getComments(previous)}
       />
     )
   }

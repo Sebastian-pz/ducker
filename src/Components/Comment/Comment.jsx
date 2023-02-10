@@ -39,7 +39,7 @@ const Comment = ({ origin }) => {
 
         <div className='comment_content'>
           <div className='comment_img'>
-            <img src={origin.picture} alt='profileimg' />
+            <img src={origin.img || origin.picture} alt='profileimg' />
             <hr className='comment_linea' />
           </div>
           <div className='comment_content2'>
