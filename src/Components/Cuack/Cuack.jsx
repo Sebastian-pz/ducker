@@ -191,7 +191,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
           <Link to={`/profile/${author}`} className='linkDecoration'>
             <img
               className='imgCuackProfile'
-              src={picture}
+              src={picture || cuackinfo.img}
               alt='profile picture'
             />
           </Link>
@@ -276,7 +276,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
                 handleEvent(e)
               }}
               style={
-                hide && hide.includes('comment:hidden')
+                hide && hide.includes('recuack:hidden')
                   ? { display: 'none' }
                   : {}
               }
@@ -341,7 +341,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
               <abbr
                 title='Ver hilo de comentarios'
                 style={
-                  hide && hide.includes('like:hidden')
+                  hide && hide.includes('thread:hidden')
                     ? { display: 'none' }
                     : {}
                 }
