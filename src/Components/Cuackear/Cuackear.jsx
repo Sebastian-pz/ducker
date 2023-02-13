@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import axios from 'axios'
-import { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Autocomplete } from '../../Components'
 import getCaretCoordinates from 'textarea-caret'
 import { getUserID } from '../../Utils/auth'
 import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import Gifs from '../Gifs/Gifs'
+
+export const GifsContext = React.createContext()
 
 const Cuackear = ({ type, previous }) => {
   const userInfo = useSelector(state => state.user.userInfo)
@@ -19,6 +22,7 @@ const Cuackear = ({ type, previous }) => {
   const [files, setFiles] = useState('')
   const [nickname, setnickname] = useState()
   const [options, setOptions] = useState([])
+  const [section, setSection] = useState('default')
   const textRef = useRef()
   const { top, left } = textRef.current
     ? getCaretCoordinates(textRef.current, textRef.current.selectionEnd)
@@ -68,6 +72,21 @@ const Cuackear = ({ type, previous }) => {
     setOptions(data)
   }
 
+  function handleDisplay() {
+    switch (section) {
+      case 'default':
+        return <div></div>
+      case 'gifs':
+        return (
+          <GifsContext.Provider value={{ setSection, setFiles }}>
+            <Gifs />
+          </GifsContext.Provider>
+        )
+      default:
+        break
+    }
+  }
+
   useEffect(() => {
     if (nickname !== '') handlerSearch(nickname)
   }, [nickname])
@@ -95,12 +114,17 @@ const Cuackear = ({ type, previous }) => {
   function submitCuack(e) {
     e.preventDefault()
     const author = getUserID()
-    const cuack = {
+    let cuack = {
       author,
       content,
-      files,
     }
 
+    if (files) {
+      cuack = {
+        ...cuack,
+        files,
+      }
+    }
     const config = {
       headers: {
         Authorization: `${token}`,
@@ -182,11 +206,18 @@ const Cuackear = ({ type, previous }) => {
           />
 
           {files && (
-            <img
-              className='cuackImg'
-              src={files && files}
-              alt='Cuack content img'
-            />
+            <div>
+              {files.includes('giphy') ? (
+                <iframe
+                  src={files}
+                  width='200'
+                  height='280'
+                  className='cuackImg'
+                ></iframe>
+              ) : (
+                <img className='cuackImg' src={files} alt='Imagen del cuack' />
+              )}
+            </div>
           )}
           {showAutocomplete && (
             <Autocomplete
@@ -197,12 +228,25 @@ const Cuackear = ({ type, previous }) => {
             />
           )}
           <div className='display-flex-end'>
-            <abbr title='Agregar una imagen a tu cuack'>
-              <i
-                className='bx bx-image-add fontZise-i'
-                onClick={e => handleOpenWidgetCuackear(e)}
-              ></i>
-            </abbr>
+            <div>
+              {/* Boton Img */}
+              <abbr title='Agregar una imagen a tu cuack'>
+                <i
+                  className='bx bx-image-add fontZise-i'
+                  onClick={e => handleOpenWidgetCuackear(e)}
+                ></i>
+              </abbr>
+              {/* Boton Gif */}
+              <abbr title='Agregar un Gif a tu cuack'>
+                <i
+                  className='bx bxs-file-gif fontZise-i'
+                  id='gifs'
+                  onClick={() => {
+                    setSection('gifs')
+                  }}
+                ></i>
+              </abbr>
+            </div>
             <div className='display-flex-row'>
               <p id='cuackearCharsRemaining'>Remaining: {charsRemaining}</p>
               <button className='cuackear-button' onClick={e => submitCuack(e)}>
@@ -212,6 +256,7 @@ const Cuackear = ({ type, previous }) => {
           </div>
         </div>
       </div>
+      {handleDisplay()}
     </div>
   )
 }

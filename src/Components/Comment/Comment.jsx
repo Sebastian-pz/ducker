@@ -5,6 +5,7 @@ import { Cuackear } from '..'
 
 const Comment = ({ origin }) => {
   const { setSection } = useContext(CuackContext)
+
   const times = {
     day: 1000 * 60 * 60 * 24,
     hour: 1000 * 60 * 60,
@@ -38,7 +39,9 @@ const Comment = ({ origin }) => {
 
         <div className='comment_content'>
           <div className='comment_img'>
-            <img src={origin.img || origin.picture} alt='profileimg' />
+            <div>
+              <img src={origin.img || origin.picture} alt='profileimg' />
+            </div>
             <hr className='comment_linea' />
           </div>
           <div className='comment_content2'>

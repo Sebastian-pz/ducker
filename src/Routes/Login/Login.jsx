@@ -55,7 +55,6 @@ const Login = () => {
         <img src={Logo} alt='logo' />
         <h3>WELCOME BACK</h3>
         <GoogleLoginButton className='buttonGoogle' />
-        {/* <button className='buttonGoogle'>Sing in with Google</button> */}
         <h4 className='or'>or</h4>
         <form action='' onSubmit={handleSubmit}>
           <input

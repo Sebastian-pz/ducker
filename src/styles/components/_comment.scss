@@ -69,16 +69,15 @@
   margin-bottom: -12px;
 
   img {
-    border-radius: 50%;
+    border-radius: 100%;
     width: 45px;
     height: 45px;
     object-fit: cover;
-    border: 2px solid white;
-    z-index: 1;
     border: solid 0.1px rgba(177, 174, 174, 0.479);
   }
 }
 .comment_linea {
+  margin-top: -5px;
   border-left: 2px solid vars.$secondary-font-color;
   height: 100%;
 }

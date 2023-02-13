@@ -30,20 +30,13 @@
   margin-right: 1vh;
   border: solid 0.1px rgba(177, 174, 174, 0.479);
 }
+.cuackImgCuack {
+  max-width: 400px;
+  border-radius: 20px;
+  object-fit: cover;
+}
 .cuack_main_content {
   width: 90%;
-  // p {
-  //   display: flex;
-  //   margin: 5% 0;
-  //   font-family: vars.$font-family;
-  //   font-size: 16px;
-  //   line-height: 1.6;
-  //   color: vars.$primary-font-color;
-  //   max-height: 25vh;
-  //   max-width: 430px;
-  //   white-space: wrap;
-  //   overflow: scroll;
-  // }
 }
 
 .cuack_content {
@@ -176,6 +169,14 @@
   border-radius: 20px;
   object-fit: cover;
 }
+.giphy-embed {
+  width: 80%;
+  max-width: 80%;
+  height: 350px;
+  max-height: 400px;
+  border: 0;
+}
+
 .lookThread {
   color: vars.$primary-color;
   text-decoration: inherit;
@@ -235,4 +236,10 @@
   .dropbtn {
     background-color: vars.$cuack-background;
   }
+  .eliminarCuack {
+    color: red;
+  }
+}
+.giphy-embed {
+  pointer-events: none;
 }
