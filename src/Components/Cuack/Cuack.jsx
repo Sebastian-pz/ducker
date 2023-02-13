@@ -8,8 +8,8 @@ import likeStatic from '../../Assets/Img/likeStatic.png'
 import likeStaticColor from '../../Assets/Img/likeStaticColor.png'
 import commentStatic from '../../Assets/Img/commentStatic.png'
 import recuackStatic from '../../Assets/Img/recuackStatic.png'
-import React, { useRef, useState, useContext } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { getUserID } from '../../Utils/auth'
 import Comment from '../Comment/Comment'
 import { Link } from 'react-router-dom'
@@ -22,6 +22,8 @@ const Cuack = ({ cuackinfo, action, hide }) => {
   const likeRef = useRef(null)
   const recuackRef = useRef(null)
   const commentRef = useRef(null)
+  const user = useSelector(state => state.user.userInfo)
+  console.log('USER', user)
   const { nickname, fullname, picture } = cuackinfo
   const token = localStorage.getItem('Authorization')
   const [section, setSection] = useState('default')
@@ -214,26 +216,68 @@ const Cuack = ({ cuackinfo, action, hide }) => {
                 <i className='bx bx-dots-horizontal-rounded'></i>
               </button>
               <div className='dropdown-content'>
-                <p>
-                  <i className='bx bx-user-x'></i>Seguir o dejar de seguir a{' '}
-                  {nickname}
-                </p>
-                <p>
-                  <i className='bx bx-volume-mute'></i>Silenciar a {nickname}
-                </p>
-                <p>
-                  <i className='bx bx-block'></i>Bloquear a {nickname}
-                </p>
-                <p>
-                  <i className='bx bx-flag'></i>Denunciar a {nickname}
-                </p>
+                {user && user.cuacks?.includes(_id) ? (
+                  <div>
+                    <p className='eliminarCuack'>
+                      <i className='bx bx-trash eliminarCuack'></i>Eliminar
+                    </p>
+                    <p>
+                      <i className='bx bx-edit'></i>Editar
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <p>
+                      <i className='bx bx-user-x'></i>Dejar de seguir a{' '}
+                      {nickname}
+                    </p>
+                    <p>
+                      <i className='bx bx-volume-mute'></i>Silenciar a{' '}
+                      {nickname}
+                    </p>
+                    <p>
+                      <i className='bx bx-block'></i>Bloquear a {nickname}
+                    </p>
+                    <p>
+                      <i className='bx bx-flag'></i>Denunciar a {nickname}
+                    </p>
+                  </div>
+                )}
+                {/* {user && user.following?.includes(author) ? (
+                  <p>
+                    <i className='bx bx-user-x'></i>Dejar de seguir a {nickname}
+                  </p>
+                ) : (
+                  <p>
+                    <i className='bx bx-user-x'></i>Seguir a {nickname}
+                  </p>
+                )} */}
               </div>
             </div>
           </div>
           <Link to={`/cuack/${_id}`} className='linkDecoration'>
             <p className='cuack_content_text'>{content}</p>
           </Link>
-          <img className='imgContent' src={files[0]} />
+
+          {files && files.length > 0 && (
+            <div>
+              {files[0].includes('giphy') ? (
+                <iframe
+                  src={files[0]}
+                  width='100%'
+                  height='100%'
+                  className='giphy-embed'
+                  title='Gif de giphy'
+                ></iframe>
+              ) : (
+                <img
+                  className='cuackImgCuack'
+                  src={files[0]}
+                  alt='Imagen del cuack'
+                />
+              )}
+            </div>
+          )}
 
           {/* Validaciones */}
 

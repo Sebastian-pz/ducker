@@ -31,7 +31,7 @@
 }
 
 .cuackImg {
-  max-width: 400px;
+  max-width: 200px;
   border-radius: 20px;
   object-fit: cover;
 }
@@ -101,6 +101,7 @@
     margin-right: 15px;
     color: vars.$primary-color;
     font-size: 20px;
+    cursor: pointer;
   }
   p {
     margin-right: 15px;

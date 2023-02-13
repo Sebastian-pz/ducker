@@ -1,17 +1,41 @@
 import { Link } from 'react-router-dom'
 import Logo from '../../Assets/Img/ducker-logo.png'
 import Logout from '../../Components/Logout/Logout'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 import { getUserID } from '../../Utils/auth'
+import CuackearContainer from '../CuackearContainer/CuackearContainer'
 // import { isAuthenticated } from '../../Utils/auth'
+
+export const SidebarContext = React.createContext()
 
 const Sidebar = () => {
   const user = useSelector(state => state.user.userInfo)
 
   const [logOut, setlogOut] = useState(false)
+  const [section, setSection] = useState('default')
   const dispatch = useDispatch()
+
+  function handleDisplay() {
+    switch (section) {
+      case 'default':
+        return <div></div>
+      case 'cuackearSidebar':
+        return (
+          <SidebarContext.Provider value={{ section, setSection }}>
+            <CuackearContainer />
+          </SidebarContext.Provider>
+        )
+      default:
+        break
+    }
+  }
+
+  function handleSection(e) {
+    e.preventDefault()
+    setSection('cuackearSidebar')
+  }
 
   //   if (isAuthenticated())
   return (
@@ -62,7 +86,14 @@ const Sidebar = () => {
             </div>
           </nav>
           <div className='homeNavlistButton'>
-            <button>Cuackear</button>
+            <button
+              id='cuackearSidebar'
+              onClick={e => {
+                handleSection(e)
+              }}
+            >
+              Cuackear
+            </button>
           </div>
         </div>
 
@@ -86,6 +117,7 @@ const Sidebar = () => {
           </div>
         </div>
       </section>
+      {handleDisplay()}
     </div>
   )
 }
