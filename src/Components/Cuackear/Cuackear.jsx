@@ -1,4 +1,3 @@
-/* eslint-disable no-unreachable */
 /* eslint-disable react/prop-types */
 import axios from 'axios'
 import React, { useRef, useState, useEffect } from 'react'
