@@ -243,15 +243,6 @@ const Cuack = ({ cuackinfo, action, hide }) => {
                     </p>
                   </div>
                 )}
-                {/* {user && user.following?.includes(author) ? (
-                  <p>
-                    <i className='bx bx-user-x'></i>Dejar de seguir a {nickname}
-                  </p>
-                ) : (
-                  <p>
-                    <i className='bx bx-user-x'></i>Seguir a {nickname}
-                  </p>
-                )} */}
               </div>
             </div>
           </div>
