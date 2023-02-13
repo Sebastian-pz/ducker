@@ -2,7 +2,7 @@
 
 .home-container {
   display: flex;
-  position: relative;
+  // position: relative;
   flex-direction: row;
   justify-content: center;
   width: 100%;
@@ -39,6 +39,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100%;
+  // position: relative;
 }
 .cuackContainer {
   /* margin-top: 5%; */
