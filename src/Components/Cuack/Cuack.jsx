@@ -1,6 +1,3 @@
-/* eslint-disable space-before-function-paren */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import axios from 'axios'
 import like from '../../Assets/Img/like.gif'
 import recuack from '../../Assets/Img/recuack.gif'
@@ -14,8 +11,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserID } from '../../Utils/auth'
 import Comment from '../Comment/Comment'
 import { Link } from 'react-router-dom'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import { setUserCuacks } from '../../Features/User/userSlice'
+import PropTypes from 'prop-types'
 
 export const CuackContext = React.createContext()
 
@@ -30,12 +29,12 @@ const Cuack = ({ cuackinfo, action, hide }) => {
   const token = localStorage.getItem('Authorization')
   const [section, setSection] = useState('default')
   const {
-    type,
+    // type,
     content,
     likes,
     recuacks,
-    category,
-    isPublic,
+    // category,
+    // isPublic,
     comments,
     date,
     files,
@@ -61,6 +60,17 @@ const Cuack = ({ cuackinfo, action, hide }) => {
       return `${Math.floor(timeElapsed / times.minute)} m.`
     if (timeElapsed / times.second > 1)
       return `${Math.floor(timeElapsed / times.second)} s.`
+  }
+
+  async function getProfileCuacks() {
+    const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem('Authorization'),
+      },
+    }
+    const { data } = await axios.get(`${uri}/cuacks/u/${getUserID()}`, config)
+    dispatch(setUserCuacks(data.payload))
   }
 
   function activateGif(e) {
@@ -194,6 +204,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
                     await axios.put(`${uri}/cuacks/${_id}`, {}, config)
                     toast.dismiss(t.id)
                     dispatch(getCuacks())
+                    getProfileCuacks()
                   }}
                 >
                   Sí, estoy seguro
@@ -451,6 +462,12 @@ const Cuack = ({ cuackinfo, action, hide }) => {
       {handleDisplay()}
     </div>
   )
+}
+
+Cuack.propTypes = {
+  cuackinfo: PropTypes.object,
+  action: PropTypes.func,
+  hide: PropTypes.array,
 }
 
 export default Cuack
