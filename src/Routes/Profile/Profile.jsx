@@ -14,6 +14,7 @@ import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
 import axios from 'axios'
 import { getUserById } from '../../Features/User/functions'
+import { Toaster } from 'react-hot-toast'
 export const ProfileContext = React.createContext()
 
 const Profile = () => {
@@ -132,6 +133,16 @@ const Profile = () => {
   if (isAuthenticated())
     return (
       <div className='home-container'>
+        <Toaster
+          position='top-left'
+          reverseOrder={false}
+          toastOptions={{
+            className: '',
+            style: {
+              fontSize: '1.5rem',
+            },
+          }}
+        />
         <header>
           <Sidebar />
         </header>
