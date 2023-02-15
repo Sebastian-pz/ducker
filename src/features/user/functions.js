@@ -43,12 +43,3 @@ export const searchUsers = (term, init) => async dispatch => {
     console.log(`Internal server error`)
   }
 }
-
-// export const deleteComments = (id) => async dispatch => {
-//   try {
-//     await axios.put(`${uri}/cuacks/cuack/${id}`)
-
-//   } catch (error) {
-//     console.log(`Internal server error`)
-//   }
-// }
