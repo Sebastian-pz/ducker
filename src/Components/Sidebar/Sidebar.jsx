@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 import { getUserID } from '../../Utils/auth'
+// import { Cuackear } from '..'
 import CuackearContainer from '../CuackearContainer/CuackearContainer'
 // import { isAuthenticated } from '../../Utils/auth'
 
@@ -14,16 +15,18 @@ const Sidebar = () => {
   const user = useSelector(state => state.user.userInfo)
 
   const [logOut, setlogOut] = useState(false)
-  const [section, setSection] = useState('default')
+  const [sidebarSection, setSidebarSection] = useState('default')
   const dispatch = useDispatch()
 
   function handleDisplay() {
-    switch (section) {
+    switch (sidebarSection) {
       case 'default':
         return <div></div>
       case 'cuackearSidebar':
         return (
-          <SidebarContext.Provider value={{ section, setSection }}>
+          <SidebarContext.Provider
+            value={{ sidebarSection, setSidebarSection }}
+          >
             <CuackearContainer />
           </SidebarContext.Provider>
         )
@@ -34,7 +37,7 @@ const Sidebar = () => {
 
   function handleSection(e) {
     e.preventDefault()
-    setSection('cuackearSidebar')
+    setSidebarSection('cuackearSidebar')
   }
 
   //   if (isAuthenticated())
@@ -60,7 +63,7 @@ const Sidebar = () => {
                 <h2 className='sidebar_title'>Explorar</h2>
               </div>
             </Link>
-            <Link to={''}>
+            <Link to={'/notifications'}>
               <div className='navListDiv'>
                 <i className='bx bx-bell iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Notificaciones</h2>

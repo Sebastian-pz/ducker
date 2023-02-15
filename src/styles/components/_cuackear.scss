@@ -34,12 +34,14 @@
   max-width: 200px;
   border-radius: 20px;
   object-fit: cover;
+  border: none;
 }
 
 .cuackear-main {
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
 
   #cuackearInput {
     width: 100%;
