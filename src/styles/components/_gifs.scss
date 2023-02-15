@@ -1,6 +1,6 @@
 @use '../vars';
 .gifsMain-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: center;
   overflow: scroll;
+  z-index: 500;
 }
 .formSearchBarGif {
   display: flex;
@@ -38,7 +39,9 @@
 
 .gifs-container {
   position: absolute;
-  width: 50%;
+  max-height: 600px;
+
+  width: 35%;
   top: 10%;
   border-radius: 20px;
   padding: 20px;

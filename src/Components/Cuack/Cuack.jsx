@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import axios from 'axios'
@@ -13,6 +14,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserID } from '../../Utils/auth'
 import Comment from '../Comment/Comment'
 import { Link } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
+import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
 export const CuackContext = React.createContext()
 
@@ -23,7 +26,6 @@ const Cuack = ({ cuackinfo, action, hide }) => {
   const recuackRef = useRef(null)
   const commentRef = useRef(null)
   const user = useSelector(state => state.user.userInfo)
-  console.log('USER', user)
   const { nickname, fullname, picture } = cuackinfo
   const token = localStorage.getItem('Authorization')
   const [section, setSection] = useState('default')
@@ -171,6 +173,54 @@ const Cuack = ({ cuackinfo, action, hide }) => {
     }
   }
 
+  function deleteCuack(e) {
+    toast.dismiss()
+    const config = {
+      headers: {
+        Authorization: `${token}`,
+      },
+    }
+    toast(
+      t => (
+        <main className='mainToast'>
+          <div className='toastContainer'>
+            <span className='toastSpan'>
+              <b>¿Estás seguro de eliminar este cuack?</b>
+              <div className='buttonToastContainer'>
+                <button
+                  type='button'
+                  className='buttonToastAcept'
+                  onClick={async () => {
+                    await axios.put(`${uri}/cuacks/${_id}`, {}, config)
+                    toast.dismiss(t.id)
+                    dispatch(getCuacks())
+                  }}
+                >
+                  Sí, estoy seguro
+                </button>
+                <button
+                  type='button'
+                  className='buttonToastCancel'
+                  onClick={() => {
+                    toast.dismiss(t.id)
+                  }}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </span>
+          </div>
+        </main>
+      ),
+      {
+        duration: Infinity,
+        style: {
+          borderRadius: '20px',
+        },
+      }
+    )
+  }
+
   if (!cuackinfo) {
     return (
       <div>
@@ -218,8 +268,9 @@ const Cuack = ({ cuackinfo, action, hide }) => {
               <div className='dropdown-content'>
                 {user && user.cuacks?.includes(_id) ? (
                   <div>
-                    <p className='eliminarCuack'>
-                      <i className='bx bx-trash eliminarCuack'></i>Eliminar
+                    <p className='eliminarCuack' onClick={() => deleteCuack()}>
+                      <i className='bx bx-trash eliminarCuack'></i>
+                      Eliminar
                     </p>
                     <p>
                       <i className='bx bx-edit'></i>Editar

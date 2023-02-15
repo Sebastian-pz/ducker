@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 import { isAuthenticated } from '../../Utils/auth'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -41,16 +41,6 @@ const Login = () => {
 
   return (
     <div className='loginContainer'>
-      <Toaster
-        position='top-center'
-        reverseOrder={false}
-        toastOptions={{
-          className: '',
-          style: {
-            fontSize: '1.5rem',
-          },
-        }}
-      />
       <div className='loginForm'>
         <img src={Logo} alt='logo' />
         <h3>WELCOME BACK</h3>

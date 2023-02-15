@@ -1,0 +1,18 @@
+@use '../vars';
+
+.notifications {
+  max-width: 550px;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+.notifications__notification {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3vh;
+  > i {
+    margin-right: 2vw;
+    color: vars.$primary-color;
+    font-size: 20px;
+  }
+}

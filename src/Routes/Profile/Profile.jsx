@@ -238,7 +238,18 @@ const Profile = () => {
         </section>
         <section className='section3'>
           <SearchBar className='searchabar' />
-          <div className='datosUsuario'></div>
+          <div className='gallery'>
+            {cuacks?.map((m, i) => {
+              return (
+                <div key={i} className='galleryImg'>
+                  <img
+                    src={m._doc.files && m._doc.files}
+                    alt={`Imagen ${i + 1}`}
+                  />
+                </div>
+              )
+            })}
+          </div>
           <Trends />
         </section>
       </div>

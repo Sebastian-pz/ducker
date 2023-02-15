@@ -1,17 +1,20 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import axios from 'axios'
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useContext } from 'react'
 import { Autocomplete } from '../../Components'
 import getCaretCoordinates from 'textarea-caret'
 import { getUserID } from '../../Utils/auth'
 import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+// import { SidebarContext } from '../Sidebar/Sidebar'
 import Gifs from '../Gifs/Gifs'
 
 export const GifsContext = React.createContext()
 
 const Cuackear = ({ type, previous }) => {
+  // const { setSidebarSection } = useContext(SidebarContext)
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const uri = process.env.BACK_URL || 'http://localhost:3001'
@@ -111,7 +114,7 @@ const Cuackear = ({ type, previous }) => {
     setCharsRemaining(maxLength - e.target.value.length)
   }
 
-  function submitCuack(e) {
+  async function submitCuack(e) {
     e.preventDefault()
     const author = getUserID()
     let cuack = {
@@ -131,66 +134,70 @@ const Cuackear = ({ type, previous }) => {
       },
     }
 
-    if (content.length > maxLength)
-      return toast.error('El Cuack que quieres hacer es demasiado largo 😣')
-
-    if (!type) {
-      toast.promise(
-        axios.post(`${uri}/cuacks`, { cuack }, config),
-        {
-          loading: 'Loading',
-          success: `Cuack enviado con éxito.`,
-          error: `Ha ocurrido un error, revisa los datos ingresados`,
-        },
-        {
-          style: {
-            minWidth: '250px',
-          },
-          success: {
-            duration: 1000,
-            icon: '🦆',
-          },
-        }
-      )
-    } else {
-      toast.promise(
-        axios.post(`${uri}/cuacks/c/${previous}`, { comment: cuack }, config),
-        {
-          loading: 'Loading',
-          success: `Comentario enviado con éxito.`,
-          error: `Ha ocurrido un error, revisa los datos ingresados`,
-        },
-        {
-          style: {
-            minWidth: '250px',
-          },
-          success: {
-            duration: 1000,
-            icon: '🦆',
-          },
-        }
-      )
+    if (content.length > maxLength) {
+      setTimeout(() => {
+        toast.remove()
+      }, 1500)
+      return toast(t => (
+        <main className='mainToastInfo'>
+          <div className='toastContainerInfo'>
+            <span className='toastSpan'>
+              <b className='toastInfo'>
+                El Cuack que quieres hacer es demasiado largo 😣
+              </b>
+            </span>
+          </div>
+        </main>
+      ))
     }
 
-    document.getElementById('cuackearInput').value = ''
-    setContent('')
-    setFiles('')
-    setCharsRemaining(280)
-    dispatch(getCuacks())
+    if (!type) {
+      await axios.post(`${uri}/cuacks`, { cuack }, config)
+      document.getElementById('cuackearInput').value = ''
+      setContent('')
+      setFiles('')
+      setCharsRemaining(280)
+      dispatch(getCuacks())
+      setTimeout(() => {
+        toast.remove()
+      }, 1500)
+      return toast(t => (
+        <main className='mainToastInfo'>
+          <div className='toastContainerInfo'>
+            <span className='toastSpan'>
+              <b className='toastInfo'>Cuack enviado con éxito</b>
+            </span>
+          </div>
+        </main>
+      ))
+    } else {
+      await axios.post(
+        `${uri}/cuacks/c/${previous}`,
+        { comment: cuack },
+        config
+      )
+      document.getElementById('cuackearInput').value = ''
+      setContent('')
+      setFiles('')
+      setCharsRemaining(280)
+      dispatch(getCuacks())
+      setTimeout(() => {
+        toast.remove()
+      }, 1500)
+      return toast(t => (
+        <main className='mainToastInfo'>
+          <div className='toastContainerInfo'>
+            <span className='toastSpan'>
+              <b className='toastInfo'>Comentario enviado con éxito</b>
+            </span>
+          </div>
+        </main>
+      ))
+    }
   }
 
   return (
     <div className='cuackear-container'>
-      <Toaster
-        position='top-center'
-        reverseOrder={false}
-        toastOptions={{
-          className: '',
-          style: {
-            fontSize: '1.5rem',
-          },
-        }}
-      />
       <div className='cuackearIMG'>
         <img src={userInfo.img} alt='profile-picture' />
       </div>

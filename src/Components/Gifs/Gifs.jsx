@@ -8,7 +8,7 @@ export default function Gifs() {
   const { setSection, setFiles } = useContext(GifsContext)
   const [term, setTerm] = useState('')
 
-  const fetchGifs = offset => gf.search(term, { offset, limit: 10 })
+  const fetchGifs = offset => gf.search(term, { offset, limit: 12 })
 
   function handleInputChange(e) {
     e.preventDefault()

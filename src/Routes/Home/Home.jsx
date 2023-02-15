@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
+import { Toaster } from 'react-hot-toast'
 
 const Home = () => {
   document.title = 'Inicio / Ducker'
@@ -44,6 +45,16 @@ const Home = () => {
   if (isAuthenticated())
     return (
       <div className='home-container'>
+        <Toaster
+          position='top-left'
+          reverseOrder={false}
+          toastOptions={{
+            className: '',
+            style: {
+              fontSize: '1.5rem',
+            },
+          }}
+        />
         <header>
           <Sidebar />
         </header>

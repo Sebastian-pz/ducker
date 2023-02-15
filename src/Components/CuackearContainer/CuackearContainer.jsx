@@ -3,11 +3,11 @@ import { useContext } from 'react'
 import { SidebarContext } from '../Sidebar/Sidebar'
 
 const CuackearContainer = () => {
-  const { setSection } = useContext(SidebarContext)
+  const { setSidebarSection } = useContext(SidebarContext)
 
   function handleClose(e) {
     e.preventDefault()
-    setSection('default')
+    setSidebarSection('default')
   }
 
   return (
@@ -19,7 +19,9 @@ const CuackearContainer = () => {
         >
           X
         </button>
-        <Cuackear />
+        <SidebarContext.Provider value={setSidebarSection}>
+          <Cuackear />
+        </SidebarContext.Provider>
       </div>
     </div>
   )

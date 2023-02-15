@@ -61,12 +61,12 @@
 }
 
 .datosUsuario {
-  background-color: rgba(231, 231, 231, 0.353);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin: 4vh 0;
+  background-color: rgba(231, 231, 231, 0.353);
   /* background-color: rgb(247, 249, 249); */
   /* background-color: #ececec; */
   width: 100%;
@@ -166,4 +166,30 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.gallery {
+  display: grid;
+  // grid: repeat(3, 80px) / auto-flow;
+  grid-template-columns: 1fr 1fr;
+  justify-items: start;
+  align-content: space-between;
+  margin: 4vh 0;
+  width: 100%;
+  height: 30vh;
+  min-height: 270px;
+  border-radius: 20px;
+  overflow: auto;
+  background-color: rgba(231, 231, 231, 0.353);
+  text-decoration: none;
+  .galleryImg {
+    width: 100%;
+    // height: 80%;
+    // object-fit: cover;
+    // overflow: hidden;
+  }
+  .galleryImg > img {
+    width: 100%;
+    height: auto;
+  }
 }
