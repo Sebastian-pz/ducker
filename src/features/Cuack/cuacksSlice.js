@@ -13,7 +13,7 @@ export const cuackSlice = createSlice({
   initialState,
   reducers: {
     getCuacksr: (state, action) => {
-      state.cuacks = action.payload
+      state.cuacks = state.cuacks.concat(action.payload)
     },
     searchC: (state, action) => {
       state.searchCuacks = action.payload.data

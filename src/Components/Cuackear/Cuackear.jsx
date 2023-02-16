@@ -9,6 +9,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 // import { SidebarContext } from '../Sidebar/Sidebar'
+
 import Gifs from '../Gifs/Gifs'
 
 export const GifsContext = React.createContext()
@@ -157,7 +158,7 @@ const Cuackear = ({ type, previous }) => {
       setContent('')
       setFiles('')
       setCharsRemaining(280)
-      dispatch(getCuacks())
+      dispatch(getCuacks(0))
       setTimeout(() => {
         toast.remove()
       }, 1500)
@@ -180,7 +181,7 @@ const Cuackear = ({ type, previous }) => {
       setContent('')
       setFiles('')
       setCharsRemaining(280)
-      dispatch(getCuacks())
+      dispatch(getCuacks(0))
       setTimeout(() => {
         toast.remove()
       }, 1500)

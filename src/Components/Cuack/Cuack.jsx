@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 import axios from 'axios'
 import like from '../../Assets/Img/like.gif'
 import recuack from '../../Assets/Img/recuack.gif'
