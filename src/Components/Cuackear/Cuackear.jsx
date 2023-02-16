@@ -11,7 +11,6 @@ import {
   getComments,
   getCuackInfo,
 } from '../../Features/Cuack/cuackFunctions'
-
 import Gifs from '../Gifs/Gifs'
 
 export const GifsContext = React.createContext()
