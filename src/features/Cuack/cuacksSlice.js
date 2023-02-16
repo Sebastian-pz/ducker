@@ -13,7 +13,7 @@ export const cuackSlice = createSlice({
   initialState,
   reducers: {
     getCuacksr: (state, action) => {
-      state.cuacks = state.cuacks.concat(action.payload)
+      state.cuacks = action.payload
     },
     searchC: (state, action) => {
       state.searchCuacks = action.payload.data
@@ -31,6 +31,9 @@ export const cuackSlice = createSlice({
     clearComments: state => {
       state.comments = []
     },
+    clearCuacks: state => {
+      state.cuacks = []
+    },
   },
 })
 
@@ -41,5 +44,6 @@ export const {
   clearCuack,
   setComments,
   clearComments,
+  clearCuacks,
 } = cuackSlice.actions
 export default cuackSlice.reducer

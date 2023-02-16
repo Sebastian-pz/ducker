@@ -64,7 +64,11 @@ const CuackInfo = () => {
         <h2>Comentarios</h2>
         {comments.map(comment => {
           return (
-            <Comentario comment={comment} key={comment._id} previous={id} />
+            <Comentario
+              comment={comment}
+              key={comment._doc._id}
+              previous={id}
+            />
           )
         })}
       </section>

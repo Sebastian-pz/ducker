@@ -4,23 +4,13 @@ import { getCuacksr, searchC, setComments, setCuack } from './cuacksSlice'
 
 const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
 
-export const getCuacks = since => async dispatch => {
+export const getCuacks = limit => async dispatch => {
   try {
     if (!isAuthenticated) return
     const id = getUserID()
-    const { data } = await axios.get(`${uri}/cuacks/ccu/${id}?since=${since}`)
-    const cuacks = data.payload
-    const cuacksSorted = [...cuacks]
-    if (cuacks.length) {
-      if (cuacks[0]._doc) {
-        if (cuacks[0]._doc.date) {
-          cuacksSorted.sort(
-            (a, b) => new Date(b._doc.date) - new Date(a._doc.date)
-          )
-        }
-      }
-    }
-    dispatch(getCuacksr(cuacksSorted))
+    const { data } = await axios.get(`${uri}/cuacks/ccu/${id}?limit=${limit}`)
+
+    dispatch(getCuacksr(data.payload))
   } catch (error) {
     console.log(`Internal server error`)
   }
@@ -63,7 +53,18 @@ export const getComments = id => async dispatch => {
       },
     }
     const { data } = await axios.get(`${uri}/cuacks/c/${id}`, config)
-    return dispatch(setComments(data))
+
+    const cuacksSorted = [...data]
+    if (data.length) {
+      if (data[0]._doc) {
+        if (data[0]._doc.date) {
+          cuacksSorted.sort(
+            (a, b) => new Date(b._doc.date) - new Date(a._doc.date)
+          )
+        }
+      }
+    }
+    return dispatch(setComments(cuacksSorted))
   } catch (error) {
     console.error('Error en la operación')
   }

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { CuackContext } from '../Cuack/Cuack'
 import { Cuackear } from '..'
 
-const Comment = ({ origin }) => {
-  const { setSection } = useContext(CuackContext)
+const Comment = ({ origin, limit }) => {
+  const { setCuackSection } = useContext(CuackContext)
 
   const times = {
     day: 1000 * 60 * 60 * 24,
@@ -27,7 +27,7 @@ const Comment = ({ origin }) => {
   }
   function handleClose(e) {
     e.preventDefault()
-    setSection('default')
+    setCuackSection('default')
   }
 
   return (
@@ -57,7 +57,12 @@ const Comment = ({ origin }) => {
           </div>
         </div>
         <div className='cuackear-comment-cont'>
-          <Cuackear previous={origin._doc._id} type='comment' />
+          <Cuackear
+            previous={origin._doc._id}
+            type='comment'
+            close={setCuackSection}
+            limit={limit || 15}
+          />
         </div>
       </div>
     </div>
@@ -65,5 +70,6 @@ const Comment = ({ origin }) => {
 }
 Comment.propTypes = {
   origin: PropTypes.object,
+  limit: PropTypes.number || undefined,
 }
 export default Comment

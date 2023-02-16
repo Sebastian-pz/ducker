@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import {
   Cuack,
   SearchBar,
@@ -147,7 +148,7 @@ const Profile = () => {
           <Sidebar />
         </header>
         <section className='section2'>
-          <nav>
+          <nav className='section2-nav'>
             <i
               className='bx bx-arrow-back margin-i'
               onClick={() => navigate(-1)}
@@ -182,48 +183,38 @@ const Profile = () => {
             </h4>
             <h5>{user && user.nickname}</h5>
             <br />
-            <h5>{user && user.description}</h5>
+            <p className='profile__description'>{user && user.description}</p>
             <br />
-            <h5>
-              {user.location ? (
-                <div>
-                  <i className='bx bx-map'></i>
-                  {user.location}
-                </div>
-              ) : (
-                ''
-              )}
-              {/* <i className='bx bx-map'></i>
-              {user && user.location} */}
-            </h5>
-            <h5>
-              {user.website ? (
-                <div>
-                  <i className='bx bx-link-alt'></i>
+            {user.location ? (
+              <div>
+                <i className='bx bx-map'> </i>
+                <p>{user.location}</p>
+              </div>
+            ) : (
+              ''
+            )}
+            {user.website ? (
+              <div>
+                <i className='bx bx-link-alt'> </i>
+                <a href={user.website} target='_blank'>
                   {user.website}
-                </div>
-              ) : (
-                ''
-              )}
-              {/* <i className='bx bx-link-alt'></i>
-              {user && user.website} */}
-            </h5>
-            <h5>
-              {user.birthday ? (
-                <div>
-                  <i className='bx bxs-balloon'></i>
-                  {getBirthday(user.birthday)}
-                </div>
-              ) : (
-                ''
-              )}
-              {/* <i className='bx bxs-balloon'></i>
-              {user && user.birthday && getBirthday(user.birthday)} */}
-            </h5>
-            <h5>
+                </a>
+              </div>
+            ) : (
+              ' '
+            )}
+            {user.birthday ? (
+              <div>
+                <i className='bx bxs-balloon'> </i>
+                <p>{getBirthday(user.birthday)}</p>
+              </div>
+            ) : (
+              ''
+            )}
+            <p>
               <i className='bx bx-calendar'></i>
               {user && getDaycreation()}
-            </h5>
+            </p>
             <br />
             <div className='follows'>
               <span>{user && user.following?.length}</span>

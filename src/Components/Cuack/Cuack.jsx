@@ -19,7 +19,7 @@ import PropTypes from 'prop-types'
 
 export const CuackContext = React.createContext()
 
-const Cuack = ({ cuackinfo, action, hide }) => {
+const Cuack = ({ cuackinfo, action, hide, limit }) => {
   const uri = process.env.BACK_URL || 'http://localhost:3001'
   const dispatch = useDispatch()
   const likeRef = useRef(null)
@@ -28,7 +28,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
   const user = useSelector(state => state.user.userInfo)
   const { nickname, fullname, picture } = cuackinfo
   const token = localStorage.getItem('Authorization')
-  const [section, setSection] = useState('default')
+  const [cuackSection, setCuackSection] = useState('default')
   const {
     // type,
     content,
@@ -65,6 +65,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
 
   async function getProfileCuacks() {
     const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
+
     const config = {
       headers: {
         Authorization: localStorage.getItem('Authorization'),
@@ -80,7 +81,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
       case 'like':
         likeRef.current.src = like
         setTimeout(() => {
-          likeRef.current.src = likeStatic
+          likeRef.current.src = likeStaticColor
         }, 1 * 1000)
         break
       case 'comment':
@@ -165,17 +166,17 @@ const Cuack = ({ cuackinfo, action, hide }) => {
 
   function handlesection(e) {
     e.preventDefault()
-    setSection(e.target.name)
+    setCuackSection(e.target.name)
   }
 
   function handleDisplay() {
-    switch (section) {
+    switch (cuackSection) {
       case 'default':
         return <div></div>
       case 'comment':
         return (
-          <CuackContext.Provider value={{ section, setSection }}>
-            <Comment origin={cuackinfo} />
+          <CuackContext.Provider value={{ cuackSection, setCuackSection }}>
+            <Comment limit={limit} origin={cuackinfo} />
           </CuackContext.Provider>
         )
 
@@ -389,7 +390,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
               {recuacks ? recuacks.length : 0}
             </p>
 
-            {!likes.includes(getUserID()) ? (
+            {likes && !likes.includes(getUserID()) ? (
               <img
                 onClick={e => {
                   activateGif(e)
@@ -466,6 +467,7 @@ const Cuack = ({ cuackinfo, action, hide }) => {
 }
 
 Cuack.propTypes = {
+  limit: PropTypes.number || undefined,
   cuackinfo: PropTypes.object,
   action: PropTypes.func,
   hide: PropTypes.array,

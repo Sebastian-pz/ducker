@@ -1,11 +1,13 @@
-import { Notifications, SearchBar } from '../../Components/index'
+import { SearchBar } from '../../Components/index'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
+import { useSelector } from 'react-redux'
 
-function MyNotifications() {
-  document.title = 'Notificaciones | Ducker'
+function Saved() {
+  document.title = 'Guardados | Ducker'
   const navigate = useNavigate()
+  const user = useSelector(state => state.user.userInfo)
   return (
     <div className='home-container'>
       <header>
@@ -18,11 +20,18 @@ function MyNotifications() {
             onClick={() => navigate(-1)}
           ></i>
           <div className='container-nav'>
-            <h1>Notificaciones</h1>
+            <h1>Guardados</h1>
+            <h4>{user && user.nickname}</h4>
           </div>
         </nav>
         <main className='scroll'>
-          <Notifications />
+          <section>
+            <h2>Guarda los Cuacks para verlos más tarde</h2>
+            <p>
+              ¡No dejes que los buenos se pierdan por ahí! Guarda los Cuacks
+              para luego encontrarlos fácilmente.
+            </p>
+          </section>
         </main>
       </section>
       <section className='section3'>
@@ -30,10 +39,7 @@ function MyNotifications() {
         <Trends />
       </section>
     </div>
-    // ahora siiii
-    // BIEEEEN!
   )
 }
 
-export default MyNotifications
-// Bueno, ahora qué
+export default Saved
