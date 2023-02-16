@@ -1,19 +1,21 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types'
 import axios from 'axios'
-import React, { useRef, useState, useEffect, useContext } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Autocomplete } from '../../Components'
 import getCaretCoordinates from 'textarea-caret'
 import { getUserID } from '../../Utils/auth'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import {
+  getCuacks,
+  getComments,
+  getCuackInfo,
+} from '../../Features/Cuack/cuackFunctions'
 import Gifs from '../Gifs/Gifs'
 
 export const GifsContext = React.createContext()
 
-const Cuackear = ({type, previous}) => {
-
+const Cuackear = ({ type, previous, close, limit }) => {
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const uri = process.env.BACK_URL || 'http://localhost:3001'
@@ -137,7 +139,7 @@ const Cuackear = ({type, previous}) => {
       setTimeout(() => {
         toast.remove()
       }, 1500)
-      return toast(t => (
+      return toast(() => (
         <main className='mainToastInfo'>
           <div className='toastContainerInfo'>
             <span className='toastSpan'>
@@ -156,11 +158,12 @@ const Cuackear = ({type, previous}) => {
       setContent('')
       setFiles('')
       setCharsRemaining(280)
-      dispatch(getCuacks(0))
+      dispatch(getCuacks(15))
+      if (close) close('default')
       setTimeout(() => {
         toast.remove()
       }, 1500)
-      return toast(t => (
+      return toast(() => (
         <main className='mainToastInfo'>
           <div className='toastContainerInfo'>
             <span className='toastSpan'>
@@ -179,11 +182,14 @@ const Cuackear = ({type, previous}) => {
       setContent('')
       setFiles('')
       setCharsRemaining(280)
-      dispatch(getCuacks(0))
+      dispatch(getCuackInfo(previous))
+      dispatch(getComments(previous))
+      if (limit) dispatch(getCuacks(limit))
+      if (close) close('default')
       setTimeout(() => {
         toast.remove()
       }, 1500)
-      return toast(t => (
+      return toast(() => (
         <main className='mainToastInfo'>
           <div className='toastContainerInfo'>
             <span className='toastSpan'>
@@ -279,6 +285,12 @@ export function getActiveToken(input, cursorPosition) {
   return words.find(
     ({ range }) => range[0] <= cursorPosition && range[1] >= cursorPosition
   )
+}
+Cuackear.propTypes = {
+  type: PropTypes.string || undefined,
+  previous: PropTypes.string || undefined,
+  close: PropTypes.func || undefined,
+  limit: PropTypes.number || undefined,
 }
 
 export default Cuackear

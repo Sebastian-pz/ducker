@@ -69,7 +69,7 @@ const Sidebar = () => {
                 <h2 className='sidebar_title'>Notificaciones</h2>
               </div>
             </Link>
-            <Link to={''}>
+            <Link to={'/saved'}>
               <div className='navListDiv'>
                 <i className='bx bx-bookmark iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Guardados</h2>

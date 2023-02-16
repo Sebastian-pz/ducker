@@ -13,7 +13,7 @@ const CuackThread = () => {
         <Sidebar />
       </header>
       <section className='section2'>
-        <nav>
+        <nav className='section2-nav'>
           <i
             className='bx bx-arrow-back margin-i'
             onClick={() => navigate(-1)}

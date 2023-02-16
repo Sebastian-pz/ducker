@@ -1,8 +1,10 @@
 import { getUserById } from '../../Features/User/functions'
 import { getUserID } from '../../Utils/auth'
 import { useSelector, useDispatch } from 'react-redux'
+import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 import axios from 'axios'
 import PropTypes from 'prop-types'
+import { clearCuacks } from '../../Features/Cuack/cuacksSlice'
 
 // Necesito el id del usuario que se seguirá o de dejará de seguir
 // ID USUARIO A SEGUIR -- USUARIO LOGGEADO, PROPIEDAD FOLLOWING
@@ -29,6 +31,8 @@ const FollowUnFollow = ({ id }) => {
       config
     )
     dispatch(getUserById(getUserID()))
+    dispatch(clearCuacks())
+    dispatch(getCuacks(0))
   }
 
   // Función que se utiliza para dejar de seguir
@@ -45,6 +49,8 @@ const FollowUnFollow = ({ id }) => {
       config
     )
     dispatch(getUserById(getUserID()))
+    dispatch(clearCuacks())
+    dispatch(getCuacks(0))
   }
 
   if (!user) {

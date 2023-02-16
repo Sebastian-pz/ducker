@@ -8,8 +8,8 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 const InfiniteScrollComponent = () => {
-  const [since, setSince] = useState(0)
-  let actual = 0
+  const [limit, setLimit] = useState(15)
+  let actual = 15
   document.title = 'Inicio | Ducker'
   if (!isAuthenticated()) {
     window.location.replace('/login')
@@ -30,17 +30,17 @@ const InfiniteScrollComponent = () => {
   */
   useEffect(() => {
     dispatch(getUsers())
-    // 2 update since
+    // 2 update limit
     if (!cuacks.length && !called) {
-      dispatch(getCuacks(since))
+      dispatch(getCuacks(limit))
       called = true
     }
-    if (actual !== since) {
-      dispatch(getCuacks(since))
-      actual = since
+    if (actual !== limit) {
+      dispatch(getCuacks(limit))
+      actual = limit
     }
     dispatch(getUserById(getUserID()))
-  }, [since])
+  }, [limit])
 
   if (isAuthenticated())
     return (
@@ -53,19 +53,20 @@ const InfiniteScrollComponent = () => {
           flexDirection: 'column',
         }}
       >
-        <Cuackear />
+        <Cuackear limit={limit} />
 
         <InfiniteScroll
           dataLength={cuacks.length}
           hasMore={true}
-          next={() => setSince(prevSince => prevSince + 5)}
+          next={() => setLimit(prevlimit => prevlimit + 15)}
           scrollableTarget='scrollableDiv'
         >
           {cuacks &&
             cuacks.map(cuack => {
               return (
                 <Cuack
-                  action={getCuacks}
+                  limit={limit}
+                  action={() => getCuacks(limit)}
                   cuackinfo={cuack}
                   key={`${cuack.nickname}${Math.random() * 100}`}
                 />

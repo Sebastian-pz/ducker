@@ -10,6 +10,7 @@ import {
   Search,
   CuackThread,
   MyNotifications,
+  Saved,
 } from './Routes'
 import InfiniteScrollComponent from './Components/InfiniteScroll/InfiniteScroll'
 
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: '/scroll',
     element: <InfiniteScrollComponent />,
+  },
+  {
+    path: '/saved',
+    element: <Saved />,
   },
   {
     path: '*',

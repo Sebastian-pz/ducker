@@ -17,11 +17,11 @@ const Search = () => {
         <Sidebar />
       </header>
       <section className='search-section2'>
-        <nav>
+        <nav className='section2-nav'>
           <i className='bx bx-arrow-back' onClick={() => navigate(-1)}></i>
           <SearchBar />
         </nav>
-        <main>
+        <main className='scroll'>
           <People />
           <SearchCuacks />
         </main>
