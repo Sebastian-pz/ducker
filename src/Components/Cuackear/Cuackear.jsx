@@ -12,6 +12,8 @@ import Gifs from '../Gifs/Gifs'
 
 export const GifsContext = React.createContext()
 
+const Cuackear = ({type, previous}) => {
+
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const uri = process.env.BACK_URL || 'http://localhost:3001'
