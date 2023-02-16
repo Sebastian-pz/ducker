@@ -1,5 +1,4 @@
-import { Cuack, Cuackear, SearchBar } from '../../Components/index'
-import { getCuacks } from '../../Features/Cuack/cuackFunctions'
+import { SearchBar } from '../../Components/index'
 import { getUserById, getUsers } from '../../Features/User/functions'
 import { getUserID, isAuthenticated } from '../../Utils/auth'
 import { Link } from 'react-router-dom'
@@ -8,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
 import { Toaster } from 'react-hot-toast'
+import InfiniteScrollComponent from '../../Components/InfiniteScroll/InfiniteScroll'
 
 const Home = () => {
   document.title = 'Inicio / Ducker'
@@ -21,26 +21,12 @@ const Home = () => {
   }
 
   const dispatch = useDispatch()
-  const cuacks = useSelector(state => state.cuacks.cuacks)
   const user = useSelector(state => state.user.userInfo)
 
   useEffect(() => {
     dispatch(getUsers())
-    dispatch(getCuacks())
     dispatch(getUserById(getUserID()))
   }, [])
-
-  const cuacksSorted = [...cuacks]
-
-  if (cuacks.length) {
-    if (cuacks[0]._doc) {
-      if (cuacks[0]._doc.date) {
-        cuacksSorted.sort(
-          (a, b) => new Date(b._doc.date) - new Date(a._doc.date)
-        )
-      }
-    }
-  }
 
   if (isAuthenticated())
     return (
@@ -59,23 +45,11 @@ const Home = () => {
           <Sidebar />
         </header>
         <section className='section2'>
-          <nav className='section2-nav'>
+          <div className='section2-nav'>
             <h1>Inicio</h1>
-          </nav>
+          </div>
           <div className='scroll'>
-            <Cuackear />
-            <div className='cuackContainer'>
-              {cuacks &&
-                cuacksSorted.map(cuack => {
-                  return (
-                    <Cuack
-                      action={getCuacks}
-                      cuackinfo={cuack}
-                      key={`${cuack.nickname}${Math.random() * 100}`}
-                    />
-                  )
-                })}
-            </div>
+            <InfiniteScrollComponent />
           </div>
         </section>
         <section className='section3'>

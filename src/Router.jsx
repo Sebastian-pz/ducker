@@ -11,6 +11,7 @@ import {
   CuackThread,
   MyNotifications,
 } from './Routes'
+import InfiniteScrollComponent from './Components/InfiniteScroll/InfiniteScroll'
 
 const router = createBrowserRouter([
   {
@@ -51,9 +52,10 @@ const router = createBrowserRouter([
   {
     path: '/notifications',
     element: <MyNotifications />,
-    // Qué me preguntaste? Así Está Bonito xD buenjo :D
-    // Ehhhh.. no se renderiza xD
-    // si esta bien asi la ruta o si preferis que diga /mynotifications- bueno xD ya se puede navegar a ese comnponente desde sidebar, ahora hay que ponerle estilos uh es verda
+  },
+  {
+    path: '/scroll',
+    element: <InfiniteScrollComponent />,
   },
   {
     path: '*',

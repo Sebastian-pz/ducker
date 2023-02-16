@@ -4,12 +4,23 @@ import { getCuacksr, searchC, setComments, setCuack } from './cuacksSlice'
 
 const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
 
-export const getCuacks = () => async dispatch => {
+export const getCuacks = since => async dispatch => {
   try {
     if (!isAuthenticated) return
     const id = getUserID()
-    const { data } = await axios.get(`${uri}/cuacks/ccu/${id}`)
-    dispatch(getCuacksr(data.payload))
+    const { data } = await axios.get(`${uri}/cuacks/ccu/${id}?since=${since}`)
+    const cuacks = data.payload
+    const cuacksSorted = [...cuacks]
+    if (cuacks.length) {
+      if (cuacks[0]._doc) {
+        if (cuacks[0]._doc.date) {
+          cuacksSorted.sort(
+            (a, b) => new Date(b._doc.date) - new Date(a._doc.date)
+          )
+        }
+      }
+    }
+    dispatch(getCuacksr(cuacksSorted))
   } catch (error) {
     console.log(`Internal server error`)
   }

@@ -8,13 +8,12 @@ import { getUserID } from '../../Utils/auth'
 import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
-// import { SidebarContext } from '../Sidebar/Sidebar'
 import Gifs from '../Gifs/Gifs'
 
 export const GifsContext = React.createContext()
 
-const Cuackear = ({ type, previous }) => {
-  // const { setSidebarSection } = useContext(SidebarContext)
+const Cuackear = ({type, previous}) => {
+
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const uri = process.env.BACK_URL || 'http://localhost:3001'
@@ -157,7 +156,7 @@ const Cuackear = ({ type, previous }) => {
       setContent('')
       setFiles('')
       setCharsRemaining(280)
-      dispatch(getCuacks())
+      dispatch(getCuacks(0))
       setTimeout(() => {
         toast.remove()
       }, 1500)
@@ -180,7 +179,7 @@ const Cuackear = ({ type, previous }) => {
       setContent('')
       setFiles('')
       setCharsRemaining(280)
-      dispatch(getCuacks())
+      dispatch(getCuacks(0))
       setTimeout(() => {
         toast.remove()
       }, 1500)
