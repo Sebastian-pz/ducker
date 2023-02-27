@@ -130,6 +130,11 @@ const Profile = () => {
       creation.getMonth()
     )} del ${creation.getFullYear()}`
   }
+  const [toggleState, setToggleState] = useState(1)
+
+  const toggleTab = index => {
+    setToggleState(index)
+  }
 
   if (isAuthenticated())
     return (
@@ -235,21 +240,98 @@ const Profile = () => {
               </h5>
             </div>
             <br />
-            {handleDisplay()}
+
+            <div className=''>
+              <div className='bloc-tabs'>
+                <button
+                  className={toggleState === 1 ? 'tabs active-tabs' : 'tabs'}
+                  onClick={() => toggleTab(1)}
+                >
+                  Cuacks
+                </button>
+                <button
+                  className={toggleState === 2 ? 'tabs active-tabs' : 'tabs'}
+                  onClick={() => toggleTab(2)}
+                >
+                  Recuacks
+                </button>
+                <button
+                  className={toggleState === 3 ? 'tabs active-tabs' : 'tabs'}
+                  onClick={() => toggleTab(3)}
+                >
+                  Fotos y Videos
+                </button>
+                <button
+                  className={toggleState === 4 ? 'tabs active-tabs' : 'tabs'}
+                  onClick={() => toggleTab(4)}
+                >
+                  Me gusta
+                </button>
+              </div>
+
+              <div className='content-tabs'>
+                <div
+                  className={
+                    toggleState === 1 ? 'content  active-content' : 'content'
+                  }
+                >
+                  {handleDisplay()}
+                </div>
+
+                <div
+                  className={
+                    toggleState === 2 ? 'content  active-content' : 'content'
+                  }
+                >
+                  <h2>RECUACKS</h2>
+                </div>
+
+                <div
+                  className={
+                    toggleState === 3 ? 'content  active-content' : 'content'
+                  }
+                >
+                  <h2>CUACKS CON FOTOS</h2>
+                </div>
+                <div
+                  className={
+                    toggleState === 4 ? 'content  active-content' : 'content'
+                  }
+                >
+                  <h2>ME GUSTA</h2>
+                </div>
+              </div>
+            </div>
+
+            {/* {handleDisplay()} */}
           </main>
         </section>
         <section className='section3'>
           <SearchBar className='searchabar' />
           <div className='gallery'>
-            {cuacks?.map((m, i) => {
-              return (
-                <div key={i} className='galleryImg'>
-                  <img
-                    src={m._doc.files && m._doc.files}
-                    alt={`Imagen ${i + 1}`}
-                  />
-                </div>
-              )
+            {cuacks?.map((cuack, i) => {
+              if (cuack._doc.files.length) {
+                console.log(cuack)
+                return (
+                  <div key={i} className='galleryImg'>
+                    <a href={`/cuack/${cuack._doc._id}`}>
+                      {cuack._doc.files[0].includes('giphy') ? (
+                        <div className='giphy-embed gifGalleryImg'>
+                          <iframe
+                            src={cuack._doc.files[0]}
+                            className='giphyProfile'
+                            title='Gif de giphy'
+                          />
+                        </div>
+                      ) : (
+                        <img src={cuack._doc.files} alt={`Imagen ${i + 1}`} />
+                      )}
+                    </a>
+                  </div>
+                )
+              } else {
+                return <></>
+              }
             })}
           </div>
           <Trends />
