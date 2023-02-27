@@ -8,7 +8,7 @@ import likeStaticColor from '../../Assets/Img/likeStaticColor.png'
 import commentStatic from '../../Assets/Img/commentStatic.png'
 import recuackStatic from '../../Assets/Img/recuackStatic.png'
 import React, { useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getUserID } from '../../Utils/auth'
 import Comment from '../Comment/Comment'
 import { Link } from 'react-router-dom'
@@ -25,7 +25,6 @@ const Cuack = ({ cuackinfo, action, hide, limit }) => {
   const likeRef = useRef(null)
   const recuackRef = useRef(null)
   const commentRef = useRef(null)
-  const user = useSelector(state => state.user.userInfo)
   const { nickname, fullname, picture } = cuackinfo
   const token = localStorage.getItem('Authorization')
   const [cuackSection, setCuackSection] = useState('default')
@@ -279,7 +278,7 @@ const Cuack = ({ cuackinfo, action, hide, limit }) => {
                 <i className='bx bx-dots-horizontal-rounded'></i>
               </button>
               <div className='dropdown-content'>
-                {user && user.cuacks?.includes(_id) ? (
+                {author === getUserID() ? (
                   <div>
                     <p className='eliminarCuack' onClick={() => deleteCuack()}>
                       <i className='bx bx-trash eliminarCuack'></i>
