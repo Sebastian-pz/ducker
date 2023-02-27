@@ -191,7 +191,7 @@ const Profile = () => {
             <p className='profile__description'>{user && user.description}</p>
             <br />
             {user.location ? (
-              <div>
+              <div className='orderData'>
                 <i className='bx bx-map'> </i>
                 <p>{user.location}</p>
               </div>
@@ -199,7 +199,7 @@ const Profile = () => {
               ''
             )}
             {user.website ? (
-              <div>
+              <div className='orderData'>
                 <i className='bx bx-link-alt'> </i>
                 <a href={user.website} target='_blank'>
                   {user.website}
@@ -209,17 +209,17 @@ const Profile = () => {
               ' '
             )}
             {user.birthday ? (
-              <div>
+              <div className='orderData'>
                 <i className='bx bxs-balloon'> </i>
                 <p>{getBirthday(user.birthday)}</p>
               </div>
             ) : (
               ''
             )}
-            <p>
+            <div className='orderData'>
               <i className='bx bx-calendar'></i>
-              {user && getDaycreation()}
-            </p>
+              <p>{user && getDaycreation()}</p>
+            </div>
             <br />
             <div className='follows'>
               <span>{user && user.following?.length}</span>
@@ -315,17 +315,9 @@ const Profile = () => {
                 return (
                   <div key={i} className='galleryImg'>
                     <a href={`/cuack/${cuack._doc._id}`}>
-                      {cuack._doc.files[0].includes('giphy') ? (
-                        <div className='giphy-embed gifGalleryImg'>
-                          <iframe
-                            src={cuack._doc.files[0]}
-                            className='giphyProfile'
-                            title='Gif de giphy'
-                          />
-                        </div>
-                      ) : (
+                      <abbr title='Ir a cuack de origen'>
                         <img src={cuack._doc.files} alt={`Imagen ${i + 1}`} />
-                      )}
+                      </abbr>
                     </a>
                   </div>
                 )

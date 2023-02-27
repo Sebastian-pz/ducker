@@ -135,6 +135,21 @@ const Cuackear = ({ type, previous, close, limit }) => {
       },
     }
 
+    if (!content) {
+      setTimeout(() => {
+        toast.remove()
+      }, 1500)
+      return toast(() => (
+        <main className='mainToastInfo'>
+          <div className='toastContainerInfo'>
+            <span className='toastSpan'>
+              <b className='toastInfo'>No puedes enviar un cuack vacío</b>
+            </span>
+          </div>
+        </main>
+      ))
+    }
+
     if (content.length > maxLength) {
       setTimeout(() => {
         toast.remove()
@@ -218,18 +233,7 @@ const Cuackear = ({ type, previous, close, limit }) => {
           />
 
           {files && (
-            <div>
-              {files.includes('giphy') ? (
-                <iframe
-                  src={files}
-                  width='200'
-                  height='280'
-                  className='cuackImg'
-                ></iframe>
-              ) : (
-                <img className='cuackImg' src={files} alt='Imagen del cuack' />
-              )}
-            </div>
+            <img className='cuackImg' src={files} alt='Imagen del cuack' />
           )}
           {showAutocomplete && (
             <Autocomplete
