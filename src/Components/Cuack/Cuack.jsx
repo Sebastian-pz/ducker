@@ -41,7 +41,7 @@ const Cuack = ({ cuackinfo, action, hide, limit }) => {
     _id,
     author,
   } = cuackinfo._doc
-
+  console.log(files)
   const times = {
     day: 1000 * 60 * 60 * 24,
     hour: 1000 * 60 * 60,
@@ -251,15 +251,15 @@ const Cuack = ({ cuackinfo, action, hide, limit }) => {
         name='default'
         onClick={e => handlesection(e)}
       >
-        <div className='cuackImg'>
-          <Link to={`/profile/${author}`} className='linkDecoration'>
+        <Link to={`/profile/${author}`} className='linkDecoration'>
+          <div className='cuackImg'>
             <img
               className='imgCuackProfile'
               src={picture || cuackinfo.img}
               alt='profile picture'
             />
-          </Link>
-        </div>
+          </div>
+        </Link>
         <div className='cuack_main_content'>
           <div className='cuack_content'>
             <div className='cuack_content2'>
@@ -315,21 +315,11 @@ const Cuack = ({ cuackinfo, action, hide, limit }) => {
 
           {files && files.length > 0 && (
             <div>
-              {files[0].includes('giphy') ? (
-                <iframe
-                  src={files[0]}
-                  width='100%'
-                  height='100%'
-                  className='giphy-embed'
-                  title='Gif de giphy'
-                ></iframe>
-              ) : (
-                <img
-                  className='cuackImgCuack'
-                  src={files[0]}
-                  alt='Imagen del cuack'
-                />
-              )}
+              <img
+                className='cuackImgCuack'
+                src={files[0]}
+                alt='Imagen del cuack'
+              />
             </div>
           )}
 

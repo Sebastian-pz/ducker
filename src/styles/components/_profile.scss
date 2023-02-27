@@ -31,6 +31,7 @@
   h5 {
     padding: 0 15px;
     font-weight: normal;
+    color: rgb(82, 82, 82);
   }
 }
 
@@ -87,19 +88,36 @@
     }
   }
 }
+.orderData {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  > i {
+    margin-right: 1vh;
+    font-size: 20px;
+  }
+  > a {
+    color: vars.$primary-color;
+    font-size: 14px;
+  }
+  > p {
+    color: rgb(82, 82, 82);
+    font-size: 14px;
+  }
+}
 .follows {
   display: flex;
-  flex-direction: row;
   align-items: center;
   padding: 0 15px;
   span {
-    padding-right: 8px;
+    margin-right: 1vh;
     font-weight: bold;
     font-size: 14px;
   }
   h5 {
     margin-right: 25px;
-    padding: 0;
+    padding: 0 0;
+    color: rgb(82, 82, 82);
   }
 }
 
@@ -109,7 +127,8 @@
 }
 .profile__description {
   word-wrap: break-word;
-  padding: 5px;
+  // padding: 5px;
+  padding: 0 15px;
   overflow: scroll;
   white-space: break-spaces;
   line-height: 1.2;
@@ -126,35 +145,37 @@
   display: flex;
 }
 .tabs {
+  position: relative;
+  width: 50%;
   padding: 15px;
   text-align: center;
-  width: 50%;
-  background: rgba(128, 128, 128, 0.075);
-  cursor: pointer;
-  border-bottom: 0.1px solid rgba(0, 0, 0, 0.274);
   box-sizing: content-box;
-  position: relative;
+  color: rgb(82, 82, 82);
+  background: #f8f8ff;
+  cursor: pointer;
   outline: none;
 }
-.tabs:not(:last-child) {
-  border-right: 1px solid rgba(0, 0, 0, 0.274);
+.tabs:hover {
+  background: rgba(128, 128, 128, 0.075);
 }
-
 .active-tabs {
-  background: white;
-  border-bottom: 1px solid transparent;
+  background: #f8f8ff;
+  font-weight: bold;
+  color: black;
 }
 
 .active-tabs::before {
   content: '';
   display: block;
   position: absolute;
-  top: -5px;
+  bottom: -5px;
+  border-end-start-radius: 20px;
+  border-end-end-radius: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% + 2px);
   height: 5px;
-  background: rgb(88, 147, 241);
+  background: vars.$primary-color;
 }
 
 button {
@@ -169,19 +190,6 @@ button {
   height: 100%;
   display: none;
 }
-// .content h2 {
-//   padding: 0px 0 5px 0px;
-// }
-// .content hr {
-//   width: 100px;
-//   height: 2px;
-//   background: #222;
-//   margin-bottom: 5px;
-// }
-// .content p {
-//   width: 100%;
-//   height: 100%;
-// }
 .active-content {
   display: block;
 }

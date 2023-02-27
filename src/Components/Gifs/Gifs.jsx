@@ -53,7 +53,7 @@ export default function Gifs() {
           key={term}
           onGifClick={e => {
             console.log(e)
-            setFiles(e.embed_url)
+            setFiles(e.images.original.url)
             setTerm('')
             setSection('default')
           }}
