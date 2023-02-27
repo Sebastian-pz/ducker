@@ -4,10 +4,8 @@ import Logout from '../../Components/Logout/Logout'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
-import { getUserID } from '../../Utils/auth'
-// import { Cuackear } from '..'
+
 import CuackearContainer from '../CuackearContainer/CuackearContainer'
-// import { isAuthenticated } from '../../Utils/auth'
 
 export const SidebarContext = React.createContext()
 
@@ -51,7 +49,7 @@ const Sidebar = () => {
             </Link>
           </div>
           <nav className='navList'>
-            <Link to={'/'} onClick={() => dispatch(getCuacks(getUserID))}>
+            <Link to={'/'} onClick={() => dispatch(getCuacks(15))}>
               <div className='navListDiv'>
                 <i className='bx bxs-home-circle iconoSidebar-i'></i>
                 <h2 className='sidebar_title'>Inicio</h2>
