@@ -209,7 +209,11 @@
     // object-fit: cover;
     // overflow: hidden;
   }
-  .galleryImg > img {
+  .galleryImg > a img {
+    width: 100%;
+    height: auto;
+  }
+  .galleryImg > a iframe {
     width: 100%;
     height: auto;
   }
