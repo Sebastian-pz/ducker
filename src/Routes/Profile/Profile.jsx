@@ -74,6 +74,7 @@ const Profile = () => {
               })}
           </div>
         )
+      case 'recuacks':
       case 'followers':
         return <Followers />
       case 'following':
@@ -252,18 +253,21 @@ const Profile = () => {
                 <button
                   className={toggleState === 2 ? 'tabs active-tabs' : 'tabs'}
                   onClick={() => toggleTab(2)}
+                  id='recuacks'
                 >
                   Recuacks
                 </button>
                 <button
                   className={toggleState === 3 ? 'tabs active-tabs' : 'tabs'}
                   onClick={() => toggleTab(3)}
+                  id='fotos'
                 >
                   Fotos y Videos
                 </button>
                 <button
                   className={toggleState === 4 ? 'tabs active-tabs' : 'tabs'}
                   onClick={() => toggleTab(4)}
+                  id='like'
                 >
                   Me gusta
                 </button>
@@ -311,7 +315,6 @@ const Profile = () => {
           <div className='gallery'>
             {cuacks?.map((cuack, i) => {
               if (cuack._doc.files.length) {
-                console.log(cuack)
                 return (
                   <div key={i} className='galleryImg'>
                     <a href={`/cuack/${cuack._doc._id}`}>

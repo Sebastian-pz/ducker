@@ -4,7 +4,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 import axios from 'axios'
 import PropTypes from 'prop-types'
-import { clearCuacks } from '../../Features/Cuack/cuacksSlice'
+// import { clearCuacks } from '../../Features/Cuack/cuacksSlice'
+
+// Función que se utiliza para dejar de seguir
+export async function handleUnFollow(dispatch, id) {
+  const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
+  const config = {
+    headers: {
+      Authorization: localStorage.getItem('Authorization'),
+    },
+  }
+  await axios.put(
+    `${uri}/users/unfollow/${getUserID()}`,
+    { idUserTwo: id },
+    config
+  )
+  dispatch(getUserById(getUserID()))
+  dispatch(getCuacks(15))
+}
 
 // Necesito el id del usuario que se seguirá o de dejará de seguir
 // ID USUARIO A SEGUIR -- USUARIO LOGGEADO, PROPIEDAD FOLLOWING
@@ -31,26 +48,7 @@ const FollowUnFollow = ({ id }) => {
       config
     )
     dispatch(getUserById(getUserID()))
-    dispatch(clearCuacks())
-    dispatch(getCuacks(0))
-  }
-
-  // Función que se utiliza para dejar de seguir
-  async function handleUnFollow() {
-    const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem('Authorization'),
-      },
-    }
-    await axios.put(
-      `${uri}/users/unfollow/${getUserID()}`,
-      { idUserTwo: id },
-      config
-    )
-    dispatch(getUserById(getUserID()))
-    dispatch(clearCuacks())
-    dispatch(getCuacks(0))
+    dispatch(getCuacks(15))
   }
 
   if (!user) {
@@ -65,7 +63,7 @@ const FollowUnFollow = ({ id }) => {
     return (
       <button
         className='usercard__button-unfollow'
-        onClick={() => handleUnFollow()}
+        onClick={() => handleUnFollow(dispatch, id)}
       >
         <abbr title='Dejar de seguir'>Seguido</abbr>
       </button>
