@@ -3,6 +3,12 @@ import { getUserID } from '../../Utils/auth'
 import { getUserById } from '../../Features/User/functions'
 import { useEffect } from 'react'
 
+function getInfoNot(not) {
+  const notification = not.split(' ')
+  const id = notification.pop()
+  return [id, notification.join(' ')]
+}
+
 const Notifications = () => {
   const dispatch = useDispatch()
   const { notifications } = useSelector(state => state.user.userInfo)
@@ -28,19 +34,10 @@ const Notifications = () => {
               }`}
             >
               <i className='bx bxs-star-half'></i>
-              <div>
+              <a href={`/cuack/${getInfoNot(not.content)[0]}`}>
                 {not.img && <img alt='imagen de notificación' src={not.img} />}
-                {not.content}
-              </div>
-              {/* De las notificaciones (? XDDD
-                pero del back?
-                sep
-                Ya vengo - seba, no armaste estilos todavia?
-                😢...
-                Aún no
-                Tengo que cambiar unas cosas en el back :c
-                Okis, voy armando el archivo de sass
-              */}
+                {getInfoNot(not.content)[1]}
+              </a>
             </div>
           )
         })}

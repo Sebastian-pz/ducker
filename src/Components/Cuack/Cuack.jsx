@@ -16,6 +16,8 @@ import toast from 'react-hot-toast'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 import { setUserCuacks } from '../../Features/User/userSlice'
 import PropTypes from 'prop-types'
+import { handleUnFollow } from '../Follow&UnFollowButton/FollowUnFollow'
+import { handleUserActions } from '../../Utils/user'
 
 export const CuackContext = React.createContext()
 
@@ -41,7 +43,7 @@ const Cuack = ({ cuackinfo, action, hide, limit }) => {
     _id,
     author,
   } = cuackinfo._doc
-  console.log(files)
+
   const times = {
     day: 1000 * 60 * 60 * 24,
     hour: 1000 * 60 * 60,
@@ -290,19 +292,29 @@ const Cuack = ({ cuackinfo, action, hide, limit }) => {
                   </div>
                 ) : (
                   <div>
-                    <p>
-                      <i className='bx bx-user-x'></i>Dejar de seguir a{' '}
-                      {nickname}
+                    <p onClick={() => handleUnFollow(dispatch, author)}>
+                      <i className='bx bx-user-x'></i>
+                      {`Dejar de seguir a ${nickname}`}
+                    </p>
+                    <p
+                      onClick={() =>
+                        handleUserActions(dispatch, author, 'mute')
+                      }
+                    >
+                      <i className='bx bx-volume-mute'></i>
+                      {`Silenciar a ${nickname}`}
+                    </p>
+                    <p
+                      onClick={() =>
+                        handleUserActions(dispatch, author, 'block')
+                      }
+                    >
+                      <i className='bx bx-block'></i>
+                      {`Bloquear a ${nickname}`}
                     </p>
                     <p>
-                      <i className='bx bx-volume-mute'></i>Silenciar a{' '}
-                      {nickname}
-                    </p>
-                    <p>
-                      <i className='bx bx-block'></i>Bloquear a {nickname}
-                    </p>
-                    <p>
-                      <i className='bx bx-flag'></i>Denunciar a {nickname}
+                      <i className='bx bx-flag'></i>
+                      {`Denunciar a ${nickname}`}
                     </p>
                   </div>
                 )}

@@ -5,6 +5,9 @@
   margin-top: 2vh;
   display: flex;
   flex-direction: column;
+  > a {
+    text-decoration: none;
+  }
 }
 .notifications__notification {
   display: flex;
