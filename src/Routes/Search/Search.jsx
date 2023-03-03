@@ -1,15 +1,16 @@
 import Trends from '../../Components/Trends/Trends'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import { SearchBar } from '../../Components/index'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import People from '../../Components/People/People'
 import { SearchCuacks } from '../../Components/SearchCuacks/SearchCuacks'
+import { replaceRoute } from '../../Utils/auth'
 
 const Search = () => {
-  const navigate = useNavigate()
   document.title = 'Buscar en Ducker'
-  useEffect(() => {}, [])
+  replaceRoute()
+
+  const navigate = useNavigate()
 
   return (
     <div className='search-container'>

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-target-blank */
 import {
   Cuack,
   SearchBar,
@@ -6,7 +5,7 @@ import {
   Following,
   UpdateProfile,
 } from '../../Components/index'
-import { getUserID, isAuthenticated } from '../../Utils/auth'
+import { getUserID, isAuthenticated, replaceRoute } from '../../Utils/auth'
 import { setUserCuacks } from '../../Features/User/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,16 +19,9 @@ export const ProfileContext = React.createContext()
 
 const Profile = () => {
   document.title = 'Perfil | Ducker'
-  if (!isAuthenticated()) {
-    window.location.replace('/login')
-    return (
-      <div>
-        <h3>Opps, you must to be logged</h3>
-      </div>
-    )
-  }
+  replaceRoute()
+
   const dispatch = useDispatch()
-  // eslint-disable-next-line no-unused-vars
   const [section, setSection] = useState('default')
   const user = useSelector(state => state.user.userInfo)
   const cuacks = useSelector(state => state.user.cuacks)
@@ -38,7 +30,6 @@ const Profile = () => {
   useEffect(() => {
     if (user.id) dispatch(getUserById(user.id))
     getProfileCuacks()
-    // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   }, [section])
 
   async function getProfileCuacks() {
@@ -202,7 +193,7 @@ const Profile = () => {
             {user.website ? (
               <div className='orderData'>
                 <i className='bx bx-link-alt'> </i>
-                <a href={user.website} target='_blank'>
+                <a href={user.website} target='__blank'>
                   {user.website}
                 </a>
               </div>

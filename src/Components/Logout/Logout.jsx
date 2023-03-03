@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types'
 import { logout } from '../../Utils/auth'
 
-// eslint-disable-next-line react/prop-types
 function Logout({ nickname }) {
   return (
     <div className='bubble'>
@@ -9,6 +9,10 @@ function Logout({ nickname }) {
       </button>
     </div>
   )
+}
+
+Logout.propTypes = {
+  nickname: PropTypes.string,
 }
 
 export default Logout
