@@ -1,6 +1,10 @@
 import { useParams } from 'react-router'
+import { replaceRoute } from '../../Utils/auth'
 
 const User = () => {
+  document.title = 'Usuario Ducker'
+  replaceRoute()
+
   const { id } = useParams()
 
   console.log(id)

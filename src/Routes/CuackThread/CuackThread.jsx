@@ -3,8 +3,12 @@ import Trends from '../../Components/Trends/Trends'
 import { SearchBar } from '../../Components/index'
 import { useNavigate, useParams } from 'react-router-dom'
 import CuackInfo from '../../Components/CuackInfo/CuackInfo'
+import { replaceRoute } from '../../Utils/auth'
 
 const CuackThread = () => {
+  document.title = 'Hilo del Cuack'
+  replaceRoute()
+
   const { cuackID } = useParams()
   const navigate = useNavigate()
   return (

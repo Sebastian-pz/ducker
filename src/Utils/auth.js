@@ -28,3 +28,14 @@ export function logout() {
   window.location.replace('/login')
   return true
 }
+
+export function replaceRoute() {
+  if (!isAuthenticated()) {
+    window.location.replace('/login')
+    return (
+      <div>
+        <p>Opps, you must to be logged</p>
+      </div>
+    )
+  }
+}

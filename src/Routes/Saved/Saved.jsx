@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
 import { useSelector } from 'react-redux'
+import { replaceRoute } from '../../Utils/auth'
 
 function Saved() {
   document.title = 'Guardados | Ducker'
+  replaceRoute()
+
   const navigate = useNavigate()
   const user = useSelector(state => state.user.userInfo)
   return (

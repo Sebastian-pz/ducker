@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Logo from '../../Assets/Img/ducker-logo.png'
 import Logout from '../../Components/Logout/Logout'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCuacks } from '../../Features/Cuack/cuackFunctions'
 
@@ -12,9 +12,17 @@ export const SidebarContext = React.createContext()
 const Sidebar = () => {
   const user = useSelector(state => state.user.userInfo)
 
-  const [logOut, setlogOut] = useState(false)
+  const [logout, setLogout] = useState(false)
   const [sidebarSection, setSidebarSection] = useState('default')
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (logout) {
+      setTimeout(() => {
+        setLogout(false)
+      }, 1000 * 8)
+    }
+  }, [logout])
 
   function handleDisplay() {
     switch (sidebarSection) {
@@ -98,9 +106,9 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div className='logout' onClick={() => setlogOut(!logOut)}>
+        <div className='logout' onClick={() => setLogout(!logout)}>
           <div className='container-icon-name-nick'>
-            {logOut && <Logout nickname={user.nickname} />}
+            {logout && <Logout nickname={user.nickname} />}
             <div className='container-icon-name-nick2'>
               <div className='container-icon-name-nick3'>
                 <img src={user && user.img} alt='' />

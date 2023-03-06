@@ -2,9 +2,12 @@ import { Notifications, SearchBar } from '../../Components/index'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
+import { replaceRoute } from '../../Utils/auth'
 
 function MyNotifications() {
   document.title = 'Notificaciones | Ducker'
+  replaceRoute()
+
   const navigate = useNavigate()
   return (
     <div className='home-container'>
