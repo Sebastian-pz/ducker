@@ -1,0 +1,44 @@
+@use '../vars';
+
+.cuackearSidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #5a5a5ab0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 150;
+}
+
+.cuackearSidebar2 {
+  position: absolute;
+  width: 50%;
+  top: 10%;
+  padding: 20px;
+  border-radius: 20px;
+  border-radius: 20px;
+  background-color: #f8f8ff;
+}
+
+.cuackearSidebar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 2rem;
+  padding: 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f8f8ff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 1s;
+  &:hover {
+    background-color: vars.$secondary-font-color;
+  }
+}

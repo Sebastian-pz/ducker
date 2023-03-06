@@ -1,0 +1,226 @@
+@use '../vars';
+
+.home-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f8ff;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 auto;
+}
+
+.section2 {
+  padding: 0% 2%;
+  width: 600px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 0.1px solid rgb(214, 214, 214);
+  border-right: 0.1px solid rgb(214, 214, 214);
+}
+
+.section2-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 2% 0;
+
+  filter: alpha(opacity=50);
+  i {
+    margin-right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+    transition: 1s;
+    &:hover {
+      background-color: vars.$secondary-font-color;
+    }
+  }
+  border-bottom: 0.1px solid rgb(231, 231, 231);
+
+  h1 {
+    width: 100%;
+    font-size: 20px;
+  }
+}
+.scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  h2 {
+    margin-top: 2.5vh;
+  }
+  h4 {
+    margin-top: 2.5vh;
+    padding: 0 15px;
+  }
+  h5 {
+    padding: 0 15px;
+    font-weight: normal;
+  }
+}
+
+.section3 {
+  width: 350px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  background-color: #f8f8ff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.datosUsuario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 4vh 0;
+  background-color: rgba(231, 231, 231, 0.353);
+  /* background-color: rgb(247, 249, 249); */
+  /* background-color: #ececec; */
+  width: 100%;
+  height: 30vh;
+  min-height: 270px;
+  border-radius: 20px;
+  overflow: auto;
+
+  text-decoration: none;
+}
+
+.datosUsuario {
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.home_profileInfoNumber {
+  font-size: 18px;
+}
+
+.home_profileInfoText {
+  font-size: 16px;
+}
+
+.portadaSection3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 120px;
+}
+.userBannerSection3 {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+.imgSug {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.userImgSection3 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 5px;
+  object-fit: cover;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 5px solid white;
+}
+
+.followContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5%;
+}
+.followerss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+.following {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.tdn {
+  text-decoration: none;
+}
+
+.home_profileInfoText {
+  font-size: vars.$cuacks-font-size;
+}
+
+.home_profileInfoText:hover {
+  color: vars.$primary-color;
+  transition: 0.6s;
+}
+
+.home_profileInfoNumber {
+  font-size: vars.$title-font-size;
+  font-weight: bold;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery {
+  display: grid;
+  // grid: repeat(3, 80px) / auto-flow;
+  // grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 150px;
+  grid-gap: 5px;
+  justify-items: start;
+  align-content: space-between;
+  margin: 0 0 4vh 0;
+  width: 100%;
+  height: 30vh;
+  min-height: 270px;
+  border-radius: 20px;
+  overflow: auto;
+  background-color: rgba(231, 231, 231, 0.353);
+  text-decoration: none;
+  .galleryImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    // height: auto;
+    // height: 80%;
+    // overflow: hidden;
+  }
+  .galleryImg > a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 1s;
+    &:hover {
+      opacity: 50%;
+    }
+  }
+}

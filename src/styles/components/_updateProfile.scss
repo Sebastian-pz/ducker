@@ -1,0 +1,202 @@
+@use '../vars';
+
+.updateMain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #5a5a5ab0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.updateProfile {
+  display: flex;
+  box-sizing: border-box;
+  overflow: scroll;
+  padding-bottom: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  position: absolute;
+  width: 39%;
+  top: 10%;
+}
+.bannerCont {
+  width: 100%;
+  height: 200px;
+  max-width: 100%;
+  max-height: fit-content;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.updateProfile_banner {
+  width: 900px;
+  height: 200px;
+  max-width: 100%;
+
+  object-fit: cover;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.cameraContBanner {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.578);
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  margin-top: -5vh;
+  justify-self: flex-end;
+  align-self: flex-end;
+  margin-right: 10px;
+}
+.cameraContBanner:hover {
+  background-color: rgba(0, 0, 0, 0.254);
+  cursor: pointer;
+}
+
+.avatarCont {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  border-radius: 50%;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin-left: 15px;
+  margin-top: -6vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.updateProfile_avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 4px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  position: absolute;
+  z-index: 100;
+  background-color: #ffffff;
+}
+
+.cameraCont {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.578);
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 110;
+}
+.cameraCont:hover {
+  background-color: rgba(0, 0, 0, 0.254);
+  cursor: pointer;
+}
+.cameraIcon {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  position: relative;
+}
+.updateProfile_label {
+  display: block;
+}
+
+.updateProfile_head {
+  display: flex;
+  padding: 6px;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+
+  h2 {
+    margin-left: -55%;
+  }
+}
+
+.closeUpdate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  color: black;
+  font-size: 18px;
+  background-color: white;
+  transition: 1s;
+  font-weight: bold;
+}
+.closeUpdate:hover {
+  background-color: vars.$secondary-font-color;
+  cursor: pointer;
+}
+
+.updateProfile_inputs_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.updateProfile_input {
+  border: 1px solid #a8a8a8;
+  padding: 10px;
+  margin: 0 10px 5px 0;
+  width: 90%;
+  border-radius: 2px;
+}
+
+.updateProfile_input:focus {
+  outline: none;
+  border: 1px solid #fca0d4;
+}
+
+.updateProfile_textarea {
+  border: 1px solid #a8a8a8;
+  padding: 10px;
+  margin: 0 10px 5px 0;
+  width: 90%;
+  height: 6vh;
+  border-radius: 2px;
+}
+
+.updateProfile_textarea:focus {
+  outline: none;
+  border: 1px solid #fca0d4;
+}
+
+.updateProfile_button {
+  border: none;
+  width: 15%;
+  height: 4vh;
+  color: white;
+  border-radius: 20px;
+  background-color: vars.$primary-color;
+  font-weight: 500;
+  font-size: 15px;
+  overflow: visible;
+}
+
+.updateProfile_button:hover {
+  cursor: pointer;
+  border: 1px solid rgba(12, 110, 180, 0.334);
+  background-color: vars.$secondary-color;
+  transition: 0.3s;
+}

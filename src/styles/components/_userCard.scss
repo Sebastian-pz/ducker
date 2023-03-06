@@ -1,0 +1,93 @@
+@use '../vars';
+
+.followers {
+  display: flex;
+  margin: 0;
+  width: 100%;
+  flex-direction: column;
+  background-color: #f8f8ff;
+}
+
+.userCard {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+}
+.userCard:hover {
+  background-color: vars.$default-background-component;
+  transition: 0.6s;
+}
+
+.userCard__section1 {
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.userCard__section2 {
+  width: 65%;
+}
+.userCard__section3 {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 8px;
+}
+.usercard__fullname {
+  font-weight: bold;
+  font-size: vars.$cuacks-font-size;
+}
+
+.usercard__nickname {
+  font-size: vars.$nickname-font-size;
+  color: rgb(144, 144, 144);
+}
+
+.usercard__bio {
+  margin: 7px 0;
+  font-size: 14px;
+}
+
+.usercard__image {
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+}
+
+.usercard__button {
+  width: 65px;
+  height: 26px;
+  background-color: vars.$primary-color;
+  border: none;
+  border-radius: 20px;
+  color: vars.$dark-primary-font-color;
+  font-weight: bold;
+}
+
+.usercard__button:hover {
+  cursor: pointer;
+  background-color: vars.$secondary-color;
+  transition: 0.5s;
+}
+
+.usercard__button-unfollow {
+  width: 65px;
+  height: 26px;
+  background-color: #6d6d6d;
+  border: none;
+  border-radius: 20px;
+  color: vars.$dark-primary-font-color;
+  font-weight: bold;
+}
+
+.usercard__button-unfollow:hover {
+  cursor: pointer;
+  background-color: vars.$secondary-color;
+  transition: 0.5s;
+}

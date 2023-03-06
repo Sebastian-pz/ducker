@@ -1,0 +1,40 @@
+@use '../vars';
+.person-container {
+  margin: 2% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+.person-container2 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  // max-width: 230px;
+  overflow: hidden;
+  width: 100%;
+}
+.imgPerson img {
+  min-width: 45px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+}
+.person-nicknameandfullname {
+  display: flex;
+  padding-right: 5px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5px;
+  width: 100%;
+  h3 {
+    white-space: nowrap;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  p {
+    width: 100%;
+  }
+}

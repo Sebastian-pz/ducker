@@ -1,0 +1,51 @@
+$font-family: apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  Arial, sans-serif;
+$title-font-size: 20px;
+$cuacks-font-size: 18px;
+$font-size: 16px;
+$nickname-font-size: 14px;
+$cuack-gradient: linear-gradient(
+  to bottom,
+  #d16ba5,
+  #c777b9,
+  #ba83ca,
+  #aa8fd8,
+  #9a9ae1,
+  #8aa7ec,
+  #79b3f4,
+  #69bff8,
+  #52cffe,
+  #41dfff,
+  #46eefa,
+  #5ffbf1
+);
+
+// Light
+$primary-color: #ba3e8c;
+$secondary-color: #86a8e7;
+$primary-font-color: black;
+$secondary-font-color: #595959;
+$background-color: blue;
+$section3-background-color: rgb(247, 249, 249);
+$errors-form-color: #c70039;
+
+//styleSheets o styleShits???
+$cuack-background: #ffffff;
+$border-container: 0.1px solid rgb(214, 214, 214);
+$border-radiuss: 20px;
+$border-radius-formularios: 30px;
+$box-shadoww: 0px 4px 4px rgba(0, 0, 0, 0.25); //no funcionó
+
+// Dark
+$dark-primary-color: #86a8e7;
+$dark-secondary-color: #d16ba5;
+$dark-primary-font-color: #eeee;
+$secondary-font-color: #c8c8c8;
+$dark-background-color: #2f2e41;
+$dark-cuack-background: #4c4a5f;
+
+$media-font-color: #837c7c;
+
+$default-img-size: 75px;
+$default-background-component: #d9d9d9;
+$input-cuackear-background: #767575;

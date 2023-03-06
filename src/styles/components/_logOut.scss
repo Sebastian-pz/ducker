@@ -1,0 +1,112 @@
+@use '../vars';
+
+.bubble {
+  z-index: 100;
+  background: vars.$cuack-background;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin-top: -150px;
+  height: 60px;
+  position: absolute;
+  border-radius: 8px;
+  width: 250px;
+  padding: 4px;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    border-top: 20px solid rgb(255, 255, 255);
+    border-top-color: white;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+  }
+}
+
+.logOut2 {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  font-size: vars.$nickname-font-size;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 8px;
+  &:hover {
+    transition: 0.2s;
+    font-weight: bold;
+  }
+}
+
+.logout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 35px;
+  border: none;
+  height: 60px;
+  width: 100%;
+  background-color: vars.$cuack-background;
+  cursor: pointer;
+  transition: 0.3s;
+  h4 {
+    color: rgb(34, 34, 34);
+    font-size: vars.$font-size;
+  }
+  h5 {
+    color: rgb(59, 59, 59);
+    font-size: vars.$nickname-font-size;
+  }
+  &:hover {
+    background-color: rgba(104, 103, 103, 0.226);
+  }
+}
+
+.logout__desp {
+  font-size: vars.$font-size;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-icon-name-nick {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 12px 0;
+}
+.container-icon-name-nick2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 5%;
+}
+
+.container-icon-name-nick3 img {
+  display: block;
+  object-fit: cover;
+  max-width: 45px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  border: solid 0.1px rgba(177, 174, 174, 0.479);
+  margin-right: 0.5rem;
+}
+
+.container-name-nick {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.container-name-nick h5 {
+  font-weight: normal;
+}

@@ -3,16 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@giphy/js-fetch-api": "^4.7.1",
+    "@giphy/react-components": "^6.5.2",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
-    "react-router-dom": "^6.6.2",
+    "axios": "^1.2.2",
+    "dotenv": "^16.0.3",
+    "google-auth-library": "^8.7.0",
+    "jwt-decode": "^3.1.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-redux": "8.0.5",
+    "react-router-dom": "6.6.2",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "textarea-caret": "^3.1.0",
+    "web-vitals": "2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,6 +57,7 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.0",
-    "prettier": "^2.8.2"
+    "prettier": "^2.8.2",
+    "sass": "^1.57.1"
   }
 }

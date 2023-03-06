@@ -1,0 +1,62 @@
+@use '../vars';
+.search-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f8ff;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 auto;
+}
+
+.search-section2 {
+  padding: 0% 2%;
+  width: 600px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-left: 0.1px solid rgb(214, 214, 214);
+  border-right: 0.1px solid rgb(214, 214, 214);
+  overflow: hidden;
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 1% 0;
+  }
+  i {
+    margin-right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+    transition: 1s;
+    &:hover {
+      background-color: vars.$secondary-font-color;
+    }
+  }
+  main {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+.search-section3 {
+  width: 350px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  background-color: #f8f8ff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
