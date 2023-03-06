@@ -5,15 +5,18 @@ import {
   Following,
   UpdateProfile,
 } from '../../Components/index'
-import { getUserID, isAuthenticated, replaceRoute } from '../../Utils/auth'
+import { getUserID, replaceRoute } from '../../Utils/auth'
 import { setUserCuacks } from '../../Features/User/userSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useState, useEffect } from 'react'
 import Sidebar from '../../Components/Sidebar/Sidebar'
 import Trends from '../../Components/Trends/Trends'
 import axios from 'axios'
-import { getUserById } from '../../Features/User/functions'
+import {
+  clearProfileAndCuacks,
+  getProfileInfo,
+} from '../../Features/User/functions'
 import { Toaster } from 'react-hot-toast'
 export const ProfileContext = React.createContext()
 
@@ -22,24 +25,28 @@ const Profile = () => {
   replaceRoute()
 
   const dispatch = useDispatch()
+  const { id } = useParams()
   const [section, setSection] = useState('default')
-  const user = useSelector(state => state.user.userInfo)
+  const user = useSelector(state => state.user.profileInfo)
   const cuacks = useSelector(state => state.user.cuacks)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user.id) dispatch(getUserById(user.id))
-    getProfileCuacks()
+    if (id) dispatch(getProfileInfo(id))
+    getProfileCuacks(id)
+    return () => {
+      dispatch(clearProfileAndCuacks())
+    }
   }, [section])
 
-  async function getProfileCuacks() {
+  async function getProfileCuacks(id) {
     const uri = process.env.REACT_APP_BACK_URL || 'http://localhost:3001'
     const config = {
       headers: {
         Authorization: localStorage.getItem('Authorization'),
       },
     }
-    const { data } = await axios.get(`${uri}/cuacks/u/${getUserID()}`, config)
+    const { data } = await axios.get(`${uri}/cuacks/u/${id}`, config)
     dispatch(setUserCuacks(data.payload))
   }
 
@@ -128,22 +135,26 @@ const Profile = () => {
     setToggleState(index)
   }
 
-  if (isAuthenticated())
-    return (
-      <div className='home-container'>
-        <Toaster
-          position='top-left'
-          reverseOrder={false}
-          toastOptions={{
-            className: '',
-            style: {
-              fontSize: '1.5rem',
-            },
-          }}
-        />
-        <header>
-          <Sidebar />
-        </header>
+  return (
+    <div className='home-container'>
+      <Toaster
+        position='top-left'
+        reverseOrder={false}
+        toastOptions={{
+          className: '',
+          style: {
+            fontSize: '1.5rem',
+          },
+        }}
+      />
+      <header>
+        <Sidebar />
+      </header>
+      {!Object.keys(user).length ? (
+        <div>
+          <h2>Cargando datos del usuario...</h2>
+        </div>
+      ) : (
         <section className='section2'>
           <nav className='section2-nav'>
             <i
@@ -171,9 +182,13 @@ const Profile = () => {
               </div>
             </div>
             <div className='button'>
-              <button id='update' onClick={e => handlesection(e)}>
-                Editar perfil
-              </button>
+              {user.id === getUserID() ? (
+                <button id='update' onClick={e => handlesection(e)}>
+                  Editar perfil
+                </button>
+              ) : (
+                <div style={{ margin: '20px 0' }}></div>
+              )}
             </div>
             <h4 id='default' onClick={e => handlesection(e)}>
               {user && user.fullname}
@@ -301,29 +316,30 @@ const Profile = () => {
             {/* {handleDisplay()} */}
           </main>
         </section>
-        <section className='section3'>
-          <SearchBar className='searchabar' />
-          <div className='gallery'>
-            {cuacks?.map((cuack, i) => {
-              if (cuack._doc.files.length) {
-                return (
-                  <div key={i} className='galleryImg'>
-                    <a href={`/cuack/${cuack._doc._id}`}>
-                      <abbr title='Ir a cuack de origen'>
-                        <img src={cuack._doc.files} alt={`Imagen ${i + 1}`} />
-                      </abbr>
-                    </a>
-                  </div>
-                )
-              } else {
-                return <></>
-              }
-            })}
-          </div>
-          <Trends />
-        </section>
-      </div>
-    )
+      )}
+      <section className='section3'>
+        <SearchBar className='searchabar' />
+        <div className='gallery'>
+          {cuacks?.map((cuack, i) => {
+            if (cuack._doc.files.length) {
+              return (
+                <div key={i} className='galleryImg'>
+                  <a href={`/cuack/${cuack._doc._id}`}>
+                    <abbr title='Ir a cuack de origen'>
+                      <img src={cuack._doc.files} alt={`Imagen ${i + 1}`} />
+                    </abbr>
+                  </a>
+                </div>
+              )
+            } else {
+              return <></>
+            }
+          })}
+        </div>
+        <Trends />
+      </section>
+    </div>
+  )
 }
 
 export default Profile
