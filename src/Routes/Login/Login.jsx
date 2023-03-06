@@ -34,7 +34,7 @@ const Login = () => {
         dispatch(getCuacks())
         navigate('/')
       }
-    }, 2000)
+    }, 5000)
   }
 
   document.title = 'Welcome back!'
@@ -45,37 +45,35 @@ const Login = () => {
         <img src={Logo} alt='logo' />
         <h3>WELCOME BACK</h3>
         <GoogleLoginButton className='buttonGoogle' />
-        <h4 className='or'>or</h4>
+        <h4 className='or'>o</h4>
         <form action='' onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
             name='email'
             type='text'
-            placeholder='Nickname - Email'
+            placeholder='Ingresa tu correo'
           />
           <input
             onChange={handleChange}
             type='password'
             name='password'
-            placeholder='Password'
+            placeholder='Ingresa tu contraseña'
             className='loginInput'
             id=''
           />
           <h5>
             <a href='' className='password'>
-              Forget Password
+              ¿Se te olvidó tu contraseña?
             </a>
           </h5>
-          <button type='submit'>Login</button>
+          <button type='submit'>Ingresar</button>
           <h5>
-            Don’t have an account yet? <a href='/createaccount'>Sing up</a>
+            ¿No tienes cuenta aún? <a href='/createaccount'>Registrate aquí.</a>
           </h5>
         </form>
       </div>
       <div className='loginImg'>
-        <h3>
-          Join Ducker today and see what’s happening in the world right now
-        </h3>
+        <h3>Ingresa en Ducker para ver lo más la actualidad en el mundo.</h3>
         <img src={imagenLogo1} alt='imagen login' />
       </div>
     </div>

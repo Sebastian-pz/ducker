@@ -91,14 +91,27 @@ const CreateAccount = () => {
     const emailsAndNicknames = await axios.get(`${uri}/users/all/mails`)
 
     if (emailsAndNicknames.data.mails.includes(userInfo.email)) {
-      return toast.error('El correo ya se encuentra registrado.')
+      return toast.error('El correo ya se encuentra registrado.', {
+        style: {
+          minWidth: '350px',
+          background: '#f8f8ff',
+          border: '1px solid gray',
+        },
+      })
     }
     if (emailsAndNicknames.data.nickNames.includes(`@${userInfo.nickname}`)) {
-      return toast.error('El nickname no está disponible.')
+      return toast.error('El nickname no está disponible.', {
+        style: {
+          minWidth: '350px',
+          background: '#f8f8ff',
+          border: '1px solid gray',
+        },
+      })
     }
 
     if (
       !errors.password &&
+      !errors.password2 &&
       !errors.email &&
       !errors.fullname &&
       !errors.nickname
@@ -107,15 +120,24 @@ const CreateAccount = () => {
         axios.post(`${uri}/users`, userInfo),
         {
           loading: 'Loading',
-          success: `Usuario creado con éxito, ya puedes ingresar`,
-          error: `Ha ocurrido un error, revisa los datos ingresados`,
+          success: data => {
+            const msg = data.data.msg
+            const nickname = data.data.user.nickname
+            if (msg !== 'User created succesfully')
+              return 'Algo salió mal, por favor verifica tus datos.'
+            if (nickname)
+              return `Usuario ${data.data.user.nickname} creado con éxito, ya puedes iniciar sesión.`
+          },
+          error: data => {
+            return 'Estamos teniendo errores con nuestro servidor, por favor espera un poco.'
+          },
         },
         {
           style: {
             minWidth: '250px',
           },
           success: {
-            duration: 2000,
+            duration: 6000,
             icon: '🦆',
           },
         }
@@ -128,17 +150,18 @@ const CreateAccount = () => {
         password: '',
         password2: '',
       })
+
+      setTimeout(() => {
+        return window.location.replace('/login')
+      }, 3000)
     }
-    setTimeout(() => {
-      window.location.replace('/login')
-    }, 3000)
   }
 
   useEffect(() => {
     if (isAuthenticated()) navigate('/')
   }, [])
 
-  document.title = 'Ducker, register'
+  document.title = 'Registrate en Ducker'
 
   return (
     <div className='registerContainer'>
@@ -154,13 +177,13 @@ const CreateAccount = () => {
       />
       <div className='registerForm'>
         <img src={Logo} alt='logo' />
-        <h3>CREATE ACCOUNT</h3>
+        <h3>Crea una cuenta</h3>
         <form action='' onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
             name='email'
             type='text'
-            placeholder='Email'
+            placeholder='Correo'
             autoComplete='off'
             required
           />
@@ -173,7 +196,7 @@ const CreateAccount = () => {
             onChange={handleChange}
             name='fullname'
             type='text'
-            placeholder='Fullname'
+            placeholder='Nombre completo'
             autoComplete='off'
             required
           />
@@ -199,7 +222,7 @@ const CreateAccount = () => {
             onChange={handleChange}
             type='password'
             name='password'
-            placeholder='password'
+            placeholder='Contraseña'
             autoComplete='off'
             required
           />
@@ -212,7 +235,7 @@ const CreateAccount = () => {
             onChange={handleChange}
             type='password'
             name='password2'
-            placeholder='repeat password'
+            placeholder='Repite tu contraseña'
             autoComplete='off'
             required
           />
@@ -221,15 +244,30 @@ const CreateAccount = () => {
           ) : (
             <br className='errorsForm'></br>
           )}
-          <h5>By registering, you accept the terms and conditions.</h5>
-          <button type='submit'>Register</button>
+          <h5 className='createAccount__termClarification'>
+            Dandole click en el botón de registro estarás aceptando nuestro
+            términos y condiciones.
+          </h5>
+          {errors && Object.keys(errors).length ? (
+            <button
+              type='submit'
+              disabled
+              className='createAccount__button --disabled'
+            >
+              Registrate
+            </button>
+          ) : (
+            <button type='submit' className='createAccount__button'>
+              Registrate
+            </button>
+          )}
         </form>
       </div>
       <div className='registerImg'>
         <h3>
-          Join Ducker today and see what’s happening in the world right now
+          ¡Únete a Ducker y mira lo que está pasando en el mundo en tiempo real!
         </h3>
-        <img src={imagenLogo1} alt='imagen login' />
+        <img src={imagenLogo1} alt='Imagen del login de Ducker Red social' />
       </div>
     </div>
   )
